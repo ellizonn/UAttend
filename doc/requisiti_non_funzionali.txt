@@ -1,0 +1,33 @@
+Gestione Biblioteca - REQUISITI NON FUNZIONALI:
+
+
+RNF01: il sistema non sarà distribuito: tutti i componenti saranno in esecuzione sullo stesso calcolatore.
+
+RNF02: l’interfaccia utente non sarà grafica, ma testuale.
+
+RNF03: specifica e progettazione saranno definite tramite diagrammi UML.
+
+RNF04: il sistema sarà implementato in linguaggio Java, traducendo in codice il contenuto dei diagrammi UML di progettazione.
+
+RNF05: i contenuti dei "database" saranno memorizzati in file di testo.
+
+RNF06: saranno utilizzati i seguenti tool:
+	- Visual Paradigm per disegnare i diagrammi UML.
+	- Gradle per compilare, eseguire e testare il codice.
+	- Git per condividere documentazione e codice tra gli sviluppatori. 
+	- GitLab sarà utilizzato come repository on-line.
+
+RNF07: la documentazione sarà composta dai soli diagrammi UML (nessun testo in linguaggio naturale).
+
+RNF08: lo sviluppo inizia ad ottobre 2021 e sono previste le seguenti scadenze:
+	- fine ottobre: diagrammi di specifica (classi, casi d'uso, stati)
+	- fine novembre: diagrammi di progettazione (componenti, classi, sequenza, attività)
+	- fine dicembre: codice e test-case dei singoli servizi
+	- metà gennaio: integrazione del sistema
+
+RNF09: le date saranno memorizzate nel formato GG/MM/AAAA.
+
+RNF10: la matricola sara' usata come username ed e' composta da 8 cifre.
+
+RNF11: la password deve contenere un carattere maiuscolo, un carattere minuscolo, un numero, un carattere speciale tra '.', ',', '#', '@', '$', '%'. La Lunghezza minima e' 8 caratteri.
+
