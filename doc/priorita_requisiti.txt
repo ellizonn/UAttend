@@ -1,0 +1,37 @@
+PRIORITA' 1:
+
+RF00 login 			(CODETTA)
+RF05 aggiungi lezione
+RF09 visualizza prenotazioni
+RF10 annulla prenotazione
+RF11 registra presenze
+RF12 ricerca lezioni per data
+RF13 prenota posto
+
+-------------------------------------------------------
+
+PRIORITA' 2:
+
+RF04 crea corso
+RF06 seleziona aula libera 	(GARAVOGLIA, AITCHISON)
+RF07 ricerca utente
+RF14 cancella lezione
+RF15 modifica lezione
+
+-------------------------------------------------------
+
+PRIORITA' 3:
+
+RF01 visualizza avvisi recenti
+RF03 ricerca avvisi per data
+RF16 scrivi avviso
+
+-------------------------------------------------------
+
+PRIORITA' 4:
+
+RF02 cambia password
+RF08 cambia stato account
+RF17 crea utente
+RF18 crea account
+
