@@ -16,5 +16,3 @@ RF14 cancella lezione (CECI, TAMONE)
 RF15 modifica lezione (MANGANONI, MORA)
 RF16 scrivi avviso (FURNARI, GATTICO)
 RF17 crea utente (LA SPISA, FRASSON)
-RF18 crea account (?, ?)
-

@@ -33,5 +33,3 @@ PRIORITA' 4:
 RF02 cambia password        	(MAZZARINO, MIGLIO)
 RF08 cambia stato account   	(?)
 RF17 crea utente            	(LA SPISA, FRASSON)
-RF18 crea account           	(?)
-
