@@ -48,6 +48,9 @@ class gestore_accessi
 
     public boolean controlla_scelta(int scelta, String tipo_utente)
     {
+	//RF00
+        //autore: Codetta
+
         boolean esito;
         
         if (tipo_utente.equals("staff") && scelta>=0 && scelta<=7 ||

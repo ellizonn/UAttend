@@ -55,7 +55,7 @@ public class UI_login
             else
             {
                 // da sostituire con la chiamata del metodo di AVVIO
-                System.out.println("\nAVVIO visualizza notifiche");
+                System.out.println("\nAVVIO visualizza avvisi recenti");
 
                 do
                 {	    
