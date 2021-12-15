@@ -302,9 +302,10 @@ public class DB_lezioni
                 p.matricola_studente = sc.nextInt();
                 p.nome_corso = sc.next();
                 p.cognome_docente = sc.next();
+				p.aula = sc.nextInt();
                 p.giorno = LocalDate.parse(sc.next(), formatter);
                 p.ora_inizio = LocalTime.parse(sc.next(), formatter2);
-		p.ora_fine = LocalTime.parse(sc.next(), formatter2);
+				p.ora_fine = LocalTime.parse(sc.next(), formatter2);
                 p.presente = sc.nextBoolean();
                 
                 elenco.add(p);
@@ -339,7 +340,7 @@ public class DB_lezioni
             for (i=0; i<L; i++)
             {
                 p=(prenotazione)elenco.get(i);
-                fw.write(p.matricola_studente + "\t" + p.nome_corso + "\t" + p.cognome_docente + "\t" + p.giorno.format(formatter) + "\t" + p.ora_inizio.format(formatter2) + "\t" + p.ora_fine.format(formatter2) + "\t" + p.presente + "\n");
+                fw.write(p.matricola_studente + "\t" + p.nome_corso + "\t" + p.cognome_docente + "\t" + p.aula + "\t" + p.giorno.format(formatter) + "\t" + p.ora_inizio.format(formatter2) + "\t" + p.ora_fine.format(formatter2) + "\t" + p.presente + "\n");
             }
             fw.close();
         }
@@ -360,7 +361,7 @@ public class DB_lezioni
         {
             // false per modalita' write, true per modalita' append
             FileWriter fw = new FileWriter(new File("dati/aule.txt"), true);
-            fw.write(p.matricola_studente + "\t" + p.nome_corso + "\t" + p.cognome_docente + "\t" + p.giorno.format(formatter) + "\t" + p.ora_inizio.format(formatter2) + "\t" + p.ora_fine.format(formatter2) + "\t"+ p.presente + "\n");
+            fw.write(p.matricola_studente + "\t" + p.nome_corso + "\t" + p.cognome_docente + "\t" + p.aula + "\t" + p.giorno.format(formatter) + "\t" + p.ora_inizio.format(formatter2) + "\t" + p.ora_fine.format(formatter2) + "\t" + p.presente + "\n");
             fw.close();
         }
         catch (IOException e) 
