@@ -15,7 +15,7 @@ public class prototipo
         UI_account ui_acc = new UI_account(g_acc);	
         UI_utente ui_ut = new UI_utente(ui_acc, g_ut);
         UI_avviso ui_avv = new UI_avviso(g_avv);
-        UI_lezione ui_lez = new UI_lezione(ui_avv, g_lez);
+        UI_lezione ui_lez = new UI_lezione(ui_avv, g_lez, g_ut);
         UI_prenotazione ui_pren = new UI_prenotazione(g_lez);
         UI_ricerca ui_ric = new UI_ricerca(ui_acc, ui_lez, ui_pren, g_ric);
 	UI_login ui_log = new UI_login(ui_avv, ui_ric, ui_acc, ui_lez, ui_pren, ui_ut, g_acc);

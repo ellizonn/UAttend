@@ -52,6 +52,14 @@ public class DB_lezioni
         return elenco;
     }
 
+	public int ricerca_nome_corso(String nomeCorso){
+
+		for(corso corso : this.carica_corsi())
+			if(corso.nome == nomeCorso) return 1;
+		
+		return 0; 
+	}
+
 
 
     public void salva_lezioni(ArrayList<lezione> elenco)
