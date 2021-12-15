@@ -370,4 +370,27 @@ public class DB_lezioni
         }
     }
   
+  
+  
+  	public void db_modifica_lezione(lezione updated_lez){
+		//RF13_prenota_posto
+		//Autori: Rossari, Marisio
+		ArrayList<lezione> elenco = carica_lezioni();
+		int L = elenco.size();
+		int i = 0;
+		while(i<L){
+			if(	
+				elenco.get(i).nome_corso.equals(updated_lez.nome_corso) &&
+				elenco.get(i).anno == updated_lez.anno &&
+				elenco.get(i).giorno.compareTo(updated_lez.giorno)==0 &&
+				elenco.get(i).ora_inizio.compareTo(updated_lez.ora_inizio)==0 
+			){
+				elenco.get(i).posti_disponibili = updated_lez.posti_disponibili;
+				break;
+			}
+			else
+				i++;
+		}
+		salva_lezioni(elenco);
+	}
 }
