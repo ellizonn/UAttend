@@ -10,4 +10,5 @@ public class prenotazione
     public LocalTime ora_inizio;
     public LocalTime ora_fine;
     public boolean presente;
+	public int aula;
 }
