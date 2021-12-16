@@ -24,7 +24,7 @@ class gestore_lezioni {
 
     public boolean verifica_correttezza_data(LocalDate data) {
         return data != null
-                && !data.isBefore(LocalDate.now())
+                && data.isAfter(LocalDate.now())
                 && !data.getDayOfWeek().equals(DayOfWeek.SATURDAY)
                 && !data.getDayOfWeek().equals(DayOfWeek.SUNDAY)
                 && !data.getMonth().equals(Month.AUGUST);
@@ -33,8 +33,8 @@ class gestore_lezioni {
     public boolean verifica_correttezza_orario(LocalTime ora_inizio, LocalTime ora_fine) {
         return ora_inizio != null
                 && ora_fine != null
-                && !ora_inizio.isAfter(ora_fine)
-                && !ora_inizio.isAfter(ora_fine.minusHours(1))
+                && ora_inizio.isBefore(ora_fine)
+                && ora_inizio.isBefore(ora_fine.minusHours(1))
                 && ora_inizio.getHour() >= 9
                 && ora_inizio.getHour() <= 18
                 && ora_fine.getHour() >= 9
