@@ -30,6 +30,11 @@ class gestore_lezioni {
                 && !data.getMonth().equals(Month.AUGUST);
     }
 
+    /**
+     * @return elenco corsi.
+     * @author: Simone Garau
+     * @author: Filiberto Melis
+     */
     public boolean verifica_correttezza_orario(LocalTime ora_inizio, LocalTime ora_fine) {
         return ora_inizio != null
                 && ora_fine != null
