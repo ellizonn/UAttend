@@ -51,7 +51,8 @@ public class UI_lezione {
             Pattern p = Pattern.compile("(\\d{2})/(\\d{2})/(\\d{4})");
             Matcher m = p.matcher(data);
 
-            if (formato = m.matches()) {
+            formato = m.matches();
+            if (formato) {
                 int giorno = Integer.parseInt(m.group(1));
                 int mese = Integer.parseInt(m.group(2));
                 int anno = Integer.parseInt(m.group(3));
@@ -84,7 +85,8 @@ public class UI_lezione {
             Pattern p = Pattern.compile("(\\d{2}):(\\d{2})-(\\d{2}):(\\d{2})");
             Matcher m = p.matcher(orario);
 
-            if (formato = m.matches()) {
+            formato = m.matches();
+            if (formato) {
                 int ora_inizio = Integer.parseInt(m.group(1));
                 int minuto_inizio = Integer.parseInt(m.group(2));
                 int ora_fine = Integer.parseInt(m.group(3));
@@ -160,6 +162,7 @@ public class UI_lezione {
     }
 
     private void mostra_dati_lezione_da_aggiungere() {
+        // autori: Simone Garau, Filiberto Melis
         System.out.println("Dati lezione");
         System.out.println("Corso: " + this.nome_corso);
         System.out.println("Docente: " + this.cognome_docente);
@@ -181,11 +184,10 @@ public class UI_lezione {
         do {
             boolean selezione = false;
             do {
-                int numero_corso;
                 this.visualizza_elenco_corsi();
                 System.out.print("Selezionare un corso indicandone il numero: ");
-                numero_corso = Integer.parseInt(scanner.nextLine());
                 try {
+                    int numero_corso = Integer.parseInt(scanner.nextLine());
                     corso c = this.g_lez.richiesta_elenco_corsi().get(numero_corso-1);
                     this.nome_corso = c.nome;
                     this.anno = c.anno;
@@ -193,6 +195,8 @@ public class UI_lezione {
                     selezione = true;
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("ATTENZIONE: numero di corso non presente");
+                } catch (NumberFormatException e) {
+                    System.out.println("ATTENZIONE: digitare un numero");
                 }
             } while (!selezione);
 
@@ -201,20 +205,23 @@ public class UI_lezione {
                 boolean errore_data;
                 do {
                     this.mostra_form_data();
-                    if (errore_data = !this.g_lez.verifica_correttezza_data(this.giorno))
+                    errore_data = !this.g_lez.verifica_correttezza_data(this.giorno);
+                    if (errore_data)
                         this.mostra_errore_data(this.giorno);
                 } while (errore_data);
 
                 boolean errore_orario;
                 do {
                     this.mostra_form_orario();
-                    if (errore_orario = !this.g_lez.verifica_correttezza_orario(this.ora_inizio, this.ora_fine))
+                    errore_orario = !this.g_lez.verifica_correttezza_orario(this.ora_inizio, this.ora_fine);
+                    if (errore_orario)
                         this.mostra_errore_orario(this.ora_inizio, this.ora_fine);
                 } while (errore_orario);
 
-                // aula a = null; // richiamo a RF06 per selezione aula libera
-                aula a = new aula(); a.capienza = 50; a.numero = 7; // aula di prova
-                if (errore_aula = (a == null)) {
+                // aula a = richiamo a RF06 per selezione aula libera;
+                aula a = new aula(); a.capienza = 50; a.numero = 7; // aula di prova (da rimuovere con l'arrivo di RF06)
+                errore_aula = (a == null);
+                if (errore_aula) {
                     this.mostra_errore_aula();
                 } else {
                     this.numero_aula = a.numero;
