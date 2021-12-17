@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 class gestore_lezioni
 {
@@ -11,6 +12,8 @@ class gestore_lezioni
       db_lez=d1;
     }
 	
+	public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm");
 	
 	// =======================================================================
   
@@ -19,17 +22,22 @@ class gestore_lezioni
     	//RF13_prenota_posto
     	//Autori: Rossari, Marisio
     	
-    	LocalDate today = LocalDate.now();
-    	LocalTime now = LocalTime.now();
-    	
-    	if((lez.giorno.isEqual(today)||lez.giorno.isAfter(today)) && lez.ora_inizio.isAfter(now) && lez.posti_disponibili>0) {
-    		return "ok";
+		LocalDate oggi = LocalDate.now();
+		//LocalTime orario = LocalTime.now();
+    	LocalDate today = LocalDate.parse(oggi.getDayOfMonth()+"/"+oggi.getMonthValue()+"/"+oggi.getYear(), formatter);
+    	//LocalTime now = LocalTime.parse(orario.getHour()+":"+orario.getMinute(), formatter2);
+		
+    	String esito_data_e_posti;
+    	if(lez.giorno.compareTo(today)>0 && lez.posti_disponibili>0) {
+    		esito_data_e_posti = new String("ok");
     	}
-    	if(lez.giorno.isBefore(today) || (lez.ora_inizio.isBefore(now)||lez.ora_inizio.equals(now))) {
-    		return "err_data";
+    	else if(lez.giorno.compareTo(today)<=0) {
+    		esito_data_e_posti = new String("err_data");
     	}
-    	//if lez.posti_disponibili == 0
-    	return "err_posti";
+		else //if(lez.posti_disponibili == 0)
+			esito_data_e_posti = new String("err_posti");
+		
+		return esito_data_e_posti;
     }
 	
 	public boolean controllo_formato_scelta(String scelta_stud){
@@ -49,17 +57,17 @@ class gestore_lezioni
 		//creo nuovo oggetto lezione
 		lezione new_lez = lez;
 		new_lez.posti_disponibili = lez.posti_disponibili - 1;
-		db_lez.db_modifica_lezione(new_lez); //chiamata
+		db_lez.modifica_lezione(new_lez); //chiamata
 		//creo oggetto prenotazione
 		prenotazione obj_preno = new prenotazione();
 		obj_preno.matricola_studente = matricola;
-		obj_preno.nome_corso = lez.nome_corso;
-		obj_preno.cognome_docente = lez.cognome_docente;
-		obj_preno.giorno = lez.giorno;
-		obj_preno.ora_inizio = lez.ora_inizio;
-		obj_preno.ora_fine = obj_preno.ora_fine;
+		obj_preno.nome_corso = new_lez.nome_corso;
+		obj_preno.cognome_docente = new_lez.cognome_docente;
+		obj_preno.giorno = new_lez.giorno;
+		obj_preno.ora_inizio = new_lez.ora_inizio;
+		obj_preno.ora_fine = new_lez.ora_fine;
 		obj_preno.presente = false; // di default
-		obj_preno.aula = lez.numero_aula;
+		obj_preno.aula = new_lez.numero_aula;
 		db_lez.aggiungi_prenotazione(obj_preno); //chiamata
 	}
 	
