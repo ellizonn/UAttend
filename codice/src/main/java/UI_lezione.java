@@ -116,12 +116,14 @@ public class UI_lezione {
         else {
             if (data.isBefore(LocalDate.now()))
                 System.out.println("ERRORE: la data deve essere successiva alla data odierna");
-            if (data.getDayOfWeek().equals(DayOfWeek.SATURDAY))
-                System.out.println("ERRORE: non ci possono essere lezioni il sabato");
-            if (data.getDayOfWeek().equals(DayOfWeek.SUNDAY))
-                System.out.println("ERRORE: non ci possono essere lezioni la domenica");
-            if (data.getMonth().equals(Month.AUGUST))
-                System.out.println("ERRORE: non ci possono essere lezioni ad agosto");
+            else {
+                if (data.getDayOfWeek().equals(DayOfWeek.SATURDAY))
+                    System.out.println("ERRORE: non ci possono essere lezioni il sabato");
+                if (data.getDayOfWeek().equals(DayOfWeek.SUNDAY))
+                    System.out.println("ERRORE: non ci possono essere lezioni la domenica");
+                if (data.getMonth().equals(Month.AUGUST))
+                    System.out.println("ERRORE: non ci possono essere lezioni ad agosto");
+            }
         }
         System.out.print("Premi INVIO per conferma");
         new Scanner(System.in).nextLine();
