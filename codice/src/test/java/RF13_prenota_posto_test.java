@@ -9,6 +9,7 @@ public class RF13_prenota_posto_test
 {
     //RF13_prenota_posto
 	//Autori: Rossari, Marisio
+	//Classe di test per il caso d'uso "prenota_posto"
 
     public static DB_lezioni db_lez = new DB_lezioni();
 	public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -24,7 +25,7 @@ public class RF13_prenota_posto_test
     public void test01_db_modifica_lezione()
     {
     	//mi arriva una lezione esistente nel db, qui la scelgo io ma poi
-		//la riceverò dal caso d'uso precedente
+		//in realtà la creerò in decrementa_prenota
 		ArrayList<lezione> lezioni = db_lez.carica_lezioni(); 
 		//creo un nuovo oggeto updated_lez con i posti decrementati
 		lezione updated_lez = lezioni.get(3);
@@ -60,10 +61,33 @@ public class RF13_prenota_posto_test
 	//modificato correttamente (ovvero che la prenotazione venga aggiunta)
     public void test01_aggiungi_prenotazione()
     {
-    	//mi arriva un oggetto prenotazione (matricola già presente), 
-		//qui lo scelgo io ma poi
-		//lo riceverò dal caso d'uso precedente
-		
+    	//mi arriva un oggetto prenotazione (con matricola già presente), 
+		//qui scelgo tutto io ma poi
+		//in realtà lo creerò in decrementa_prenota
+		prenotazione obj_preno = new prenotazione();
+		obj_preno.matricola_studente = 100006;
+		obj_preno.nome_corso = "Programmazione_1";
+		obj_preno.cognome_docente = "Codetta";
+		obj_preno.giorno = LocalDate.parse("22/12/2021", formatter);
+		obj_preno.ora_inizio = LocalTime.parse("09:15", formatter2);
+		obj_preno.ora_fine = LocalTime.parse("13:15", formatter2);
+		obj_preno.presente = false;
+		obj_preno.aula = 4;
+		db_lez.aggiungi_prenotazione(obj_preno);
+    }
+	public void test02_aggiungi_prenotazione()
+    {
+    	//faccio un'altra prova
+		prenotazione obj_preno = new prenotazione();
+		obj_preno.matricola_studente = 100003;
+		obj_preno.nome_corso = "Sistemi_Operativi_1";
+		obj_preno.cognome_docente = "Cerotti";
+		obj_preno.giorno = LocalDate.parse("01/01/2022", formatter);
+		obj_preno.ora_inizio = LocalTime.parse("14:00", formatter2);
+		obj_preno.ora_fine = LocalTime.parse("18:00", formatter2);
+		obj_preno.presente = false;
+		obj_preno.aula = 7;
+		db_lez.aggiungi_prenotazione(obj_preno);
     }
 
 
