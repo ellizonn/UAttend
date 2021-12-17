@@ -1,5 +1,6 @@
 import java.time.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,13 +9,14 @@ public class UI_lezione {
     UI_avviso ui_avv;
     gestore_lezioni g_lez;
 
-    String nome_corso;
-    String cognome_docente;
-    int anno;
-    int numero_aula;
-    LocalDate giorno;
-    LocalTime ora_inizio;
-    LocalTime ora_fine;
+    private String nome_corso;
+    private String cognome_docente;
+    private int anno;
+    private int numero_aula;
+    private int posti_disponibili;
+    private LocalDate giorno;
+    private LocalTime ora_inizio;
+    private LocalTime ora_fine;
 
     public UI_lezione(UI_avviso ui1, gestore_lezioni g1) {
         //autore: Codetta
@@ -22,31 +24,25 @@ public class UI_lezione {
         g_lez = g1;
     }
 
-    /**
-     *
-     */
-    public void visualizza_elenco_corsi() {
+    private void visualizza_elenco_corsi() {
         // autori: Simone Garau, Filiberto Melis
-        ArrayList<corso> elencoCorsi = g_lez.richiesta_elenco_corsi();
+        ArrayList<corso> elencoCorsi = this.g_lez.richiesta_elenco_corsi();
 
         if (elencoCorsi != null) {
-            System.out.println("Selezionare una lezione");
+            System.out.println("Elenco corsi disponibili");
             for (int i = 0; i < elencoCorsi.size(); i++) {
                 String nome = elencoCorsi.get(i).nome;
                 String cognome_docente = elencoCorsi.get(i).cognome_docente;
                 int anno = elencoCorsi.get(i).anno;
-                System.out.println("Lezione " + (i+1) + ": " + nome + " " + anno + " " + cognome_docente);
+                System.out.println("Corso " + (i+1) + ": " + nome + " " + anno + " " + cognome_docente);
             }
         }
     }
 
-    /**
-     *
-     */
-    public void form_data() {
+    private void mostra_form_data() {
         // autori: Simone Garau, Filiberto Melis
         Scanner scanner = new Scanner(System.in);
-        String conferma = "annulla";
+        boolean conferma = false;
         boolean formato;
 
         do {
@@ -70,22 +66,16 @@ public class UI_lezione {
 
             if (formato) {
                 System.out.print("Confermi la data (s/n)? ");
-                conferma = scanner.nextLine();
-
-                if (conferma.equals("s") | conferma.equals("S"))
-                    conferma = "conferma";
-                else conferma = "annulla";
+                if(new ArrayList<>(Arrays.asList("s", "S")).contains(scanner.nextLine()))
+                    conferma = true;
             }
-        } while (!formato || conferma.equals("annulla"));
+        } while (!formato || !conferma);
     }
 
-    /**
-     *
-     */
-    public void form_orario() {
+    private void mostra_form_orario() {
         // autori: Simone Garau, Filiberto Melis
         Scanner scanner = new Scanner(System.in);
-        String conferma = "annulla";
+        boolean conferma = false;
         boolean formato;
 
         do {
@@ -111,20 +101,13 @@ public class UI_lezione {
 
             if (formato) {
                 System.out.print("Confermi l'orario (s/n)? ");
-                conferma = scanner.nextLine();
-
-                if (conferma.equals("s") | conferma.equals("S"))
-                    conferma = "conferma";
-                else conferma = "annulla";
+                if(new ArrayList<>(Arrays.asList("s", "S")).contains(scanner.nextLine()))
+                    conferma = true;
             }
-        } while (!formato || conferma.equals("annulla"));
+        } while (!formato || !conferma);
     }
 
-    /**
-     *
-     * @param data data di cui mostrare l'errore
-     */
-    public void mostra_errore_data(LocalDate data) {
+    private void mostra_errore_data(LocalDate data) {
         // autori: Simone Garau, Filiberto Melis
         if (data == null)
             System.out.println("ERRORE: nessuna data inserita");
@@ -142,12 +125,7 @@ public class UI_lezione {
         new Scanner(System.in).nextLine();
     }
 
-    /**
-     *
-     * @param ora_inizio orario d'inizio lezione di cui mostrare l'errore
-     * @param ora_fine orario di fine lezione di cui mostrare l'errore
-     */
-    public void mostra_errore_orario(LocalTime ora_inizio, LocalTime ora_fine) {
+    private void mostra_errore_orario(LocalTime ora_inizio, LocalTime ora_fine) {
         // autori: Simone Garau, Filiberto Melis
         if (ora_inizio == null || ora_fine == null) {
             if (ora_inizio == null)
@@ -174,28 +152,86 @@ public class UI_lezione {
         new Scanner(System.in).nextLine();
     }
 
-    /**
-     *
-     */
-    public void mostra_errore_aula() {
+    private void mostra_errore_aula() {
         // autori: Simone Garau, Filiberto Melis
         System.out.println("ERRORE: nessuna aula disponibile");
         System.out.print("Premi INVIO per conferma");
         new Scanner(System.in).nextLine();
     }
 
-    /**
-     *
-     */
-    public void avvio_aggiungi_lezione() {
-        this.visualizza_elenco_corsi();
-        this.form_data();
-        this.form_orario();
+    private void mostra_dati_lezione_da_aggiungere() {
+        System.out.println("Dati lezione");
+        System.out.println("Corso: " + this.nome_corso);
+        System.out.println("Docente: " + this.cognome_docente);
+        System.out.println("Anno: " + this.anno);
+        System.out.println("Aula: " + this.numero_aula);
+        System.out.println("Capienza: " + this.posti_disponibili);
+        System.out.println("Data: " + this.giorno);
+        System.out.println("Ora inizio: " + this.ora_inizio);
+        System.out.println("Ora fine: " + this.ora_fine);
+        System.out.print("Premi INVIO per conferma");
+        new Scanner(System.in).nextLine();
+    }
 
-        if (!g_lez.verifica_correttezza_data(this.giorno))
-            this.mostra_errore_data(this.giorno);
-        if (!g_lez.verifica_correttezza_orario(this.ora_inizio, this.ora_fine))
-            this.mostra_errore_orario(this.ora_inizio, this.ora_fine);
+    public void avvio_aggiungi_lezione() {
+        // autori: Simone Garau, Filiberto Melis
+        Scanner scanner = new Scanner(System.in);
+        boolean risposta = false;
+
+        do {
+            boolean selezione = false;
+            do {
+                int numero_corso;
+                this.visualizza_elenco_corsi();
+                System.out.print("Selezionare un corso indicandone il numero: ");
+                numero_corso = Integer.parseInt(scanner.nextLine());
+                try {
+                    corso c = this.g_lez.richiesta_elenco_corsi().get(numero_corso-1);
+                    this.nome_corso = c.nome;
+                    this.anno = c.anno;
+                    this.cognome_docente = c.cognome_docente;
+                    selezione = true;
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("ATTENZIONE: numero di corso non presente");
+                }
+            } while (!selezione);
+
+            boolean errore_aula;
+            do {
+                boolean errore_data;
+                do {
+                    this.mostra_form_data();
+                    if (errore_data = !this.g_lez.verifica_correttezza_data(this.giorno))
+                        this.mostra_errore_data(this.giorno);
+                } while (errore_data);
+
+                boolean errore_orario;
+                do {
+                    this.mostra_form_orario();
+                    if (errore_orario = !this.g_lez.verifica_correttezza_orario(this.ora_inizio, this.ora_fine))
+                        this.mostra_errore_orario(this.ora_inizio, this.ora_fine);
+                } while (errore_orario);
+
+                // aula a = null; // richiamo a RF06 per selezione aula libera
+                aula a = new aula(); a.capienza = 50; a.numero = 7; // aula di prova
+                if (errore_aula = (a == null)) {
+                    this.mostra_errore_aula();
+                } else {
+                    this.numero_aula = a.numero;
+                    this.posti_disponibili = a.capienza;
+                }
+            } while (errore_aula);
+
+            this.mostra_dati_lezione_da_aggiungere();
+            System.out.print("Sei sicuro di voler salvare questa lezione (s/n)? ");
+            if(new ArrayList<>(Arrays.asList("s", "S")).contains(scanner.nextLine()))
+                risposta = true;
+
+        } while (!risposta);
+
+        this.g_lez.richiesta_salvataggio_lezione(this.nome_corso, this.cognome_docente,
+                this.anno, this.numero_aula, this.posti_disponibili, this.giorno,
+                this.ora_inizio, this.ora_fine);
     }
 
     public static void main(String[] args) {

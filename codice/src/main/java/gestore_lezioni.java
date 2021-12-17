@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 class gestore_lezioni {
     DB_lezioni db_lez;
-    lezione lez;
+
+    lezione l;
 
     public gestore_lezioni(DB_lezioni d1) {
         //autore: Codetta
@@ -52,5 +53,33 @@ class gestore_lezioni {
                 && ora_inizio.getHour() <= 17
                 && ora_fine.getHour() >= 10
                 && ora_fine.getHour() <= 18;
+    }
+
+    /**
+     *
+     * @param nome_corso nome del corso
+     * @param cognome_docente cognome del docente del corso
+     * @param anno anno del corso
+     * @param numero_aula numero dell'aula
+     * @param posti_disponibili numero di posti disponibili nell'aula
+     * @param giorno data della lezione
+     * @param ora_inizio ora d'inizio lezione
+     * @param ora_fine ora di fine lezione
+     */
+    public void richiesta_salvataggio_lezione(String nome_corso, String cognome_docente,
+                                              int anno, int numero_aula,
+                                              int posti_disponibili, LocalDate giorno,
+                                              LocalTime ora_inizio,LocalTime ora_fine) {
+        // autori: Simone Garau, Filiberto Melis
+        this.l = new lezione();
+        l.nome_corso = nome_corso;
+        l.cognome_docente = cognome_docente;
+        l.anno = anno;
+        l.numero_aula = numero_aula;
+        l.posti_disponibili = posti_disponibili;
+        l.giorno = giorno;
+        l.ora_inizio = ora_inizio;
+        l.ora_fine = ora_fine;
+        this.db_lez.aggiungi_lezione(l);
     }
 }
