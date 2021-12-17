@@ -7,6 +7,11 @@ import java.util.regex.Pattern;
 public class UI_lezione {
     UI_avviso ui_avv;
     gestore_lezioni g_lez;
+
+    String nome_corso;
+    String cognome_docente;
+    int anno;
+    int numero_aula;
     LocalDate giorno;
     LocalTime ora_inizio;
     LocalTime ora_fine;
@@ -17,6 +22,9 @@ public class UI_lezione {
         g_lez = g1;
     }
 
+    /**
+     *
+     */
     public void visualizza_elenco_corsi() {
         // autori: Simone Garau, Filiberto Melis
         ArrayList<corso> elencoCorsi = g_lez.richiesta_elenco_corsi();
@@ -24,11 +32,17 @@ public class UI_lezione {
         if (elencoCorsi != null) {
             System.out.println("Selezionare una lezione");
             for (int i = 0; i < elencoCorsi.size(); i++) {
-                System.out.printf("Lezione %d" + elencoCorsi.get(i).toString() + "%n", i + 1);
+                String nome = elencoCorsi.get(i).nome;
+                String cognome_docente = elencoCorsi.get(i).cognome_docente;
+                int anno = elencoCorsi.get(i).anno;
+                System.out.println("Lezione " + (i+1) + ": " + nome + " " + anno + " " + cognome_docente);
             }
         }
     }
 
+    /**
+     *
+     */
     public void form_data() {
         // autori: Simone Garau, Filiberto Melis
         Scanner scanner = new Scanner(System.in);
@@ -65,6 +79,9 @@ public class UI_lezione {
         } while (!formato || conferma.equals("annulla"));
     }
 
+    /**
+     *
+     */
     public void form_orario() {
         // autori: Simone Garau, Filiberto Melis
         Scanner scanner = new Scanner(System.in);
@@ -103,6 +120,10 @@ public class UI_lezione {
         } while (!formato || conferma.equals("annulla"));
     }
 
+    /**
+     *
+     * @param data data di cui mostrare l'errore
+     */
     public void mostra_errore_data(LocalDate data) {
         // autori: Simone Garau, Filiberto Melis
         if (data == null)
@@ -121,6 +142,11 @@ public class UI_lezione {
         new Scanner(System.in).nextLine();
     }
 
+    /**
+     *
+     * @param ora_inizio orario d'inizio lezione di cui mostrare l'errore
+     * @param ora_fine orario di fine lezione di cui mostrare l'errore
+     */
     public void mostra_errore_orario(LocalTime ora_inizio, LocalTime ora_fine) {
         // autori: Simone Garau, Filiberto Melis
         if (ora_inizio == null || ora_fine == null) {
@@ -148,6 +174,9 @@ public class UI_lezione {
         new Scanner(System.in).nextLine();
     }
 
+    /**
+     *
+     */
     public void mostra_errore_aula() {
         // autori: Simone Garau, Filiberto Melis
         System.out.println("ERRORE: nessuna aula disponibile");
@@ -155,7 +184,11 @@ public class UI_lezione {
         new Scanner(System.in).nextLine();
     }
 
+    /**
+     *
+     */
     public void avvio_aggiungi_lezione() {
+        this.visualizza_elenco_corsi();
         this.form_data();
         this.form_orario();
 

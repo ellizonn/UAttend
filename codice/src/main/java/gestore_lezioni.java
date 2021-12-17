@@ -14,14 +14,21 @@ class gestore_lezioni {
     }
 
     /**
-     * @return elenco corsi.
+     *
+     * @return elenco corsi
      */
     public ArrayList<corso> richiesta_elenco_corsi() {
         // autori: Simone Garau, Filiberto Melis
         return db_lez.carica_corsi();
     }
 
+    /**
+     *
+     * @param data data da verificare
+     * @return <em>true</em> se i campi sono corretti, <em>false</em> altrimenti
+     */
     public boolean verifica_correttezza_data(LocalDate data) {
+        // autori: Simone Garau, Filiberto Melis
         return data != null
                 && data.isAfter(LocalDate.now())
                 && !data.getDayOfWeek().equals(DayOfWeek.SATURDAY)
@@ -30,7 +37,10 @@ class gestore_lezioni {
     }
 
     /**
-     * @return elenco corsi.
+     *
+     * @param ora_inizio orario d'inizio lezione da verificare
+     * @param ora_fine orario di fine lezione da verificare
+     * @return <em>true</em> se i campi sono corretti, <em>false</em> altrimenti
      */
     public boolean verifica_correttezza_orario(LocalTime ora_inizio, LocalTime ora_fine) {
         // autori: Simone Garau, Filiberto Melis
