@@ -8,6 +8,19 @@ class gestore_lezioni
       db_lez=d1;
     }
 
+	public String verifica_anno_corso(int anno)
+	{
+		String esito = "";
+
+
+		if(anno >3 || anno <1)
+			esito = "ANNO_NON_VALIDO";
+		else
+			esito = "OK";
+		
+		return esito;
+	}
+
 	public String verifica_nome_corso(String nomeCorso){
 
 		if (nomeCorso == null) return "ABORT";

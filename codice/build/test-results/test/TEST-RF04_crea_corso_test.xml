@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RF04_crea_corso_test" tests="9" skipped="0" failures="0" errors="0" timestamp="2021-12-20T16:56:56" hostname="regocol" time="0.008">
+  <properties/>
+  <testcase name="anno_corso_non_valido" classname="RF04_crea_corso_test" time="0.0"/>
+  <testcase name="corso_presente" classname="RF04_crea_corso_test" time="0.001"/>
+  <testcase name="nome_corso_corto" classname="RF04_crea_corso_test" time="0.0"/>
+  <testcase name="nome_corso_vuoto" classname="RF04_crea_corso_test" time="0.0"/>
+  <testcase name="corso_ok" classname="RF04_crea_corso_test" time="0.001"/>
+  <testcase name="anno_corso_valido" classname="RF04_crea_corso_test" time="0.0"/>
+  <testcase name="selezione_valida" classname="RF04_crea_corso_test" time="0.002"/>
+  <testcase name="selezione_non_valida" classname="RF04_crea_corso_test" time="0.002"/>
+  <testcase name="annulla_creazione" classname="RF04_crea_corso_test" time="0.0"/>
+  <system-out><![CDATA[Davide
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

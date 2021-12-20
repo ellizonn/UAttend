@@ -19,21 +19,19 @@ public class UI_lezione
 
 	public void RF04_crea_corso(){
 		Scanner sc = new Scanner(System.in);
+				// Pulire la console
+				System.out.print("\033[H\033[2J");  
+				System.out.flush(); 
 
 		String nomeCorso = mostra_form_nome_corso();
 		if(nomeCorso == "ABORT")
 			return;
 
-		ArrayList<utente> listaDocenti =  g_utn.fetch_lista_docenti();
-
-		System.out.println(listaDocenti);
-
-		String docente = mostra_form_selezione_docente(listaDocenti);
+		String docente = mostra_form_selezione_docente(g_utn.fetch_lista_docenti());
 		int anno = mostra_form_inserimento_anno();
 
 	
-		while(sc.nextLine() == "\n")
-			{
+		do{
 					// Pulire la console
 				System.out.print("\033[H\033[2J");  
 				System.out.flush(); 
@@ -41,7 +39,8 @@ public class UI_lezione
 				System.out.printf("Stai per creare il corso di %s (%d anno) tenuto da %s\nPremi Invio per confermare.\n", nomeCorso, anno, docente);
 				g_lez.aggiungi_corso(nomeCorso, anno, docente);
 
-			}
+			}while(sc.nextLine() == "\n");
+			
 			
 	}
 
@@ -141,15 +140,21 @@ public class UI_lezione
 		
 		System.out.println("Inserisci il numero del docente: ");
 		
-		while(listaDocenti.contains(docenteSelezionato)){
-			try{
-				docenteSelezionato = listaDocenti.get(sc.nextInt());
-			}
-			catch( IndexOutOfBoundsException e){
-			// Verifica selezione docente
+		Integer selezione_docente = -1;
+		String esito = "";
+
+		do{
+			if(esito == "SELEZIONE_NON_VALIDA")
 				mostra_errore("SELEZIONE NON VALIDA");
-			}
-		}
+
+			selezione_docente = sc.nextInt();
+			
+			esito = g_utn.verifica_selezione_docente(listaDocenti, selezione_docente);
+
+		}while(esito.equals("SELEZIONE_NON_VALIDA"));
+	
+		 // Veri<fica ha avuto successo 
+		docenteSelezionato = listaDocenti.get(selezione_docente);
 		
 		// Pulire la console
 		System.out.print("\033[H\033[2J");  
@@ -162,6 +167,7 @@ public class UI_lezione
 	{
 		Scanner sc = new Scanner(System.in);
 		int annoSelezionato= 0;
+		String esito = "";
 
 		System.out.println("--- Creazione Corso ---\n(1) Primo anno\n(2)Secondo anno\n(3)Terzo anno");
 		System.out.println("Inserisci anno del corso: ");
@@ -169,11 +175,17 @@ public class UI_lezione
 		
 
 		// verifica anno corso
-		while(annoSelezionato >3 || annoSelezionato <=0)
-			{
-				annoSelezionato = sc.nextInt(); 
+
+		do{
+			if(esito == "ANNO_NON_VALIDO")
 				mostra_errore("ANNO_NON_VALIDO");
-			}
+
+			annoSelezionato = sc.nextInt(); 
+			
+			esito = g_lez.verifica_anno_corso(annoSelezionato);
+
+		}while(esito.equals("ANNO_NON_VALIDO"));
+
 
 		// Pulire la console
 		System.out.print("\033[H\033[2J");  

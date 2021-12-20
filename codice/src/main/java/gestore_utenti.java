@@ -19,15 +19,30 @@ class gestore_utenti
 
 		for(utente u : elenco)
 		{
-			if(u.tipo_utente == "docente")
+			if(u.tipo_utente.equals("docente"))
 			{
 				listaDocenti.add(u);
 			}
 		}
-		
-
-
 		return listaDocenti;
+	}
+
+	public String verifica_selezione_docente(ArrayList<utente> listaDocenti, Integer docenteSelezionato){
+
+			String esito ="";
+
+			try{
+				utente verifica_docente = listaDocenti.get(docenteSelezionato);
+				System.out.println(verifica_docente.nome);
+				esito = "OK";
+			}
+			catch(IndexOutOfBoundsException e){
+			// Verifica selezione docente
+				esito = "SELEZIONE_NON_VALIDA";
+			}
+
+			return esito;
+		
 	}
 
 

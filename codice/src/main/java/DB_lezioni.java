@@ -55,7 +55,7 @@ public class DB_lezioni
 	public int ricerca_nome_corso(String nomeCorso){
 
 		for(corso corso : this.carica_corsi())
-			if(corso.nome == nomeCorso) return 1;
+			if(corso.nome.equals(nomeCorso)) return 1;
 		
 		return 0; 
 	}
@@ -277,13 +277,13 @@ public class DB_lezioni
         try
         {
             // false per modalita' write, true per modalita' append
-            FileWriter fw = new FileWriter(new File("dati/aule.txt"), true);
+            FileWriter fw = new FileWriter(new File("dati/corsi.txt"), true);
             fw.write(c.nome + "\t" + c.anno + "\t" + c.cognome_docente + "\n");
             fw.close();
         }
         catch (IOException e) 
         {
-            System.out.println("ERRORE apertura file aule.txt");
+            System.out.println("ERRORE apertura file corsi.txt");
         }
     }
   

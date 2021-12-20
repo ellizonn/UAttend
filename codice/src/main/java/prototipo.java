@@ -2,7 +2,7 @@ public class prototipo
 {
     public static void main(String[] args) 
     {
-        DB_utenti db_ut = new DB_utenti();
+        DB_utenti db_ut =  new DB_utenti();
         DB_avvisi db_avv = new DB_avvisi();
         DB_lezioni db_lez = new DB_lezioni();
 		
