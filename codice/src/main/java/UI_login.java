@@ -54,8 +54,8 @@ public class UI_login
                 this.mostra_errore(tipo_utente);
             else
             {
-                // da sostituire con la chiamata del metodo di AVVIO
-                System.out.println("\nAVVIO visualizza avvisi recenti");
+                System.out.println("Elenco avvisi recenti:");
+                ui_avv.visualizza_elenco();
 
                 do
                 {	    

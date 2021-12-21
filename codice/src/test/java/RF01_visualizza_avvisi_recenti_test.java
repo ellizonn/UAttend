@@ -1,14 +1,14 @@
-package test.java;
+//package test.java;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import main.java.DB_avvisi;
+//import main.java.DB_avvisi;
 //import main.java.UI_avviso; debug UI
-import main.java.gestore_avvisi;
+//import main.java.gestore_avvisi;
 
-public class Visualizza_avvisi_recenti_test {
+public class RF01_visualizza_avvisi_recenti_test {
 
 	// autore: Beccuti/Iabichino
 
