@@ -24,10 +24,8 @@ public class UI_lezione {
         g_lez = g1;
     }
 
-    public void visualizza_elenco_corsi() {
+    public void visualizza_elenco_corsi(ArrayList<corso> elencoCorsi) {
         // autori: Simone Garau, Filiberto Melis
-        ArrayList<corso> elencoCorsi = this.g_lez.richiesta_elenco_corsi();
-
         if (elencoCorsi != null) {
             System.out.println("Elenco corsi disponibili");
             for (int i = 0; i < elencoCorsi.size(); i++) {
@@ -186,11 +184,12 @@ public class UI_lezione {
         do {
             boolean selezione = false;
             do {
-                this.visualizza_elenco_corsi();
+                ArrayList<corso> elencoCorsi = this.g_lez.richiesta_elenco_corsi();
+                this.visualizza_elenco_corsi(elencoCorsi);
                 System.out.print("Selezionare un corso indicandone il numero: ");
                 try {
                     int numero_corso = Integer.parseInt(scanner.nextLine());
-                    corso c = this.g_lez.richiesta_elenco_corsi().get(numero_corso-1);
+                    corso c = elencoCorsi.get(numero_corso-1);
                     this.nome_corso = c.nome;
                     this.anno = c.anno;
                     this.cognome_docente = c.cognome_docente;
@@ -242,18 +241,6 @@ public class UI_lezione {
                 this.anno, this.numero_aula, this.posti_disponibili, this.giorno,
                 this.ora_inizio, this.ora_fine);
     }
-/*
-    public static void main(String[] args) {
-        DB_avvisi da = new DB_avvisi();
-        gestore_avvisi ga = new gestore_avvisi(da);
-        UI_avviso ua = new UI_avviso(ga);
-        DB_lezioni dl = new DB_lezioni();
-        gestore_lezioni gl = new gestore_lezioni(dl);
-        UI_lezione ul = new UI_lezione(ua, gl);
-
-        ul.avvio_aggiungi_lezione();
-    }
- */
 
 	gestore_utenti g_utn;
  
