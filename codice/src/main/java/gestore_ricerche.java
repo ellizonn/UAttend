@@ -51,7 +51,7 @@ class gestore_ricerche
         boolean esito;
 
         if (tipo_utente.equals("staff") && scelta>=0 && scelta !=2 ||
-                tipo_utente.equals("studente") && scelta>=0 && scelta ==2 ||
+                tipo_utente.equals("studente") && scelta>=0 && scelta <=2 && scelta != 1 ||
                 tipo_utente.equals("docente") && scelta>=0 && scelta<=1)
             esito=true;
         else
