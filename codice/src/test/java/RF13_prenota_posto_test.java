@@ -19,11 +19,12 @@ public class RF13_prenota_posto_test
 
 	// =======================================================================
 	
-    @Test
+
 	//questo test chiama metodi che non prevedono valori 
 	//di ritorno: pertanto non ci saranno assert, è utile
 	//soltanto per verificare che il file delle lezioni venga 
 	//modificato correttamente (i posti vengano decrementati)
+	@Test
     public void test01_modifica_lezione()
 	//RF13_prenota_posto
 	//Autori: Rossari, Marisio
@@ -36,6 +37,8 @@ public class RF13_prenota_posto_test
 		updated_lez.posti_disponibili = lezioni.get(0).posti_disponibili - 1;
         db_lez.modifica_lezione(updated_lez);
     }
+    
+    @Test
 	public void test02_modifica_lezione()
 	//RF13_prenota_posto
 	//Autori: Rossari, Marisio
@@ -45,6 +48,8 @@ public class RF13_prenota_posto_test
         db_lez.modifica_lezione(lez);
 		//verifico che non venga modificato nulla (a parte la lezione del primo test)
     }
+    
+    @Test
 	public void test03_modifica_lezione()
 	//RF13_prenota_posto
 	//Autori: Rossari, Marisio
@@ -62,11 +67,11 @@ public class RF13_prenota_posto_test
 	
 	// =======================================================================
 	
-	@Test
 	//questo test chiama metodi che non prevedono valori 
 	//di ritorno: pertanto non ci saranno assert, è utile
 	//soltanto per verificare che il file delle prenotazioni venga 
 	//modificato correttamente (ovvero che la prenotazione venga aggiunta)
+	@Test
     public void test01_aggiungi_prenotazione()
 	//RF13_prenota_posto
 	//Autori: Rossari, Marisio
@@ -75,7 +80,7 @@ public class RF13_prenota_posto_test
 		//qui scelgo tutto io ma poi
 		//in realtà lo creerò in decrementa_prenota
 		prenotazione obj_preno = new prenotazione();
-		obj_preno.matricola_studente = 100006;
+		obj_preno.matricola_studente = 100008;
 		obj_preno.nome_corso = "Programmazione_1";
 		obj_preno.cognome_docente = "Codetta";
 		obj_preno.giorno = LocalDate.parse("22/12/2021", formatter);
@@ -85,13 +90,15 @@ public class RF13_prenota_posto_test
 		obj_preno.aula = 4;
 		db_lez.aggiungi_prenotazione(obj_preno);
     }
+    
+    @Test
 	public void test02_aggiungi_prenotazione()
 	//RF13_prenota_posto
 	//Autori: Rossari, Marisio
     {
     	//faccio un'altra prova
 		prenotazione obj_preno = new prenotazione();
-		obj_preno.matricola_studente = 100003;
+		obj_preno.matricola_studente = 100009;
 		obj_preno.nome_corso = "Sistemi_Operativi_1";
 		obj_preno.cognome_docente = "Cerotti";
 		obj_preno.giorno = LocalDate.parse("01/01/2022", formatter);
@@ -101,51 +108,57 @@ public class RF13_prenota_posto_test
 		obj_preno.aula = 7;
 		db_lez.aggiungi_prenotazione(obj_preno);
     }
-
+	
 	// =======================================================================
 
-	@Test
+	
 	//questo test chiama metodi che non prevedono valori 
 	//di ritorno: pertanto non ci saranno assert, è utile
 	//soltanto per verificare che i file delle prenotazioni e
 	//delle lezioni vengano modificati correttamente 
+	@Test
     public void test01_decrementa_prenota()
 	//RF13_prenota_posto
 	//Autori: Rossari, Marisio
     {
 		//matricola e lezione ci arriveranno poi dal caso d'uso precedente
+		//la modifica ha successo
 		lezione lez = new lezione(); 
 		lez.anno = 1;
 		lez.nome_corso = "Programmazione_1";
-		lez.giorno = LocalDate.parse("12/11/2021", formatter);
-		lez.ora_inizio = LocalTime.parse("12:00", formatter2);
-		lez.ora_fine = LocalTime.parse("16:00", formatter2);
+		lez.giorno = LocalDate.parse("01/10/2021", formatter);
+		lez.ora_inizio = LocalTime.parse("09:00", formatter2);
+		lez.ora_fine = LocalTime.parse("13:00", formatter2);
 		lez.cognome_docente = "Codetta";
-		lez.numero_aula = 4;
-		lez.posti_disponibili = 20;
-        gest_lezioni.decrementa_prenota(lez, 100006);
+		lez.numero_aula = 7;
+		lez.posti_disponibili = 46;
+        gest_lezioni.decrementa_prenota(lez, 100021);
 	}
+	
+	@Test
 	public void test02_decrementa_prenota()
 	//RF13_prenota_posto
 	//Autori: Rossari, Marisio
 	{
+		//la lezione non esiste
 		lezione lez = new lezione(); 
 		lez.anno = 2;
 		lez.nome_corso = "Sistemi_Operativi_1";
-		lez.giorno = LocalDate.parse("12/01/2022", formatter);
-		lez.ora_inizio = LocalTime.parse("12:00", formatter2);
-		lez.ora_fine = LocalTime.parse("16:00", formatter2);
+		lez.giorno = LocalDate.parse("02/10/2021", formatter);
+		lez.ora_inizio = LocalTime.parse("11:00", formatter2);
+		lez.ora_fine = LocalTime.parse("13:00", formatter2);
 		lez.cognome_docente = "Cerotti";
-		lez.numero_aula = 7;
-		lez.posti_disponibili = 30;
-        gest_lezioni.decrementa_prenota(lez, 100003);
+		lez.numero_aula = 4;
+		lez.posti_disponibili = 31;
+        gest_lezioni.decrementa_prenota(lez, 100021);
 	}
 	
 	// =======================================================================
 	
-	@Test
 	//test per verifica la correttezza della scelta
 	//scelta_stud attraverso il metodo controllo_formato_scelta
+
+	@Test
    public void test01_controllo_formato_scelta()
    //RF13_prenota_posto
 	//Autori: Rossari, Marisio
@@ -155,6 +168,8 @@ public class RF13_prenota_posto_test
 	   s = new String("procedi");
 	   assertEquals(gest_lezioni.controllo_formato_scelta(s),true);
    }
+   
+   @Test
    public void test02_controllo_formato_scelta()
    //RF13_prenota_posto
 	//Autori: Rossari, Marisio
@@ -201,6 +216,8 @@ public class RF13_prenota_posto_test
 		//la chiamata deve restituire "ok"
 		assertEquals(gest_lezioni.controllo_data_e_posti(lez),"ok");
    }
+   
+   @Test
    public void test02_controllo_data_e_posti()
    //RF13_prenota_posto
 	//Autori: Rossari, Marisio
