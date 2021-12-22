@@ -25,6 +25,8 @@ public class RF13_prenota_posto_test
 	//soltanto per verificare che il file delle lezioni venga 
 	//modificato correttamente (i posti vengano decrementati)
     public void test01_modifica_lezione()
+	//RF13_prenota_posto
+	//Autori: Rossari, Marisio
     {
     	//mi arriva una lezione esistente nel db, qui la scelgo io ma poi
 		//in realtà la creerò in decrementa_prenota
@@ -35,6 +37,8 @@ public class RF13_prenota_posto_test
         db_lez.modifica_lezione(updated_lez);
     }
 	public void test02_modifica_lezione()
+	//RF13_prenota_posto
+	//Autori: Rossari, Marisio
     {
     	//mi arriva una lezione NON esistente nel db (in questo caso vuota)
 		lezione lez = new lezione(); 
@@ -42,6 +46,8 @@ public class RF13_prenota_posto_test
 		//verifico che non venga modificato nulla (a parte la lezione del primo test)
     }
 	public void test03_modifica_lezione()
+	//RF13_prenota_posto
+	//Autori: Rossari, Marisio
     {
     	//mi arriva una lezione NON esistente nel db (parametri casuali)
 		lezione lez = new lezione(); 
@@ -62,6 +68,8 @@ public class RF13_prenota_posto_test
 	//soltanto per verificare che il file delle prenotazioni venga 
 	//modificato correttamente (ovvero che la prenotazione venga aggiunta)
     public void test01_aggiungi_prenotazione()
+	//RF13_prenota_posto
+	//Autori: Rossari, Marisio
     {
     	//mi arriva un oggetto prenotazione (con matricola già presente), 
 		//qui scelgo tutto io ma poi
@@ -78,6 +86,8 @@ public class RF13_prenota_posto_test
 		db_lez.aggiungi_prenotazione(obj_preno);
     }
 	public void test02_aggiungi_prenotazione()
+	//RF13_prenota_posto
+	//Autori: Rossari, Marisio
     {
     	//faccio un'altra prova
 		prenotazione obj_preno = new prenotazione();
@@ -100,6 +110,8 @@ public class RF13_prenota_posto_test
 	//soltanto per verificare che i file delle prenotazioni e
 	//delle lezioni vengano modificati correttamente 
     public void test01_decrementa_prenota()
+	//RF13_prenota_posto
+	//Autori: Rossari, Marisio
     {
 		//matricola e lezione ci arriveranno poi dal caso d'uso precedente
 		lezione lez = new lezione(); 
@@ -114,6 +126,8 @@ public class RF13_prenota_posto_test
         gest_lezioni.decrementa_prenota(lez, 100006);
 	}
 	public void test02_decrementa_prenota()
+	//RF13_prenota_posto
+	//Autori: Rossari, Marisio
 	{
 		lezione lez = new lezione(); 
 		lez.anno = 2;
@@ -133,6 +147,8 @@ public class RF13_prenota_posto_test
 	//test per verifica la correttezza della scelta
 	//scelta_stud attraverso il metodo controllo_formato_scelta
    public void test01_controllo_formato_scelta()
+   //RF13_prenota_posto
+	//Autori: Rossari, Marisio
    {
 	   String s = new String("indietro");
 	   assertEquals(gest_lezioni.controllo_formato_scelta(s),true);
@@ -140,6 +156,8 @@ public class RF13_prenota_posto_test
 	   assertEquals(gest_lezioni.controllo_formato_scelta(s),true);
    }
    public void test02_controllo_formato_scelta()
+   //RF13_prenota_posto
+	//Autori: Rossari, Marisio
    {
 	   String s = new String("XndietroY");
 	   assertEquals(gest_lezioni.controllo_formato_scelta(s),false);
@@ -156,6 +174,8 @@ public class RF13_prenota_posto_test
    @Test
    //test per controllo_data_e_posti
    public void test01_controllo_data_e_posti()
+   //RF13_prenota_posto
+	//Autori: Rossari, Marisio
    {
 	    lezione lez = new lezione(); 
 		lez.anno = 2;
@@ -182,6 +202,8 @@ public class RF13_prenota_posto_test
 		assertEquals(gest_lezioni.controllo_data_e_posti(lez),"ok");
    }
    public void test02_controllo_data_e_posti()
+   //RF13_prenota_posto
+	//Autori: Rossari, Marisio
    {
 	    //lezione NON corretta
 	    lezione lez = new lezione(); 
@@ -210,21 +232,5 @@ public class RF13_prenota_posto_test
    }
    
     // =======================================================================
-	
-   /*
-   @Test
-   public void x(){
-	    lezione lez = new lezione(); 
-		lez.anno = 2;
-		lez.nome_corso = "Sistemi_Operativi_1";
-		lez.giorno = LocalDate.parse("02/10/2021", formatter);
-		lez.ora_inizio = LocalTime.parse("11:00", formatter2);
-		lez.ora_fine = LocalTime.parse("13:00", formatter2);
-		lez.cognome_docente = "Cerotti";
-		lez.numero_aula = 4;
-		lez.posti_disponibili = 37;
-	    ui_prenotazione.avvio_prenota_posto(lez, 100007);
-   }
-   */
    
 }
