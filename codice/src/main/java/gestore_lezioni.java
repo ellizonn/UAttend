@@ -8,11 +8,15 @@ class gestore_lezioni
       db_lez=d1;
     }
 
+	/**
+	 *  Verifica il corretto inserimento dell'anno del corso 
+	 * @author Andrea Colaci, Gregorio Lupano
+ 	 * @param anno - anno selezionato 
+ 	 * @return esito della verifica
+	 */	
 	public String verifica_anno_corso(int anno)
 	{
 		String esito = "";
-
-
 		if(anno >3 || anno <1)
 			esito = "ANNO_NON_VALIDO";
 		else
@@ -21,6 +25,12 @@ class gestore_lezioni
 		return esito;
 	}
 
+	/**
+	 *  Verifica il corretto inserimento del nome del corso 
+	 * @author Andrea Colaci, Gregorio Lupano
+ 	 * @param nomeCorso - il nome del corso 
+ 	 * @return esito della verifica
+	 */
 	public String verifica_nome_corso(String nomeCorso){
 
 		if (nomeCorso == null) return "ABORT";
@@ -37,6 +47,13 @@ class gestore_lezioni
 			}
 	}
 
+	/**
+	 *  Aggiunge il corso con i parametri specificati
+	 * @author Andrea Colaci, Gregorio Lupano
+ 	 * @param nome - il nome del corso 
+	 * @param anno - l'anno del corso 
+	 * @param cognomeDocente - il cognome del docente che tiene il corso
+	 */
 	public void aggiungi_corso(String nome, int anno, String cognomeDocente)
 	{
 		corso c = new corso();

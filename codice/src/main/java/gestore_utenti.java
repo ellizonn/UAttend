@@ -10,6 +10,11 @@ class gestore_utenti
       db_ut=d1;
     }
 
+	/**
+	 *  ottiene la lista dei docenti dal DB
+	 * @author Andrea Colaci, Gregorio Lupano
+	 * @return la lista dei docenti nel DB
+	 */
 	public ArrayList<utente> fetch_lista_docenti(){
 		
 		ArrayList<utente> listaDocenti = new ArrayList<utente>();
@@ -27,6 +32,13 @@ class gestore_utenti
 		return listaDocenti;
 	}
 
+	/**
+	 *  Verifica il correttamento inserimento della selezione del docente
+	 * @author Andrea Colaci, Gregorio Lupano
+ 	 * @param listaDocenti - la lista dei docenti del DB 
+	 * @param docenteSelezionato - l'indice del docente selezionato
+	 * @return esito della verifica
+	 */
 	public String verifica_selezione_docente(ArrayList<utente> listaDocenti, Integer docenteSelezionato){
 
 			String esito ="";

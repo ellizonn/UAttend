@@ -43,7 +43,7 @@ public class UI_lezione
 		}while(esito != "OK");
 
 
-		listaDocenti = g_utn.fetch_lista_docenti();
+		SUPlistaDocenti = g_utn.fetch_lista_docenti();
 		/* verifica selezione docente*/
 		do{
 			if(esito == "SELEZIONE_NON_VALIDA")
@@ -54,10 +54,10 @@ public class UI_lezione
 			esito = g_utn.verifica_selezione_docente(SUPlistaDocenti, SUPselezione_docente);
 
 		}while(esito.equals("SELEZIONE_NON_VALIDA"));
-		SUPdocenteSelezionato = listaDocenti.get(selezione_docente);
-		docente = docenteSelezionato.cognome;
+		SUPdocenteSelezionato = SUPlistaDocenti.get(SUPselezione_docente);
+		docente = SUPdocenteSelezionato.cognome;
 
-		// verifica anno corso
+		/* verifica anno corso */
 		do{
 			if(esito == "ANNO_NON_VALIDO")
 				mostra_errore("ANNO_NON_VALIDO");
@@ -69,24 +69,21 @@ public class UI_lezione
 		}while(esito.equals("ANNO_NON_VALIDO"));
 		
 
-		// Salvataggio 
+		/* Salvataggio */
 		do{
-				// Pulire la console
-				System.out.print("\033[H\033[2J");  
-				System.out.flush(); 
-				
-				System.out.println("--- Creazione Corso --- ");
-				System.out.printf("Stai per creare il corso di %s (%d anno) tenuto da %s\nPremi Invio per confermare.\n", nomeCorso, anno, docente);
-				g_lez.aggiungi_corso(nomeCorso, anno, docente);
+			mostra_conferma_creazione(nomeCorso, docente, anno);
+		}while(sc.nextLine() == "\n");
+		g_lez.aggiungi_corso(nomeCorso, anno, docente);
 
-			}while(sc.nextLine() == "\n");
-
-
-		// Invocare aggiungi lezione 
 		avvio_aggiungi_lezione();
 			
 	}
 
+	/**
+	 *  Mostra gli errori di RF04_CREA_CORSO()
+	 * @author Andrea Colaci, Gregorio Lupano
+ 	 * @param errore - nome errore
+	 */
 	public void mostra_errore(String errore){
 		Scanner sc = new Scanner(System.in);
 
@@ -132,7 +129,12 @@ public class UI_lezione
 			}while(sc.nextLine() == "\n");}
 		
 	}
-
+	
+	/**
+	 *  Mostra il form per l'inserimento del nome del corso 
+	 * @author Andrea Colaci, Gregorio Lupano
+ 	 * @return nome del corso 
+	 */
 	public String mostra_form_nome_corso(){
 
 		// Pulire la console
@@ -149,6 +151,12 @@ public class UI_lezione
 
 	}
 
+	/**
+	 *  Mostra il form per la selezione del docente
+	 * @author Andrea Colaci, Gregorio Lupano
+ 	 * @param listaDocenti - lista di utenti di tipo docente
+ 	 * @return l'indice dell'array del docente selezionato
+	 */
 	public Integer mostra_form_selezione_docente(ArrayList<utente> listaDocenti)
 	{
 		Scanner sc = new Scanner(System.in);
@@ -162,10 +170,10 @@ public class UI_lezione
 		System.out.println("Docenti: ");
 		
 		for(utente u : listaDocenti)
-			{
-				System.out.printf("(%d) %s - %s\n", noDocente, u.cognome, u.residenza.localita);
-				noDocente ++;
-			}
+		{
+			System.out.printf("(%d) %s - %s\n", noDocente, u.cognome, u.residenza.localita);
+			noDocente ++;
+		}
 		
 		System.out.println("Inserisci il numero del docente: ");
 		
@@ -173,6 +181,11 @@ public class UI_lezione
 		
 	}
 
+	/**
+	 *  Mostra form per l'inserimento dell'anno del corso
+	 * @author Andrea Colaci, Gregorio Lupano
+ 	 * @return anno del corso
+	 */
 	public int mostra_form_inserimento_anno()
 	{
 		Scanner sc = new Scanner(System.in);
@@ -183,7 +196,20 @@ public class UI_lezione
 		System.out.println("--- Creazione Corso ---\n(1) Primo anno\n(2)Secondo anno\n(3)Terzo anno");
 		System.out.println("Inserisci anno del corso: ");
 
-		
 		return sc.nextInt();
+	}
+
+	/**
+	 *  Mostra form per la conferma della creazione del corso 
+	 * @author Andrea Colaci, Gregorio Lupano
+	 */
+	public void mostra_conferma_creazione(String nomeCorso, String docente, int anno)
+	{
+		// Pulire la console
+		System.out.print("\033[H\033[2J");  
+		System.out.flush(); 
+		
+		System.out.println("--- Creazione Corso --- ");
+		System.out.printf("Stai per creare il corso di %s (%d anno) tenuto da %s\nPremi Invio per confermare.\n", nomeCorso, anno, docente);
 	}
 }
