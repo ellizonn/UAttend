@@ -1,0 +1,15 @@
+100000	admin	    0   Aldo	Bianchi	  Via_MontePieta 	9   Vercelli 	13100
+100001	admin	    0	Anna	Rossi	  Via_Balbo 		10  Vercelli 	13100
+100002	admin	    0   Alfio	Verdi	  Via_Migliara 		11  Alessandria 15121
+100003  studente    3   Carla	Rossi	  Via_Trotti  		1   Alessandria 15121
+100004  studente    2   Claudia Bianchi	  Via_Cavour  		2   Alessandria 15121
+100005  studente    2   Clio	Diesel	  Via_Mazzini		3   Alessandria 15121
+100006  studente    1   Cassio	Verdi	  Via_Guasco  		4   Alessandria 15121
+100007  studente    1   Ciro	Neri      Via_Dante 		5   Alessandria 15121
+100008  staff       0   Sirio	Smith 	  Via_Duomo   		6   Vercelli 	13100
+100009  staff	    0   Sisto	Taylor    Via_Ferraris		7   Vercelli 	13100
+100010	staff	    0   Soave	Keynes	  Via_Micca 		8   Vercelli 	13100
+100011	docente	    0   Daniele	Codetta	  Piazza_S.Eusebio     	1   Vercelli    13100
+100012	docente	    0	Davide  Cerotti   Piazza_S.Eusebio     	1   Vercelli    13100
+100013	docente     0   Daniele	Mantovani Piazza_S.Eusebio     	1   Vercelli    13100
+100014  docente	    0   Daniele Theseider Viale_T.Michel      	11  Alessandria 15121
