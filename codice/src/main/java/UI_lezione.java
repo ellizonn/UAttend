@@ -19,28 +19,71 @@ public class UI_lezione
 
 	public void RF04_crea_corso(){
 		Scanner sc = new Scanner(System.in);
+		String esito="";
+		String nomeCorso = null;
+		String docente = null;
+		Integer SUPselezione_docente = -1; /*support per selezione_docente*/
+		utente SUPdocenteSelezionato = null;  /* support per selezione docente */
+		ArrayList<utente> SUPlistaDocenti; /*  support per selezione docente */
+		int anno = 0;
+
+
+		/* verifica nome corso*/
+		do{
+			nomeCorso = mostra_form_nome_corso();
+			esito = g_lez.verifica_nome_corso(nomeCorso);
+			if(esito != "OK")
+			{
+				if(esito == "ABORT"){
+					System.out.println("\n[ABORT] : Operazione annullata con successo.");
+					return;
+				}
+				mostra_errore(esito);
+			}
+		}while(esito != "OK");
+
+
+		listaDocenti = g_utn.fetch_lista_docenti();
+		/* verifica selezione docente*/
+		do{
+			if(esito == "SELEZIONE_NON_VALIDA")
+				mostra_errore("SELEZIONE NON VALIDA");
+
+				SUPselezione_docente = mostra_form_selezione_docente(SUPlistaDocenti);
+			
+			esito = g_utn.verifica_selezione_docente(SUPlistaDocenti, SUPselezione_docente);
+
+		}while(esito.equals("SELEZIONE_NON_VALIDA"));
+		SUPdocenteSelezionato = listaDocenti.get(selezione_docente);
+		docente = docenteSelezionato.cognome;
+
+		// verifica anno corso
+		do{
+			if(esito == "ANNO_NON_VALIDO")
+				mostra_errore("ANNO_NON_VALIDO");
+
+			anno = mostra_form_inserimento_anno();
+			
+			esito = g_lez.verifica_anno_corso(anno);
+
+		}while(esito.equals("ANNO_NON_VALIDO"));
+		
+
+		// Salvataggio 
+		do{
 				// Pulire la console
 				System.out.print("\033[H\033[2J");  
 				System.out.flush(); 
-
-		String nomeCorso = mostra_form_nome_corso();
-		if(nomeCorso == "ABORT")
-			return;
-
-		String docente = mostra_form_selezione_docente(g_utn.fetch_lista_docenti());
-		int anno = mostra_form_inserimento_anno();
-
-	
-		do{
-					// Pulire la console
-				System.out.print("\033[H\033[2J");  
-				System.out.flush(); 
+				
 				System.out.println("--- Creazione Corso --- ");
 				System.out.printf("Stai per creare il corso di %s (%d anno) tenuto da %s\nPremi Invio per confermare.\n", nomeCorso, anno, docente);
 				g_lez.aggiungi_corso(nomeCorso, anno, docente);
 
 			}while(sc.nextLine() == "\n");
-			
+
+
+		// Invocare aggiungi lezione 
+		avvio_aggiungi_lezione();
 			
 	}
 
@@ -91,43 +134,29 @@ public class UI_lezione
 	}
 
 	public String mostra_form_nome_corso(){
-		
-		String nomeCorso = null; 
-		Scanner sc = new Scanner(System.in);
 
+		// Pulire la console
+		System.out.print("\033[H\033[2J");  
+		System.out.flush(); 
+		
+		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("--- Creazione Corso ---");
 		System.out.println("Premi [Invio] per annullare");
 		System.out.println("Inserisci il nome del corso: ");
 		
-		String esito="";  
+		return sc.nextLine();
 
-		do{
-			nomeCorso = sc.nextLine();
-				esito = g_lez.verifica_nome_corso(nomeCorso);
-				if(esito != "OK")
-				{
-					if(esito == "ABORT"){
-						System.out.println("\n[ABORT] : Operazione annullata con successo.");
-						return esito;
-					}
-					mostra_errore(esito);
-				}
-		}while(esito != "OK");
+	}
+
+	public Integer mostra_form_selezione_docente(ArrayList<utente> listaDocenti)
+	{
+		Scanner sc = new Scanner(System.in);
+		int noDocente = 0;
 
 		// Pulire la console
 		System.out.print("\033[H\033[2J");  
 		System.out.flush(); 
-				
-		return nomeCorso;
-		
-	}
-
-	public String mostra_form_selezione_docente(ArrayList<utente> listaDocenti)
-	{
-		utente docenteSelezionato  = null; 
-		Scanner sc = new Scanner(System.in);
-		int noDocente = 0;
 
 		System.out.println("--- Creazione Corso ---");
 		System.out.println("Docenti: ");
@@ -140,57 +169,21 @@ public class UI_lezione
 		
 		System.out.println("Inserisci il numero del docente: ");
 		
-		Integer selezione_docente = -1;
-		String esito = "";
-
-		do{
-			if(esito == "SELEZIONE_NON_VALIDA")
-				mostra_errore("SELEZIONE NON VALIDA");
-
-			selezione_docente = sc.nextInt();
-			
-			esito = g_utn.verifica_selezione_docente(listaDocenti, selezione_docente);
-
-		}while(esito.equals("SELEZIONE_NON_VALIDA"));
-	
-		 // Veri<fica ha avuto successo 
-		docenteSelezionato = listaDocenti.get(selezione_docente);
+		return sc.nextInt();
 		
-		// Pulire la console
-		System.out.print("\033[H\033[2J");  
-		System.out.flush(); 
-		
-		return docenteSelezionato.cognome;
 	}
 
 	public int mostra_form_inserimento_anno()
 	{
 		Scanner sc = new Scanner(System.in);
-		int annoSelezionato= 0;
-		String esito = "";
+		// Pulire la console
+		System.out.print("\033[H\033[2J");  
+		System.out.flush(); 
 
 		System.out.println("--- Creazione Corso ---\n(1) Primo anno\n(2)Secondo anno\n(3)Terzo anno");
 		System.out.println("Inserisci anno del corso: ");
 
 		
-
-		// verifica anno corso
-
-		do{
-			if(esito == "ANNO_NON_VALIDO")
-				mostra_errore("ANNO_NON_VALIDO");
-
-			annoSelezionato = sc.nextInt(); 
-			
-			esito = g_lez.verifica_anno_corso(annoSelezionato);
-
-		}while(esito.equals("ANNO_NON_VALIDO"));
-
-
-		// Pulire la console
-		System.out.print("\033[H\033[2J");  
-		System.out.flush(); 
-		
-		return annoSelezionato;
+		return sc.nextInt();
 	}
 }

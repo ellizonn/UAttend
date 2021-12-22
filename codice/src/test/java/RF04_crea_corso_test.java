@@ -12,11 +12,6 @@ public class RF04_crea_corso_test {
 	gestore_lezioni g_lez =  new gestore_lezioni(db_lez);
 
 
-	//TODO How to include before each statement?
-	/*@BeforeEach
-	public void init(){
-		
-	}*/
 
 	/**
 	 * Test funzione verifica_nome_corso()
