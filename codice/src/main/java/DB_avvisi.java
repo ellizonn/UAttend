@@ -1,3 +1,5 @@
+//package main.java;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 
 public class DB_avvisi
 { 
@@ -19,7 +22,6 @@ public class DB_avvisi
         ArrayList<avviso> elenco;
         avviso a;
         Scanner sc;
-        int i;
 
         // CARICA TUTTO IL FILE
         elenco=new ArrayList<avviso>();		
@@ -29,7 +31,7 @@ public class DB_avvisi
             while ( (sc.hasNext()) )
             {
                 a = new avviso();
-                a.testo = sc.nextLine();
+                a.testo = sc.next();
                 a.emissione = LocalDate.parse(sc.next(), formatter);
                 a.scadenza = LocalDate.parse(sc.next(), formatter);
                 
@@ -93,6 +95,34 @@ public class DB_avvisi
         {
             System.out.println("ERRORE apertura file avvisi");
         }
+    }
+    
+    public ArrayList<avviso> cerca_avvisi(){
+	  	
+        // autore: Beccuti/Iabichino
+
+    	ArrayList<avviso> elenco;
+    	
+    	ArrayList<avviso> a = new ArrayList<avviso>();
+    	
+    	int i, L;
+    	
+    	elenco = carica_avvisi();
+    	
+    	L = elenco.size();
+    	
+    	for(i=0; i<L; i++) {
+    		
+    		if(elenco.get(i).scadenza.isAfter(LocalDate.now())|| elenco.get(i).scadenza.equals(LocalDate.now())) {
+    			
+    			a.add((avviso)elenco.get(i));
+    			
+    		}
+    		
+    	}
+    	    	
+    	return a;
+    	
     }
 
 }

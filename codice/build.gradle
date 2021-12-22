@@ -19,10 +19,10 @@ mainClassName = 'prototipo'
 
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
-    compile 'com.google.guava:guava:23.0'
+    implementation 'com.google.guava:guava:26.0-jre'
 
     // Use JUnit test framework
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
 
 // In this section you declare where to find the dependencies of your project

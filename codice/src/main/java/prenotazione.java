@@ -6,6 +6,7 @@ public class prenotazione
     public int matricola_studente;
     public String nome_corso;
     public String cognome_docente;
+    public int aula;
     public LocalDate giorno;
     public LocalTime ora_inizio;
     public LocalTime ora_fine;
