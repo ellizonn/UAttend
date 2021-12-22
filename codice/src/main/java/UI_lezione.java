@@ -2,18 +2,12 @@ import java.time.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-<<<<<<< HEAD
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-=======
-import java.util.ArrayList;
-
->>>>>>> RF04_crea_corso
 
 public class UI_lezione {
     UI_avviso ui_avv;
     gestore_lezioni g_lez;
-<<<<<<< HEAD
 
     String nome_corso;
     String cognome_docente;
@@ -260,7 +254,7 @@ public class UI_lezione {
         ul.avvio_aggiungi_lezione();
     }
  */
-=======
+
 	gestore_utenti g_utn;
  
     public UI_lezione(UI_avviso ui1, gestore_lezioni g1, gestore_utenti g2)
@@ -467,5 +461,5 @@ public class UI_lezione {
 		System.out.println("--- Creazione Corso --- ");
 		System.out.printf("Stai per creare il corso di %s (%d anno) tenuto da %s\nPremi Invio per confermare.\n", nomeCorso, anno, docente);
 	}
->>>>>>> RF04_crea_corso
+
 }

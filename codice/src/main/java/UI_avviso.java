@@ -16,6 +16,7 @@ public class UI_avviso
     public void visualizza_errore() {
 
 		// autore: Beccuti/Iabichino
+		// RF01
     	
     	System.out.println("Non ci sono avvisi recenti.");
     	
@@ -25,13 +26,14 @@ public class UI_avviso
     	
     	scan.nextLine();
     	
-    	scan.close();
+    	//scan.close();
     	
     }
     
     public void visualizza_elenco() {
 
 		// autore: Beccuti/Iabichino
+		// RF01
     	
     	ArrayList<avviso> a = g_avv.richiesta_avvisi_recenti();
     	

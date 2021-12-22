@@ -11,10 +11,10 @@ public class UI_ricerca
     public UI_ricerca(UI_account ui1, UI_lezione ui2, UI_prenotazione ui3, gestore_ricerche g1)
     {	
 	//autore: Codetta
-	ui_acc=ui1;
-	ui_lez=ui2;
-	ui_pren=ui3;
+        ui_acc=ui1;
+        ui_lez=ui2;
+        ui_pren=ui3;
 
-	g_ric=g1;
+        g_ric=g1;
     }
 }
