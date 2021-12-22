@@ -32,24 +32,27 @@ public class UI_ricerca
         lezione lez;
         do {
             this.form_ricerca();
-            if(data_inizio == null || data_fine == null) {
+            if(g_ric.controllo_data(data_inizio,data_fine) == null) {
+                mostra_errore(null);
                 break;
             }
             else {
+                elenco_lezioni = g_ric.controllo_data(data_inizio,data_fine);
+                lez = mostra_elenco_lezioni(elenco_lezioni);
                 do {
                     this.mostra_menu(tipo_utente);
-                    elenco_lezioni = g_ric.controllo_data(data_inizio,data_fine);
-                    esito=g_ric.controlla_scelta(scelta, tipo_utente);
-                    lez = mostra_elenco_lezioni(elenco_lezioni);
+                    esito = g_ric.controlla_scelta(scelta, tipo_utente);
+
                     if (esito==false)
                         mostra_errore(elenco_lezioni);
+
                     else if(lez != null) {
                         if(scelta==1 && !tipo_utente.equals("studente")) {
                             // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO visualizza prenotazioni");
                         }
                         if(scelta == 2 && tipo_utente.equals("studente")) {
-                            // da sostituire con la chiamata del metodo di AVVIO
+                            //ui_pren.avvio_prenota_posto(lez,matricola);
                             System.out.println("\nAVVIO prenota posto");
                         }
                         if(scelta == 3 && tipo_utente.equals("staff")) {
