@@ -314,19 +314,14 @@ public class DB_lezioni {
         // RF12 - Ricerca lezioni per data
 
         ArrayList<lezione> elenco_lezioni_in;
-        ArrayList<lezione> elenco_lezioni = null;
-        int i = 0;
+        ArrayList<lezione> elenco_lezioni = new ArrayList<>();
         elenco_lezioni_in = carica_lezioni();
         lezione lez = null;
 
         for(lezione l : elenco_lezioni_in) {
             lez = l;
             if((lez.giorno.isAfter(data_inizio) && lez.giorno.isBefore(data_fine)) || lez.giorno.equals(data_inizio) || lez.giorno.equals(data_fine)) {
-                if(i == 0) {
-                    elenco_lezioni = new ArrayList<>();
-                }
                 elenco_lezioni.add(lez);
-                i++;
             }
         }
 

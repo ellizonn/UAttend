@@ -2,6 +2,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 class gestore_ricerche
 {
@@ -20,8 +21,8 @@ class gestore_ricerche
 
     public ArrayList<lezione> controllo_data(String data_inizio, String data_fine) {
 
-        //Masino, Spina
-        //RF12 - ricerca lezioni per data
+        //RF12 - Ricerca lezioni per data
+        //autore: Masino, Spina
 
         ArrayList<lezione> elenco_lezioni;
 
@@ -35,7 +36,7 @@ class gestore_ricerche
                 elenco_lezioni = db_lez.cerca_lezioni(startDate,endDate);
             }
         }
-        catch(DateTimeException e) {
+        catch(DateTimeException | InputMismatchException e) {
             System.err.println("Formato errato.");
             elenco_lezioni = null;
         }
@@ -45,8 +46,8 @@ class gestore_ricerche
 
     public boolean controlla_scelta(int scelta, String tipo_utente)
     {
-        //Masino, Spina
         //RF12 - Ricerca lezioni per data
+        //autore: Masino, Spina
 
         boolean esito;
 

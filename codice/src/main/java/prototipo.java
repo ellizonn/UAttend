@@ -20,6 +20,6 @@ public class prototipo
         UI_ricerca ui_ric = new UI_ricerca(ui_acc, ui_lez, ui_pren, g_ric);
 	UI_login ui_log = new UI_login(ui_avv, ui_ric, ui_acc, ui_lez, ui_pren, ui_ut, g_acc);
 
-        ui_log.avvio_login();	
+        ui_log.avvio_login();
     }
 }

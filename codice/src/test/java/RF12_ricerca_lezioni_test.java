@@ -30,6 +30,15 @@ public class RF12_ricerca_lezioni_test {
     }
 
     @Test
+    public void test_cerca_lezioni_03()
+    {
+        LocalDate date_start = LocalDate.of(2022, 01, 03);
+        LocalDate date_end = LocalDate.of(2022, 01, 05);
+        //date non presenti nel file
+        Assertions.assertNotNull(db_lezioni.cerca_lezioni(date_start,date_end), "DB non deve ritornare null");
+    }
+
+    @Test
     public void test_controlla_data()
     {
         // data_inizio > data_fine

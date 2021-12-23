@@ -1,6 +1,7 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static java.lang.System.exit;
 
 public class UI_ricerca
 {   
@@ -24,20 +25,19 @@ public class UI_ricerca
     }
 
     public void avvio_ricerca_lezioni(String tipo_utente,int matricola) {
-        //Masino, Spina
         //RF12 - Ricerca lezioni per data
+        //autore: Masino, Spina
 
         boolean esito;
-        ArrayList<lezione> elenco_lezioni;
+        ArrayList<lezione> elenco_lezioni = null;
         lezione lez;
         do {
             this.form_ricerca();
-            if(g_ric.controllo_data(data_inizio,data_fine) == null) {
+            elenco_lezioni = g_ric.controllo_data(data_inizio,data_fine);
+            if(elenco_lezioni == null) {
                 mostra_errore(null);
-                break;
             }
             else {
-                elenco_lezioni = g_ric.controllo_data(data_inizio,data_fine);
                 lez = mostra_elenco_lezioni(elenco_lezioni);
                 do {
                     this.mostra_menu(tipo_utente);
@@ -73,8 +73,8 @@ public class UI_ricerca
 
     public void form_ricerca() {
 
-        //Spina, Masino
-        //RF12 - ricerca lezioni per data
+        //RF12 - Ricerca lezioni per data
+        //autore: Masino, Spina
 
         sc = new Scanner(System.in);
         System.out.print("\nInserisci data inizio: ");
@@ -85,8 +85,8 @@ public class UI_ricerca
 
     public void mostra_errore(ArrayList<lezione> elenco_lezioni) {
 
-        //Masino, Spina
         //RF12 - Ricerca lezioni per data
+        //autore: Masino, Spina
 
         String conferma;
         sc = new Scanner(System.in);
@@ -94,7 +94,10 @@ public class UI_ricerca
             System.out.println("\nERRORE: data passata o formato date errato.");
         }
         else if(elenco_lezioni.size() == 0) {
-            System.out.println("ERRORE: nessuna lezione nel periodo selezionato.");
+            System.out.println("Nessuna lezione nel periodo selezionato.");
+        }
+        else {
+            System.out.println("\nERRORE: scelta errata");
         }
 
         System.out.print("premi INVIO per confermare");
@@ -103,46 +106,73 @@ public class UI_ricerca
 
     public lezione mostra_elenco_lezioni(ArrayList<lezione> elenco_lezioni) {
 
-        //Masino, Spina
         //RF12 - Ricerca lezioni per data
+        //autore: Masino, Spina
 
         int i = 1;
         lezione lezione = null;
 
-        for(lezione lez : elenco_lezioni) {
-            System.out.println("\n-------------------------------------------");
-            System.out.println("Lezione "+i);
-            System.out.println("Giorno: "+lez.giorno);
-            System.out.println("Anno: "+lez.anno);
-            System.out.println("Orario: "+lez.ora_inizio+" "+lez.ora_fine);
-            System.out.println("Corso: "+lez.nome_corso);
-            System.out.println("Docente: "+lez.cognome_docente);
-            System.out.println("Numero Aula: "+lez.numero_aula);
-            System.out.println("Posti disponibili: "+lez.posti_disponibili);
-            System.out.println("-------------------------------------------");
-            i++;
+        if(elenco_lezioni.size() != 0) {
+            for(lezione lez : elenco_lezioni) {
+                System.out.println("\n-------------------------------------------");
+                System.out.println("Lezione "+i);
+                System.out.println("Giorno: "+lez.giorno);
+                System.out.println("Anno: "+lez.anno);
+                System.out.println("Orario: "+lez.ora_inizio+" "+lez.ora_fine);
+                System.out.println("Corso: "+lez.nome_corso);
+                System.out.println("Docente: "+lez.cognome_docente);
+                System.out.println("Numero Aula: "+lez.numero_aula);
+                System.out.println("Posti disponibili: "+lez.posti_disponibili);
+                System.out.println("-------------------------------------------");
+                i++;
+            }
+        }
+        else {
+            System.err.println("Nessuna lezione nel periodo selezionato.");
+            System.out.println("\n1. Ricerca altre lezioni");
+            System.out.println("2. Esci");
+            int sel_menu;
+            do {
+                sc = new Scanner(System.in);
+                sel_menu = sc.nextInt();
+                if(sel_menu == 1) {
+                    this.form_ricerca();
+                }
+                else {
+                    exit(0);
+                }
+            }
+            while(sel_menu < 1 && sel_menu > 2);
         }
 
         int sel_lez;
         sc = new Scanner(System.in);
-        System.out.println("Selezionare lezione: ");
-        sel_lez = sc.nextInt();
         i = 1;
-        if(sel_lez != 0) {
-            for(lezione lez : elenco_lezioni) {
-                if(i==sel_lez) {
-                    lezione = lez;
+
+        do {
+            System.out.println("Selezionare lezione: ");
+            sel_lez = sc.nextInt();
+            if(sel_lez != 0) {
+                for(lezione lez : elenco_lezioni) {
+                    if(i==sel_lez) {
+                        lezione = lez;
+                    }
+                    i++;
                 }
-                i++;
+            }
+            else {
+                exit(0);
             }
         }
+        while(sel_lez > elenco_lezioni.size());
+
         return lezione;
     }
 
     public void mostra_menu(String tipo_utente)
     {
-        //RF00
-        //autore: Codetta
+        //RF12 - Ricerca lezioni per data
+        //autore: Masino, Spina
 
         Scanner sc = new Scanner(System.in);
 
@@ -150,11 +180,11 @@ public class UI_ricerca
 
 
         if (tipo_utente.equals("docente"))
-            System.out.println("3. Visualizza prenotazioni");
+            System.out.println("1. Visualizza prenotazioni");
         if (tipo_utente.equals("studente") )
-            System.out.println("3. Prenota posto\n");
+            System.out.println("1. Prenota posto\n");
         if (tipo_utente.equals("staff") )
-            System.out.println("3. Cancella lezione\n4. Modifica lezione");
+            System.out.println("1.Visualizza prenotazioni\n2. Cancella lezione\n3. Modifica lezione");
 
         System.out.print("\ninserire scelta: ");
         scelta = sc.nextInt();
