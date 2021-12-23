@@ -55,7 +55,7 @@ public class UI_login
             else
             {
                 System.out.println("Elenco avvisi recenti:");
-                ui_avv.visualizza_elenco();
+                ui_avv.avvio_avvisi();
 
                 do
                 {	    

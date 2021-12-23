@@ -1,5 +1,4 @@
-// package main.java;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class gestore_avvisi
@@ -14,8 +13,8 @@ public class gestore_avvisi
     
     public ArrayList<avviso> richiesta_avvisi_recenti(){
 
-      // autore: Beccuti/Iabichino
+      // autore: Beccuti/Iabichino RF01
 		
-    	return db_avv.cerca_avvisi();
+    	return db_avv.cerca_avvisi(LocalDate.now());
     }
 }

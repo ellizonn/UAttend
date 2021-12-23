@@ -1,5 +1,3 @@
-//package main.java;
-
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -97,23 +95,21 @@ public class DB_avvisi
         }
     }
     
-    public ArrayList<avviso> cerca_avvisi(){
+    public ArrayList<avviso> cerca_avvisi(LocalDate b){
 	  	
-        // autore: Beccuti/Iabichino
+        // autore: Beccuti/Iabichino RF01
 
-    	ArrayList<avviso> elenco;
+        ArrayList<avviso> elenco = carica_avvisi();
     	
     	ArrayList<avviso> a = new ArrayList<avviso>();
     	
     	int i, L;
     	
-    	elenco = carica_avvisi();
-    	
     	L = elenco.size();
     	
     	for(i=0; i<L; i++) {
     		
-    		if(elenco.get(i).scadenza.isAfter(LocalDate.now())|| elenco.get(i).scadenza.equals(LocalDate.now())) {
+    		if(elenco.get(i).scadenza.isAfter(b)|| elenco.get(i).scadenza.equals(b)) {
     			
     			a.add((avviso)elenco.get(i));
     			
