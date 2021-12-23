@@ -17,9 +17,9 @@ public class RF01_visualizza_avvisi_recenti_test {
 
 		// autore: Beccuti/Iabichino RF01
 		
-		assertTrue(!db_avv.cerca_avvisi(LocalDate.now(),db_avv.carica_avvisi()).isEmpty());
+		assertTrue(!db_avv.cerca_avvisi(LocalDate.now()).isEmpty());
 		
-		assertEquals(db_avv.cerca_avvisi(LocalDate.now(), db_avv.carica_avvisi()).get(0).testo, "le_lezioni_finiscono_il_15_gennaio");
+		assertEquals(db_avv.cerca_avvisi(LocalDate.now()).get(0).testo, "le_lezioni_finiscono_il_15_gennaio");
 		
 	}
 

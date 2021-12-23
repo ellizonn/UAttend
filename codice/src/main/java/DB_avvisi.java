@@ -95,9 +95,11 @@ public class DB_avvisi
         }
     }
     
-    public ArrayList<avviso> cerca_avvisi(LocalDate b, ArrayList<avviso> elenco){
+    public ArrayList<avviso> cerca_avvisi(LocalDate b){
 	  	
         // autore: Beccuti/Iabichino RF01
+
+        ArrayList<avviso> elenco = carica_avvisi();
     	
     	ArrayList<avviso> a = new ArrayList<avviso>();
     	

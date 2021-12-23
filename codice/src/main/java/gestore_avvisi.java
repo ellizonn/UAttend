@@ -15,6 +15,6 @@ public class gestore_avvisi
 
       // autore: Beccuti/Iabichino RF01
 		
-    	return db_avv.cerca_avvisi(LocalDate.now(), db_avv.carica_avvisi());
+    	return db_avv.cerca_avvisi(LocalDate.now());
     }
 }
