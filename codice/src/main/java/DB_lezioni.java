@@ -46,6 +46,14 @@ public class DB_lezioni {
         return elenco;
     }
 
+	public int ricerca_nome_corso(String nomeCorso){
+
+		for(corso corso : this.carica_corsi())
+			if(corso.nome.equals(nomeCorso)) return 1;
+		
+		return 0; 
+	}
+
 
     public void salva_lezioni(ArrayList<lezione> elenco) {
         // autore: Codetta
@@ -222,10 +230,11 @@ public class DB_lezioni {
         // metodo condiviso
         try {
             // false per modalita' write, true per modalita' append
-            FileWriter fw = new FileWriter(new File("dati/aule.txt"), true);
+            FileWriter fw = new FileWriter(new File("dati/corsi.txt"), true);
             fw.write(c.nome + "\t" + c.anno + "\t" + c.cognome_docente + "\n");
             fw.close();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             System.out.println("ERRORE apertura file aule.txt");
         }
     }

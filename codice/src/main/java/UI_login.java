@@ -89,13 +89,15 @@ public class UI_login
                             // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO visualizza prenotazioni");
 	
-                        if (scelta==5 && tipo_utente.equals("staff"))
-                            // da sostituire con la chiamata del metodo di AVVIO
+                        if (scelta==5 && tipo_utente.equals("staff")) {
                             System.out.println("\nAVVIO crea corso");
+                            ui_lez.RF04_crea_corso(); /* avvio crea corso */
+                        }
 
-                        if (scelta==6 && tipo_utente.equals("staff"))
-                            // da sostituire con la chiamata del metodo di AVVIO
+                        if (scelta==6 && tipo_utente.equals("staff")) {
                             System.out.println("\nAVVIO aggiungi lezione");
+                            this.ui_lez.avvio_aggiungi_lezione();
+                        }
 
                         if (scelta==7 && tipo_utente.equals("staff"))
                             // da sostituire con la chiamata del metodo di AVVIO

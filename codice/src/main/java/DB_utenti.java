@@ -105,6 +105,7 @@ public class DB_utenti
         utente u;
         Scanner sc;
         int i;
+		
 
         // CARICA TUTTO IL FILE
         elenco=new ArrayList<utente>();		

@@ -30,7 +30,7 @@ public class UI_avviso
     	
     	scan.nextLine();
     	
-    	scan.close();
+    	//scan.close();
     	
     }
     
