@@ -74,6 +74,7 @@ public class UI_login
                             System.out.println("\nAVVIO ricerca avvisi per data");
 
                         if (scelta==3 && !tipo_utente.equals("admin"))
+                            ui_ric.avvio_ricerca_lezioni(tipo_utente,matricola);
                             // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO ricerca lezioni per data");
 

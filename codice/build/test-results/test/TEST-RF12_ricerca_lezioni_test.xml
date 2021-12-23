@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RF12_ricerca_lezioni_test" tests="20" skipped="0" failures="0" errors="0" timestamp="2021-12-22T10:53:14" hostname="LAPTOP-BIME7T0E" time="0.08">
+  <properties/>
+  <testcase name="test_cerca_lezioni" classname="RF12_ricerca_lezioni_test" time="0.032"/>
+  <testcase name="test_controlla_data_02" classname="RF12_ricerca_lezioni_test" time="0.024"/>
+  <testcase name="test_controlla_data_03" classname="RF12_ricerca_lezioni_test" time="0.006"/>
+  <testcase name="test_controlla_data_04" classname="RF12_ricerca_lezioni_test" time="0.002"/>
+  <testcase name="test_cerca_lezioni_02" classname="RF12_ricerca_lezioni_test" time="0.004"/>
+  <testcase name="controlla_scelta" classname="RF12_ricerca_lezioni_test" time="0.001"/>
+  <testcase name="controlla_scelta_04" classname="RF12_ricerca_lezioni_test" time="0.0"/>
+  <testcase name="controlla_scelta_05" classname="RF12_ricerca_lezioni_test" time="0.0"/>
+  <testcase name="controlla_scelta_06" classname="RF12_ricerca_lezioni_test" time="0.0"/>
+  <testcase name="controlla_scelta_07" classname="RF12_ricerca_lezioni_test" time="0.0"/>
+  <testcase name="controlla_scelta_08" classname="RF12_ricerca_lezioni_test" time="0.001"/>
+  <testcase name="controlla_scelta_10" classname="RF12_ricerca_lezioni_test" time="0.0"/>
+  <testcase name="controlla_scelta_11" classname="RF12_ricerca_lezioni_test" time="0.0"/>
+  <testcase name="controlla_scelta_12" classname="RF12_ricerca_lezioni_test" time="0.0"/>
+  <testcase name="controlla_scelta_14" classname="RF12_ricerca_lezioni_test" time="0.0"/>
+  <testcase name="controlla_scelta_15" classname="RF12_ricerca_lezioni_test" time="0.001"/>
+  <testcase name="test_controlla_data" classname="RF12_ricerca_lezioni_test" time="0.0"/>
+  <testcase name="controlla_scelta01" classname="RF12_ricerca_lezioni_test" time="0.001"/>
+  <testcase name="controlla_scelta02" classname="RF12_ricerca_lezioni_test" time="0.0"/>
+  <testcase name="controlla_scelta03" classname="RF12_ricerca_lezioni_test" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Formato errato.
+]]></system-err>
+</testsuite>
