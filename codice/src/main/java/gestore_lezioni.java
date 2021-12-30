@@ -139,4 +139,18 @@ class gestore_lezioni {
 
 		db_lez.aggiungi_corso(c);
 	}
+
+    /**
+     * Verifica se la lezione è già avvenuta
+     * @author Davide Ceci - 20033793 - RF_14
+     * @author Luca Tamone - 20034235 - RF_14
+     * @param giorno la data della lezione
+     * @return true se la lezione è avvenuta altrimenti false
+     */
+    public Boolean verifica_lezione(LocalDate giorno) {
+        LocalDate data = LocalDate.now();
+
+        return giorno.compareTo(data) < 0 ? true : false;
+    }
+
 }

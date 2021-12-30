@@ -449,4 +449,32 @@ public class UI_lezione {
 		System.out.printf("Stai per creare il corso di %s (%d anno) tenuto da %s\nPremi Invio per confermare.\n", nomeCorso, anno, docente);
 	}
 
+    /**
+     * Avvia cancella lezione
+     * @author Davide Ceci - 20033793 - RF_14
+     * @author Luca Tamone - 20034235 - RF_14
+     * @param lez la lezione da cancellare
+     */
+    public void avvia_cancella_lezione(lezione lez) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Se la lezione è già avvenuta non posso cancellarla
+        if(g_lez.verifica_lezione(lez.giorno) == true) {
+            System.out.println("Non puoi cancellare una lezione che è già avvenuta.");
+            return;
+        }
+
+        // Conferma eliminazione
+        System.out.println("Vuoi veramente cancellare questa lezione? [s/N]");
+        if(scanner.nextLine().toLowerCase() == "n") {
+            System.out.println("La lezione non è stata cancellata");
+            return;
+        }
+
+        // TODO:
+        // - Elimina lezione
+        // - Scrivi avviso
+    }
+
+
 }
