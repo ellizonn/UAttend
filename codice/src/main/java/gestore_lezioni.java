@@ -5,9 +5,9 @@ import java.time.Month;
 import java.util.ArrayList;
 
 class gestore_lezioni {
-    DB_lezioni db_lez;
+    private DB_lezioni db_lez;
 
-    lezione l;
+    private lezione l;
 
     public gestore_lezioni(DB_lezioni d1) {
         //autore: Codetta

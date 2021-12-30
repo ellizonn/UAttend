@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class UI_account
 {   
-    gestore_accessi g_acc;
+    private gestore_accessi g_acc;
 
     public UI_account(gestore_accessi g1)
     {	

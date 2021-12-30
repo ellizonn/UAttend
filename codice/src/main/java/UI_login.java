@@ -2,14 +2,14 @@ import java.util.Scanner;
 
 public class UI_login
 {   
-    UI_avviso ui_avv;
-    UI_ricerca ui_ric;
-    UI_account ui_acc;
-    UI_lezione ui_lez;
-    UI_prenotazione ui_pren;
-    UI_utente ui_ut;
+    private UI_avviso ui_avv;
+    private UI_ricerca ui_ric;
+    private UI_account ui_acc;
+    private UI_lezione ui_lez;
+    private UI_prenotazione ui_pren;
+    private UI_utente ui_ut;
 
-    gestore_accessi g_acc;
+    private gestore_accessi g_acc;
 
     private int scelta;
     private String tipo_utente;
@@ -81,7 +81,7 @@ public class UI_login
                             // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO crea utente");
 			    
-                        if (scelta==4 && tipo_utente.equals("staff") || tipo_utente.equals("admin"))
+                        if (scelta==4 && (tipo_utente.equals("staff") || tipo_utente.equals("admin")) )
                             // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO ricerca utente"); 
 
@@ -166,11 +166,11 @@ public class UI_login
         if (tipo_utente.equals("admin") )
             System.out.println("3. crea utente\n4. ricerca utente");
         if (tipo_utente.equals("docente"))
-            System.out.println("3. ricerca lezione");
+            System.out.println("3. ricerca lezioni per data");
         if (tipo_utente.equals("studente") )
-            System.out.println("3. ricerca lezione\n4. visualizza prenotazioni");
+            System.out.println("3. ricerca lezioni per data\n4. visualizza prenotazioni");
         if (tipo_utente.equals("staff") )
-            System.out.println("3. ricerca lezione\n4. ricerca utente\n5. crea corso\n6. aggiungi lezione\n7. scrivi avviso");
+            System.out.println("3. ricerca lezioni per data\n4. ricerca utente\n5. crea corso\n6. aggiungi lezione\n7. scrivi avviso");
 	
         System.out.print("\ninserire scelta: ");
         scelta=sc.nextInt();

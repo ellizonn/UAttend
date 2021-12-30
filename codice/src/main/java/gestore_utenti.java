@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 class gestore_utenti
 {
-    DB_utenti db_ut;
+    private DB_utenti db_ut;
 
     public gestore_utenti(DB_utenti d1)
     {

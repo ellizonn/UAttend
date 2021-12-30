@@ -1,6 +1,6 @@
 class gestore_accessi
 {
-    DB_utenti db_ut;
+    private DB_utenti db_ut;
 
     public gestore_accessi(DB_utenti d1)
     {

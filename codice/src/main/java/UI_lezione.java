@@ -6,17 +6,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UI_lezione {
-    UI_avviso ui_avv;
-    gestore_lezioni g_lez;
+    private UI_avviso ui_avv;
+    private gestore_lezioni g_lez;
 
-    String nome_corso;
-    String cognome_docente;
-    int anno;
-    int numero_aula;
-    int posti_disponibili;
-    LocalDate giorno;
-    LocalTime ora_inizio;
-    LocalTime ora_fine;
+    private String nome_corso;
+    private String cognome_docente;
+    private int anno;
+    private int numero_aula;
+    private int posti_disponibili;
+    private LocalDate giorno;
+    private LocalTime ora_inizio;
+    private LocalTime ora_fine;
 
     public UI_lezione(UI_avviso ui1, gestore_lezioni g1) {
         //autore: Codetta
