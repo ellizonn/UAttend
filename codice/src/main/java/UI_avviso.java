@@ -37,10 +37,12 @@ public class UI_avviso
     public void visualizza_elenco(ArrayList<avviso> a) {
 
 		// autore: Beccuti/Iabichino RF01
+
+		System.out.println("\nAvviso"+"                                  "+"data emissione"+"  "+"data scadenza");
     	
     	for(avviso b:a) {
     		
-    		System.out.println(b.testo+ " "+b.emissione);
+    		System.out.println(b.testo+ "\t"+b.emissione+"\t"+ b.scadenza);
     		
     	}
     	
