@@ -466,7 +466,7 @@ public class UI_lezione {
 
         // Conferma eliminazione
         System.out.println("Vuoi veramente cancellare questa lezione? [s/N]");
-        if(scanner.nextLine().toLowerCase() == "n") {
+        if(scanner.nextLine().toLowerCase() != "s") {
             System.out.println("La lezione non è stata cancellata");
             return;
         }
