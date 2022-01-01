@@ -449,4 +449,78 @@ public class UI_lezione {
 		System.out.printf("Stai per creare il corso di %s (%d anno) tenuto da %s\nPremi Invio per confermare.\n", nomeCorso, anno, docente);
 	}
 
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public aula avvia_seleziona_aula_libera (LocalDate date, LocalTime hour) {
+    	ArrayList<aula> aule_libere = this.g_lez.verifica_aule_libere(date, hour);
+    	if (aule_libere.isEmpty())  {
+    		this.mostra_messaggio_nessunaAulaLibera();
+    		return null;
+    	}	
+    	else {
+    		aula aula_selezionata = new aula();
+    		boolean conferma = true;
+    		boolean accettata = false;
+    		while (!conferma || !accettata) {
+    			aula_selezionata = this.mostra_elenco_aule_libere(aule_libere);
+    			accettata = this.g_lez.verifica_aula_selezionata(aule_libere, aula_selezionata.numero);
+    			if (accettata == true) {
+    				conferma = this.mostra_messaggio_conferma();
+    			}
+    			else {
+    				this.mostra_messaggio_aulaSelezionataNonValida();
+    			}	
+    		}
+    		this.mostra_aula_selezionata_correttamente();
+    		return aula_selezionata;
+    	}
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public void mostra_messaggio_nessunaAulaLibera() {
+    	System.out.println ("Nessuna aula libera presente.");
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public void mostra_messaggio_aulaSelezionataNonValida () {
+    	System.out.println ("Il numero dell'aula selezionata non è presente fra l'elenco delle aule libere.");
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    private aula mostra_elenco_aule_libere (ArrayList<aula> aule_libere){
+    	int numero_aula = 0; 
+		System.out.println ("Elenco aule libere:");
+    	for (aula a : aule_libere) {
+    		System.out.println ("Aula numero: " + a.numero + " Capienza: " + a.capienza);
+    	}
+    	System.out.println("Per selezionare l'aula desiderata digitarne il numero.");
+		Scanner in = new Scanner(System.in);
+		String s = in.nextLine();
+    	numero_aula = Integer.decode(s);
+    	
+    	aula a = new aula();
+    	a.numero = numero_aula;
+    	for (aula aula: aule_libere) {
+			if (aula.numero == numero_aula) {
+				a.capienza = aula.capienza;
+			}
+    	}
+    	return a;
+    	
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public boolean mostra_messaggio_conferma () {
+    	System.out.println("Confermi la scelta? y/n");
+    	Scanner in = new Scanner (System.in);
+    	String s = in.nextLine();
+		if (s.equals("y")) return true;
+		else return false;	
+    }
+    
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public void mostra_aula_selezionata_correttamente () {
+    	System.out.println("Aula selezionata correttamente.");
+    }
+
 }
