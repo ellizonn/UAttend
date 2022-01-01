@@ -139,4 +139,42 @@ class gestore_lezioni {
 
 		db_lez.aggiungi_corso(c);
 	}
+
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public ArrayList<aula> verifica_aule_libere (LocalDate date, LocalTime hour) {
+    	ArrayList<aula> tot_aule = this.db_lez.carica_aule ();
+    	ArrayList<aula> aule_occupate = this.db_lez.restituisci_elenco_aule_occupate(date, hour);
+    	ArrayList<aula> aule_libere = this.calcola_elenco_aule_libere(tot_aule, aule_occupate);
+    	return aule_libere;
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public ArrayList<aula> calcola_elenco_aule_libere (ArrayList<aula> tot_aule, ArrayList<aula> aule_occupate) {
+    	if (tot_aule.isEmpty()) return new ArrayList<aula> ();
+    	else if (aule_occupate.isEmpty()) return new ArrayList<aula> (tot_aule);
+    	else return differenza_insiemistica (tot_aule, aule_occupate);
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public ArrayList<aula> differenza_insiemistica (ArrayList<aula> tot_aule, ArrayList<aula> aule_occupate) {
+    	ArrayList<aula> aule_libere = new ArrayList<aula>();
+    	int i=0;
+    	
+    	for (aula a : tot_aule) {
+    		if (!aule_occupate.contains(a)) {
+    			aule_libere.add(a);
+    		}
+    	}
+    	return  aule_libere;
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public boolean verifica_aula_selezionata (ArrayList<aula> aule_libere, int numero_aula) {
+    	for (aula aula: aule_libere) {
+			if (aula.numero == numero_aula) {
+				return true;
+			}
+    	}
+    	return false;
+    }
 }
