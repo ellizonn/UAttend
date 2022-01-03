@@ -29,24 +29,25 @@ public class UI_ricerca
         //autore: Masino, Spina
 
         boolean esito;
-        ArrayList<lezione> elenco_lezioni = null;
+        ArrayList<lezione> elenco_lezioni;
         lezione lez;
         do {
             this.form_ricerca();
             elenco_lezioni = g_ric.controllo_data(data_inizio,data_fine);
             if(elenco_lezioni == null) {
-                mostra_errore(null);
+                mostra_errore(elenco_lezioni);
             }
             else {
                 lez = mostra_elenco_lezioni(elenco_lezioni);
                 do {
-                    this.mostra_menu(tipo_utente);
-                    esito = g_ric.controlla_scelta(scelta, tipo_utente);
 
-                    if (esito==false)
-                        mostra_errore(elenco_lezioni);
+                    if(lez != null) {
+                        this.mostra_menu(tipo_utente);
+                        esito = g_ric.controlla_scelta(scelta, tipo_utente);
 
-                    else if(lez != null) {
+                        if (esito==false)
+                            mostra_errore(elenco_lezioni);
+
                         if(scelta==1 && !tipo_utente.equals("studente")) {
                             // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO visualizza prenotazioni");
@@ -91,13 +92,10 @@ public class UI_ricerca
         String conferma;
         sc = new Scanner(System.in);
         if(elenco_lezioni == null) {
-            System.out.println("\nERRORE: data passata o formato date errato.");
-        }
-        else if(elenco_lezioni.size() == 0) {
-            System.out.println("Nessuna lezione nel periodo selezionato.");
+            System.err.println("\nERRORE: data passata o formato date errato.");
         }
         else {
-            System.out.println("\nERRORE: scelta errata");
+            System.err.println("\nERRORE: scelta errata");
         }
 
         System.out.print("premi INVIO per confermare");
@@ -128,7 +126,7 @@ public class UI_ricerca
             }
         }
         else {
-            System.err.println("Nessuna lezione nel periodo selezionato.");
+            System.out.println("Nessuna lezione nel periodo selezionato.");
             System.out.println("\n1. Ricerca altre lezioni");
             System.out.println("2. Esci");
             int sel_menu;
@@ -136,7 +134,7 @@ public class UI_ricerca
                 sc = new Scanner(System.in);
                 sel_menu = sc.nextInt();
                 if(sel_menu == 1) {
-                    this.form_ricerca();
+                    return null;
                 }
                 else {
                     exit(0);
@@ -150,7 +148,7 @@ public class UI_ricerca
         i = 1;
 
         do {
-            System.out.println("Selezionare lezione: ");
+            System.out.println("Selezionare lezione o 0 per uscire: ");
             sel_lez = sc.nextInt();
             if(sel_lez != 0) {
                 for(lezione lez : elenco_lezioni) {
@@ -180,11 +178,11 @@ public class UI_ricerca
 
 
         if (tipo_utente.equals("docente"))
-            System.out.println("1. Visualizza prenotazioni");
+            System.out.println("0. Menù principale\n1. Visualizza prenotazioni");
         if (tipo_utente.equals("studente") )
-            System.out.println("1. Prenota posto\n");
+            System.out.println("0. Menù principale\n2. Prenota posto\n");
         if (tipo_utente.equals("staff") )
-            System.out.println("1.Visualizza prenotazioni\n2. Cancella lezione\n3. Modifica lezione");
+            System.out.println("0. Menù principale\n1. Visualizza prenotazioni\n3. Cancella lezione\n4. Modifica lezione");
 
         System.out.print("\ninserire scelta: ");
         scelta = sc.nextInt();

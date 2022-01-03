@@ -3,6 +3,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import static java.lang.System.exit;
 
 class gestore_ricerche
 {
@@ -37,7 +40,6 @@ class gestore_ricerche
             }
         }
         catch(DateTimeException | InputMismatchException e) {
-            System.err.println("Formato errato.");
             elenco_lezioni = null;
         }
 
@@ -52,7 +54,7 @@ class gestore_ricerche
         boolean esito;
 
         if (tipo_utente.equals("staff") && scelta>=0 && scelta !=2 ||
-                tipo_utente.equals("studente") && scelta>=0 && scelta <=2 && scelta != 1 ||
+                tipo_utente.equals("studente") && scelta>=0 && scelta <=2 && scelta!=1 ||
                 tipo_utente.equals("docente") && scelta>=0 && scelta<=1)
             esito=true;
         else
