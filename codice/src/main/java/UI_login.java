@@ -70,9 +70,10 @@ public class UI_login
                             System.out.println("\nAVVIO cambia password");
 
                         if (scelta==2)
-                            // da sostituire con la chiamata del metodo di AVVIO
-                            System.out.println("\nAVVIO ricerca avvisi per data");
-
+						{
+							System.out.println("\nAVVIO ricerca avvisi per data");
+							ui_ric.avvio_ricerca_avvisi_per_data();
+						}
                         if (scelta==3 && !tipo_utente.equals("admin"))
                             // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO ricerca lezioni per data");
