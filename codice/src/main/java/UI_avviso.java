@@ -38,11 +38,13 @@ public class UI_avviso
 
 		// autore: Beccuti/Iabichino RF01
 
-		System.out.println("\nAvviso"+"                                  "+"data emissione"+"  "+"data scadenza");
+		System.out.println("\nAvviso"+"                                  "+"|data emissione |"+"data scadenza");
+
+		System.out.println("----------------------------------------------------------------------");
     	
     	for(avviso b:a) {
     		
-    		System.out.println(b.testo+ "\t"+b.emissione+"\t"+ b.scadenza);
+    		System.out.println(b.testo+ "\t|"+b.emissione+"\t|"+ b.scadenza);
     		
     	}
     	

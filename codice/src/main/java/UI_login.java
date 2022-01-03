@@ -54,7 +54,7 @@ public class UI_login
                 this.mostra_errore(tipo_utente);
             else
             {
-                System.out.println("Elenco avvisi recenti:");
+                System.out.println("\nElenco avvisi recenti:");
                 ui_avv.avvio_avvisi();
 
                 do
