@@ -115,15 +115,15 @@ public class DB_lezioni {
                 l.anno == elenco_lezioni.get(i).anno &&
                 l.numero_aula == elenco_lezioni.get(i).numero_aula &&
                 l.giorno.equals(elenco_lezioni.get(i).giorno) &&
-                l.data_inizio.equals(elenco_lezioni.get(i).data_inizio) &&
-                l.data_fine.equals(elenco_lezioni.get(i).data_fine) ) {
+                l.ora_inizio.equals(elenco_lezioni.get(i).ora_inizio) &&
+                l.ora_fine.equals(elenco_lezioni.get(i).ora_fine) ) {
                     eliminare = i;
             }
         }
 
         if(eliminare != -1) {
-            elenco.remove(eliminare);
-            salva_lezioni(elenco);
+            elenco_lezioni.remove(eliminare);
+            salva_lezioni(elenco_lezioni);
         }
     }
 
