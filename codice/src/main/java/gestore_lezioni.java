@@ -153,4 +153,14 @@ class gestore_lezioni {
         return giorno.compareTo(data) < 0 ? true : false;
     }
 
+    /**
+     * Richiama elimina_lezione dal db per cancellare la lezione 
+     * @author Davide Ceci - 20033793
+     * @author Luca Tamone - 20034235
+     * @param l la lezione da cancellare
+     */
+    public void elimina_lezione(lezione l) {
+        db_lez.elimina_lezione(l);
+    }
+
 }
