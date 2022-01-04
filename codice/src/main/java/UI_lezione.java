@@ -32,7 +32,7 @@ public class UI_lezione {
                 String nome = elencoCorsi.get(i).nome;
                 String cognome_docente = elencoCorsi.get(i).cognome_docente;
                 int anno = elencoCorsi.get(i).anno;
-                System.out.println("Corso " + (i+1) + ": " + nome + " " + anno + " " + cognome_docente);
+                System.out.println("Corso " + (i+1) + ": Nome: " + nome + ", Anno: " + anno + ", Docente: " + cognome_docente);
             }
         }
     }
@@ -90,8 +90,8 @@ public class UI_lezione {
                 int ora_fine = Integer.parseInt(m.group(3));
                 int minuto_fine = Integer.parseInt(m.group(4));
                 try {
-                    this.ora_fine = LocalTime.of(ora_fine, minuto_fine);
                     this.ora_inizio = LocalTime.of(ora_inizio, minuto_inizio);
+                    this.ora_fine = LocalTime.of(ora_fine, minuto_fine);
                 } catch (DateTimeException e) {
                     System.out.println("ATTENZIONE: orario inesistente");
                     formato = false;
@@ -219,8 +219,7 @@ public class UI_lezione {
                         this.mostra_errore_orario(this.ora_inizio, this.ora_fine);
                 } while (errore_orario);
 
-                // aula a = richiamo a RF06 per selezione aula libera;
-                aula a = new aula(); a.capienza = 50; a.numero = 7; // aula di prova (da rimuovere con l'arrivo di RF06)
+                aula a = this.avvia_seleziona_aula_libera(this.giorno, this.ora_inizio);
                 errore_aula = (a == null);
                 if (errore_aula) {
                     this.mostra_errore_aula();
