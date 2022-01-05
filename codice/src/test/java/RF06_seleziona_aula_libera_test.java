@@ -1,22 +1,15 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-/**
- * 
- * @author Rosilde Garavoglia, Roberto Aitchison
- *
- */
-
-class RF06_seleziona_aula_libera_test {
+public class RF06_seleziona_aula_libera_test {
 
 	@Test
-	void DB_test() {
+	public void DB_test() {
 		DB_lezioni db = new DB_lezioni ();
 		
 		ArrayList<aula> tot_aule = db.carica_aule();
@@ -31,14 +24,32 @@ class RF06_seleziona_aula_libera_test {
 		assertEquals (tot_aule.get(3).numero, a3.numero);
 		assertEquals (tot_aule.get(3).capienza, a3.capienza);
 		
-		ArrayList<aula> aule_occupate = db.restituisci_elenco_aule_occupate(LocalDate.of(2021, 10 , 3), LocalTime.of(14, 0));
+		ArrayList<aula> aule_occupate = db.restituisci_elenco_aule_occupate(LocalDate.of(2021, 10 , 3), LocalTime.of(14, 0), LocalTime.of(18,0));
 		assertEquals (aule_occupate.size(), 1);
 		assertEquals (aule_occupate.get(0).numero, a3.numero);
 		assertEquals (aule_occupate.get(0).capienza, a3.capienza);
+		aule_occupate = db.restituisci_elenco_aule_occupate(LocalDate.of(2021, 10 , 3), LocalTime.of(13, 0), LocalTime.of(16,0));
+		assertEquals (aule_occupate.size(), 1);
+		assertEquals (aule_occupate.get(0).numero, a3.numero);
+		assertEquals (aule_occupate.get(0).capienza, a3.capienza);
+		aule_occupate = db.restituisci_elenco_aule_occupate(LocalDate.of(2021, 10 , 3), LocalTime.of(15, 0), LocalTime.of(16,0));
+		assertEquals (aule_occupate.size(), 1);
+		assertEquals (aule_occupate.get(0).numero, a3.numero);
+		assertEquals (aule_occupate.get(0).capienza, a3.capienza);
+		aule_occupate = db.restituisci_elenco_aule_occupate(LocalDate.of(2021, 10 , 3), LocalTime.of(15, 0), LocalTime.of(19,0));
+		assertEquals (aule_occupate.size(), 1);
+		assertEquals (aule_occupate.get(0).numero, a3.numero);
+		assertEquals (aule_occupate.get(0).capienza, a3.capienza);
+		aule_occupate = db.restituisci_elenco_aule_occupate(LocalDate.of(2021, 10 , 3), LocalTime.of(11, 0), LocalTime.of(20,0));
+		assertEquals (aule_occupate.size(), 1);
+		assertEquals (aule_occupate.get(0).numero, a3.numero);
+		assertEquals (aule_occupate.get(0).capienza, a3.capienza);
+		aule_occupate = db.restituisci_elenco_aule_occupate(LocalDate.of(2021, 10 , 3), LocalTime.of(10, 0), LocalTime.of(12,0));
+		assertEquals (aule_occupate.size(), 0);
 	}
 	
 	@Test
-	void test_differenza_insiemistica () {
+	public void test_differenza_insiemistica () {
 		DB_lezioni db = new DB_lezioni ();
 		gestore_lezioni g = new gestore_lezioni(db);
 		aula a1 = new aula();
@@ -68,7 +79,7 @@ class RF06_seleziona_aula_libera_test {
 	}
 	
 	@Test
-	void test_calcola_elenco_aule_libere () {
+	public void test_calcola_elenco_aule_libere () {
 		DB_lezioni db = new DB_lezioni ();
 		gestore_lezioni g = new gestore_lezioni(db);
 		aula a1 = new aula();
@@ -86,7 +97,7 @@ class RF06_seleziona_aula_libera_test {
 	}
 	
 	@Test
-	void test_verifica_aule_libere () {
+	public void test_verifica_aule_libere () {
 		DB_lezioni db = new DB_lezioni ();
 		gestore_lezioni g = new gestore_lezioni(db);
 		aula a1 = new aula();
@@ -95,7 +106,7 @@ class RF06_seleziona_aula_libera_test {
 		aula a2 = new aula ();
 		a2.numero = 11;
 		a2.capienza = 25;
-		ArrayList<aula> aule_libere = g.verifica_aule_libere(LocalDate.of(2021, 10 , 3), LocalTime.of(14, 0));
+		ArrayList<aula> aule_libere = g.verifica_aule_libere(LocalDate.of(2021, 10 , 3), LocalTime.of(14, 0), LocalTime.of(18, 0));
 		
 		assertEquals (aule_libere.size(), 9);
 		assertEquals (aule_libere.get(0).numero, a1.numero);
@@ -105,7 +116,7 @@ class RF06_seleziona_aula_libera_test {
 	}
 
 	@Test
-	void test_verifica_aula_selezionata () {
+	public void test_verifica_aula_selezionata () {
 		DB_lezioni db = new DB_lezioni ();
 		gestore_lezioni g = new gestore_lezioni(db);
 		aula a1 = new aula();
@@ -121,4 +132,5 @@ class RF06_seleziona_aula_libera_test {
 		assertFalse (g.verifica_aula_selezionata(elenco_2, 9));
 		
 	}
+
 }
