@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 class gestore_ricerche
 {
     private DB_utenti db_ut;
@@ -11,4 +15,26 @@ class gestore_ricerche
       db_avv=d2;
       db_lez=d3;
     }
+	
+	public ArrayList<avviso> verifica_date(LocalDate data_inizio,LocalDate data_fine)
+	{
+		//autore: FABBRO/BRUNI RF03
+		ArrayList<avviso> elenco_avvisi= new ArrayList<>();
+		LocalDate odierna=LocalDate.now();;
+		
+		if(data_inizio==null||data_fine==null||data_inizio.isAfter(odierna)|| data_inizio.isAfter(data_fine))
+		{
+			return null;
+		}
+		else
+		{
+			elenco_avvisi=db_avv.cerca_avvisi_per_data(data_inizio,data_fine);
+			return elenco_avvisi;
+			
+		}
+		
+	}
+	
+	
+	
 }
