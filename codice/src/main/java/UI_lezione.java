@@ -448,6 +448,49 @@ public class UI_lezione {
 		System.out.printf("Stai per creare il corso di %s (%d anno) tenuto da %s\nPremi Invio per confermare.\n", nomeCorso, anno, docente);
 	}
 
+
+    /**
+     * Avvia cancella lezione
+     * @author Davide Ceci - 20033793 - RF_14
+     * @author Luca Tamone - 20034235 - RF_14
+     * @param lez la lezione da cancellare
+     */
+    public void avvia_cancella_lezione(lezione lez) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Se la lezione è già avvenuta non posso cancellarla
+        if(g_lez.verifica_lezione(lez.giorno) == true) {
+            System.out.println("Non puoi cancellare una lezione che è già avvenuta.");
+            return;
+        }
+
+        // Conferma eliminazione
+        System.out.println("Vuoi veramente cancellare questa lezione? [s/N]");
+        if(!scanner.nextLine().toLowerCase().equals("s")) {
+            System.out.println("La lezione non è stata cancellata");
+            return;
+        }
+
+        // Elimina lezione
+        try {
+            g_lez.elimina_lezione(lez);
+        } catch (Exception e) {
+            System.out.println("Si è verificato un errore durante l'eliminazione della lezione.");
+            return;
+        }
+
+        // Scrivi avviso
+        try {
+            // Richiama scrivi avviso
+        } catch (Exception e) {
+            System.out.println("La lezione è stata cancellata ma non è stato possibile scrivere l'avviso per via di un errore.");
+            return;
+        }
+        
+        System.out.println("La lezione è stata cancellata con successo");
+    }
+
+
     //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
     public aula avvia_seleziona_aula_libera (LocalDate date, LocalTime startHour, LocalTime endHour) {
     	ArrayList<aula> aule_libere = this.g_lez.verifica_aule_libere(date, startHour, endHour);
@@ -515,7 +558,6 @@ public class UI_lezione {
 		if (s.equals("y")) return true;
 		else return false;	
     }
-    
     
     //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
     public void mostra_aula_selezionata_correttamente () {

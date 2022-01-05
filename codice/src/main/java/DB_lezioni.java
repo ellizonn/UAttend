@@ -99,6 +99,35 @@ public class DB_lezioni {
         }
     }
 
+
+    /**
+     * Cancella la lezione
+     * @author Davide Ceci - 20033793
+     * @author Luca Tamone - 20034235
+     * @param l la lezione da cancellare
+     */
+    public void elimina_lezione(lezione l) {
+        ArrayList<lezione> elenco_lezioni = carica_lezioni();
+        int eliminare = -1;
+
+        for(int i = 0; i < elenco_lezioni.size() && eliminare == -1; i++) {
+            if( l.nome_corso.equals(elenco_lezioni.get(i).nome_corso) && 
+                l.cognome_docente.equals(elenco_lezioni.get(i).cognome_docente) &&
+                l.anno == elenco_lezioni.get(i).anno &&
+                l.numero_aula == elenco_lezioni.get(i).numero_aula &&
+                l.giorno.equals(elenco_lezioni.get(i).giorno) &&
+                l.ora_inizio.equals(elenco_lezioni.get(i).ora_inizio) &&
+                l.ora_fine.equals(elenco_lezioni.get(i).ora_fine) ) {
+                    eliminare = i;
+            }
+        }
+
+        if(eliminare != -1) {
+            elenco_lezioni.remove(eliminare);
+            salva_lezioni(elenco_lezioni);
+        }
+    }
+
 // =======================================================================
 
     public ArrayList<aula> carica_aule() {
