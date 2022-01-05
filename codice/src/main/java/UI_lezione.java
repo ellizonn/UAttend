@@ -449,8 +449,8 @@ public class UI_lezione {
 	}
 
     //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
-    public aula avvia_seleziona_aula_libera (LocalDate date, LocalTime hour) {
-    	ArrayList<aula> aule_libere = this.g_lez.verifica_aule_libere(date, hour);
+    public aula avvia_seleziona_aula_libera (LocalDate date, LocalTime startHour, LocalTime endHour) {
+    	ArrayList<aula> aule_libere = this.g_lez.verifica_aule_libere(date, startHour, endHour);
     	if (aule_libere.isEmpty())  {
     		this.mostra_messaggio_nessunaAulaLibera();
     		return null;
