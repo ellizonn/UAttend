@@ -169,12 +169,18 @@ public class DB_lezioni {
     }
 
     // autore: RF06 Rosilde Garavoglia, Roberto Aitchison
-    public ArrayList<aula> restituisci_elenco_aule_occupate(LocalDate date, LocalTime hour) {
+    public ArrayList<aula> restituisci_elenco_aule_occupate(LocalDate date, LocalTime startHour, LocalTime endHour) {
     	ArrayList<lezione> lezioni = this.carica_lezioni();
     	ArrayList<lezione> lezioni_corrispondenti = new ArrayList<lezione>();
     	for (lezione l: lezioni) {
-    		if (l.giorno.equals(date) && (hour.isAfter(l.ora_inizio) || hour.equals(l.ora_inizio)) && hour.isBefore(l.ora_fine) ) 
+    		if (l.giorno.equals(date) 
+    				&& (((startHour.equals(l.ora_inizio)) || endHour.equals(l.ora_fine)) 
+    				|| (endHour.isBefore(l.ora_fine) && endHour.isAfter(l.ora_inizio)) 
+    				|| (startHour.isBefore(l.ora_fine) && startHour.isAfter(l.ora_inizio)) 
+    				|| (l.ora_inizio.isAfter(startHour) && l.ora_fine.isBefore(endHour)))) {
     			lezioni_corrispondenti.add(l);
+    		}
+    			
     	}
     	
     	ArrayList<aula> tot_aule = this.carica_aule();
@@ -192,6 +198,7 @@ public class DB_lezioni {
     	}
     	return aule_occupate;
     }
+
 
 // =======================================================================
 
