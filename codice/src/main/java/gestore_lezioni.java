@@ -141,9 +141,9 @@ class gestore_lezioni {
 	}
 
     //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
-    public ArrayList<aula> verifica_aule_libere (LocalDate date, LocalTime hour) {
+    public ArrayList<aula> verifica_aule_libere (LocalDate date, LocalTime startHour, LocalTime endHour) {
     	ArrayList<aula> tot_aule = this.db_lez.carica_aule ();
-    	ArrayList<aula> aule_occupate = this.db_lez.restituisci_elenco_aule_occupate(date, hour);
+    	ArrayList<aula> aule_occupate = this.db_lez.restituisci_elenco_aule_occupate(date, startHour, endHour);
     	ArrayList<aula> aule_libere = this.calcola_elenco_aule_libere(tot_aule, aule_occupate);
     	return aule_libere;
     }
