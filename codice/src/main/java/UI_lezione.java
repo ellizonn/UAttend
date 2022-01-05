@@ -487,6 +487,7 @@ public class UI_lezione {
             return;
         }
         
+        System.out.println("La lezione è stata cancellata con successo");
     }
 
 
