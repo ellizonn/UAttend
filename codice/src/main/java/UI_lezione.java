@@ -471,9 +471,22 @@ public class UI_lezione {
             return;
         }
 
-        // TODO:
-        // - Elimina lezione
-        // - Scrivi avviso
+        // Elimina lezione
+        try {
+            g_lez.elimina_lezione(lez);
+        } catch (Exception e) {
+            System.out.println("Si è verificato un errore durante l'eliminazione della lezione.");
+            return;
+        }
+
+        // Scrivi avviso
+        try {
+            // Richiama scrivi avviso
+        } catch (Exception e) {
+            System.out.println("La lezione è stata cancellata ma non è stato possibile scrivere l'avviso per via di un errore.");
+            return;
+        }
+        
     }
 
 
