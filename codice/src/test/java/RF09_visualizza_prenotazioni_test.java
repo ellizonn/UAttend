@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test;
 class testVisualizzaPrenotazioni {
 	
 	ArrayList<prenotazione> arrPren= new ArrayList<>();
-
+	// RF09 visualizza prenotazioni
+	// Balossino, Battezzati
 	@BeforeEach
 	void before() {
 		prenotazione p1=new prenotazione(3675, "Basi dati", "Rossi", 3, LocalDate.of(2020, Month.JANUARY, 8), LocalTime.of(10,00,00), LocalTime.of(11,00,00), true);
