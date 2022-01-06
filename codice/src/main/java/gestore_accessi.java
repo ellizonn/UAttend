@@ -64,5 +64,20 @@ class gestore_accessi
         return esito;
     }
 
+    public boolean generazione_credenziali()
+    {
+    	//RF17: crea utente
+    	//autori: La Spisa & Frasson
+    	int M=db_ut.ricerca_ultima_matricola();
+    	M=M+1;
+    	String password="miapassword";
+    	account A=new account();
+    	A.matricola=M;
+    	A.password=password;
+    	db_ut.aggiungi_account(A);
+    	boolean esito=true;
+    	return esito;
+    }
+
 }
 
