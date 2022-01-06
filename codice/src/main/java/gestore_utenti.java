@@ -57,7 +57,7 @@ class gestore_utenti
 		
 	}
 	
-	public boolean controllo_generalità (String nome, String cognome, indirizzo residenza, String tipo_utente, int anno_immatricolazione)
+	public boolean controllo_generalita (String nome, String cognome, indirizzo residenza, String tipo_utente, int anno_immatricolazione)
 	{
 		//RF17: crea utente
     	//autori: La Spisa & Frasson
