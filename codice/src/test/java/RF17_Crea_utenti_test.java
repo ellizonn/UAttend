@@ -9,7 +9,7 @@ public class RF17_Crea_utenti_test {
 	//autori: La Spisa & Frasson
 	
 	@Test
-	public void controllo_generalità_test() 
+	public void controllo_generalita_test() 
 	{
 		DB_utenti d1=new DB_utenti();
 		gestore_utenti g1= new gestore_utenti(d1);
@@ -19,10 +19,10 @@ public class RF17_Crea_utenti_test {
 		residenza.localita="Milano";
 		residenza.numero=5;
 		residenza.via="Via Roma";
-		assertEquals(true, g1.controllo_generalità("Mario", "Rossi", residenza, "docente", 0));
-		assertEquals(false, g1.controllo_generalità("", "Rossi", residenza, "docente", 0));
-		assertEquals(false, g1.controllo_generalità("Mario", "", residenza, "docente", 0));
-		assertEquals(false, g1.controllo_generalità("Mario", "Rossi", residenza, null, 0));
+		assertEquals(true, g1.controllo_generalita("Mario", "Rossi", residenza, "docente", 0));
+		assertEquals(false, g1.controllo_generalita("", "Rossi", residenza, "docente", 0));
+		assertEquals(false, g1.controllo_generalita("Mario", "", residenza, "docente", 0));
+		assertEquals(false, g1.controllo_generalita("Mario", "Rossi", residenza, null, 0));
 	}
 
 	@Test
