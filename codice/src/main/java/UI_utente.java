@@ -62,7 +62,7 @@ public class UI_utente
 	    		sc.nextLine();
 	    		return;
 	    	case 6:
-	    		esito=ut.controllo_generalità(nome, cognome, residenza, tipo_utente, anno_immatricolazione);
+	    		esito=ut.controllo_generalita(nome, cognome, residenza, tipo_utente, anno_immatricolazione);
 	    		break;
 	    	}
     	}
