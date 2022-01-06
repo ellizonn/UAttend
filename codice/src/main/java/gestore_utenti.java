@@ -56,7 +56,72 @@ class gestore_utenti
 			return esito;
 		
 	}
-
+	
+	public boolean controllo_generalità (String nome, String cognome, indirizzo residenza, String tipo_utente, int anno_immatricolazione)
+	{
+		//RF17: crea utente
+    	//autori: La Spisa & Frasson
+		int N=nome.length();
+		boolean esito;
+		Scanner sc= new Scanner(System.in);
+		if(N==0)
+		{
+			System.out.println("errore inserimento nome, premere invio per continuare");
+			sc.nextLine();
+			esito=false;
+		}
+		else
+		{
+			int C=cognome.length();
+			if(C==0)
+			{
+				System.out.println("errore inserimento cognome, premere invio per continuare");
+				sc.nextLine();
+				esito=false;
+			}
+			else
+			{
+				if(residenza==null)
+				{
+					System.out.println("errore inserimento residenza, premere invio per continuare");
+					sc.nextLine();
+					esito=false;
+				}
+				else
+				{
+					if(tipo_utente==null)
+					{
+						System.out.println("errore inserimento tipo_utente, premere invio per continuare");
+						sc.nextLine();
+						esito=false;
+					}
+					else
+					{
+						utente ut=new utente();
+						ut.nome=nome;
+						ut.cognome=cognome;
+						ut.residenza=residenza;
+						ut.tipo_utente=tipo_utente;
+						if (tipo_utente=="cliente")
+							ut.anno=anno_immatricolazione;
+						db_ut.aggiungi_utente(ut);
+						esito=true;
+					}
+				}
+			}
+		}
+		return esito;
+	}
+	
+	public boolean controlla_scelta(int scelta)
+	{
+		//RF17: crea utente
+    	//autori: La Spisa & Frasson
+		if (scelta<1 || scelta>6)
+			return false;
+		else
+			return true;
+	}
 
 }
 
