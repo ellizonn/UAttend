@@ -79,8 +79,10 @@ public class UI_login
                             System.out.println("\nAVVIO ricerca lezioni per data");
 
                         if (scelta==3 && tipo_utente.equals("admin"))
-                            // da sostituire con la chiamata del metodo di AVVIO
+                        {
                             System.out.println("\nAVVIO crea utente");
+                            ui_ut.form_utente();
+                        }
 			    
                         if (scelta==4 && (tipo_utente.equals("staff") || tipo_utente.equals("admin")) )
                             // da sostituire con la chiamata del metodo di AVVIO
