@@ -219,7 +219,7 @@ public class UI_lezione {
                         this.mostra_errore_orario(this.ora_inizio, this.ora_fine);
                 } while (errore_orario);
 
-                aula a = this.avvia_seleziona_aula_libera(this.giorno, this.ora_inizio);
+                aula a = this.avvia_seleziona_aula_libera(this.giorno, this.ora_inizio, this.ora_fine);
                 errore_aula = (a == null);
                 if (errore_aula) {
                     this.mostra_errore_aula();
