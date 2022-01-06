@@ -1,5 +1,3 @@
-package RF17;
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
