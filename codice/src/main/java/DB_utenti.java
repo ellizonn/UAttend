@@ -234,5 +234,25 @@ public class DB_utenti
         
         return u;
     }
+
+    public int ricerca_ultima_matricola()
+    {
+        //RF17: crea utente
+    	//autori: La Spisa & Frasson
+    	account a;
+        int amax;
+    	ArrayList<account> elenco;
+    	int i, L;
+    	amax=0;
+    	elenco=carica_accounts();
+    	L=elenco.size();
+    	for(i=0; i<L; i++)
+    	{
+    		a=(account)elenco.get(i);
+    		if(a.matricola>amax)
+    			amax=a.matricola;
+    	}
+    	return amax;
+    }
 }
 
