@@ -376,4 +376,28 @@ public class DB_lezioni {
         }
     }
 
+    // ----------------------------------------------------------------------------
+
+    public ArrayList<lezione> cerca_lezioni(LocalDate data_inizio, LocalDate data_fine) {
+
+        // autore: Masino, Spina
+        // RF12 - Ricerca lezioni per data
+
+        ArrayList<lezione> elenco_lezioni_in;
+        ArrayList<lezione> elenco_lezioni = new ArrayList<>();
+        elenco_lezioni_in = carica_lezioni();
+        lezione lez = null;
+
+        for(lezione l : elenco_lezioni_in) {
+            lez = l;
+            if((lez.giorno.isAfter(data_inizio) && lez.giorno.isBefore(data_fine)) || lez.giorno.equals(data_inizio) || lez.giorno.equals(data_fine)) {
+                elenco_lezioni.add(lez);
+            }
+        }
+
+        return elenco_lezioni;
+
+
+    }
+
 }
