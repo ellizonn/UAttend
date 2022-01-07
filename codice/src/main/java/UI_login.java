@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class UI_login
@@ -34,7 +35,7 @@ public class UI_login
 
 
 
-    public void avvio_login()
+    public void avvio_login() throws IOException
     {
         //RF00
         //autore: Codetta
@@ -85,9 +86,10 @@ public class UI_login
                         }
 			    
                         if (scelta==4 && (tipo_utente.equals("staff") || tipo_utente.equals("admin")) )
-                            // da sostituire con la chiamata del metodo di AVVIO
+                        {    // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO ricerca utente"); 
-
+                        	ui_ric.avvio_ricerca_utente(tipo_utente);
+                        }
                         if (scelta==4 && tipo_utente.equals("studente"))
                             // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO visualizza prenotazioni");

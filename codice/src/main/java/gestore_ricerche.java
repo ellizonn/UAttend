@@ -35,6 +35,18 @@ class gestore_ricerche
 		
 	}
 	
-	
+    public ArrayList<utente> verifica_parametri(int matricola, String cognome) {
+    	
+    	//RF07: ricerca utente
+    	//autori: Malavasi-Torta
+    	
+    	String mat = "" + matricola;
+    	int L1 = mat.length();
+    	int L2 = cognome.length();
+    	if(L1!=6 && L2==0)
+    		return null;
+    	return db_ut.ricerca_utente(matricola,cognome);
+    }
+    
 	
 }
