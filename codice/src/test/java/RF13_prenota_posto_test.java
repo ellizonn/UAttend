@@ -20,7 +20,8 @@ public class RF13_prenota_posto_test
 	// =======================================================================
 	
 
-	//questo test chiama metodi che non prevedono valori 
+	//questi test ["test0X_modifica_lezione"]chiamano metodi 
+	//che non prevedono valori 
 	//di ritorno: pertanto non ci saranno assert, è utile
 	//soltanto per verificare che il file delle lezioni venga 
 	//modificato correttamente (i posti vengano decrementati)
@@ -33,8 +34,8 @@ public class RF13_prenota_posto_test
 		//in realtà la creerò in decrementa_prenota
 		ArrayList<lezione> lezioni = db_lez.carica_lezioni(); 
 		//creo un nuovo oggeto updated_lez con i posti decrementati
-		lezione updated_lez = lezioni.get(0);
-		updated_lez.posti_disponibili = lezioni.get(0).posti_disponibili - 1;
+		lezione updated_lez = lezioni.get(4);
+		updated_lez.posti_disponibili = lezioni.get(4).posti_disponibili - 1;
         db_lez.modifica_lezione(updated_lez);
     }
     
@@ -67,7 +68,8 @@ public class RF13_prenota_posto_test
 	
 	// =======================================================================
 	
-	//questo test chiama metodi che non prevedono valori 
+	//questi test ["test0X_aggiungi_prenotazione"]chiamano metodi 
+	//che non prevedono valori 
 	//di ritorno: pertanto non ci saranno assert, è utile
 	//soltanto per verificare che il file delle prenotazioni venga 
 	//modificato correttamente (ovvero che la prenotazione venga aggiunta)
@@ -80,14 +82,14 @@ public class RF13_prenota_posto_test
 		//qui scelgo tutto io ma poi
 		//in realtà lo creerò in decrementa_prenota
 		prenotazione obj_preno = new prenotazione();
-		obj_preno.matricola_studente = 100008;
+		obj_preno.matricola_studente = 100011;
 		obj_preno.nome_corso = "Programmazione_1";
 		obj_preno.cognome_docente = "Codetta";
-		obj_preno.giorno = LocalDate.parse("22/12/2021", formatter);
-		obj_preno.ora_inizio = LocalTime.parse("09:15", formatter2);
-		obj_preno.ora_fine = LocalTime.parse("13:15", formatter2);
+		obj_preno.giorno = LocalDate.parse("01/10/2021", formatter);
+		obj_preno.ora_inizio = LocalTime.parse("09:00", formatter2);
+		obj_preno.ora_fine = LocalTime.parse("13:00", formatter2);
 		obj_preno.presente = false;
-		obj_preno.aula = 4;
+		obj_preno.aula = 7;
 		db_lez.aggiungi_prenotazione(obj_preno);
     }
     
@@ -98,21 +100,21 @@ public class RF13_prenota_posto_test
     {
     	//faccio un'altra prova
 		prenotazione obj_preno = new prenotazione();
-		obj_preno.matricola_studente = 100009;
+		obj_preno.matricola_studente = 100011;
 		obj_preno.nome_corso = "Sistemi_Operativi_1";
 		obj_preno.cognome_docente = "Cerotti";
-		obj_preno.giorno = LocalDate.parse("01/01/2022", formatter);
-		obj_preno.ora_inizio = LocalTime.parse("14:00", formatter2);
-		obj_preno.ora_fine = LocalTime.parse("18:00", formatter2);
+		obj_preno.giorno = LocalDate.parse("02/10/2021", formatter);
+		obj_preno.ora_inizio = LocalTime.parse("11:00", formatter2);
+		obj_preno.ora_fine = LocalTime.parse("13:00", formatter2);
 		obj_preno.presente = false;
-		obj_preno.aula = 7;
+		obj_preno.aula = 4;
 		db_lez.aggiungi_prenotazione(obj_preno);
     }
 	
 	// =======================================================================
-
 	
-	//questo test chiama metodi che non prevedono valori 
+	//questi test ["test0X_decrementa_prenota"]chiamano metodi
+	//che non prevedono valori 
 	//di ritorno: pertanto non ci saranno assert, è utile
 	//soltanto per verificare che i file delle prenotazioni e
 	//delle lezioni vengano modificati correttamente 
@@ -131,7 +133,7 @@ public class RF13_prenota_posto_test
 		lez.ora_fine = LocalTime.parse("13:00", formatter2);
 		lez.cognome_docente = "Codetta";
 		lez.numero_aula = 7;
-		lez.posti_disponibili = 46;
+		lez.posti_disponibili = 44;
         gest_lezioni.decrementa_prenota(lez, 100021);
 	}
 	
@@ -149,105 +151,104 @@ public class RF13_prenota_posto_test
 		lez.ora_fine = LocalTime.parse("13:00", formatter2);
 		lez.cognome_docente = "Cerotti";
 		lez.numero_aula = 4;
-		lez.posti_disponibili = 31;
+		lez.posti_disponibili = 30;
         gest_lezioni.decrementa_prenota(lez, 100021);
 	}
-	
+
 	// =======================================================================
 	
-	//test per verifica la correttezza della scelta
+	//test per verificare la correttezza di
 	//scelta_stud attraverso il metodo controllo_formato_scelta
-
-	@Test
-   public void test01_controllo_formato_scelta()
-   //RF13_prenota_posto
-	//Autori: Rossari, Marisio
-   {
-	   String s = new String("indietro");
-	   assertEquals(gest_lezioni.controllo_formato_scelta(s),true);
-	   s = new String("procedi");
-	   assertEquals(gest_lezioni.controllo_formato_scelta(s),true);
-   }
-   
-   @Test
-   public void test02_controllo_formato_scelta()
-   //RF13_prenota_posto
-	//Autori: Rossari, Marisio
-   {
-	   String s = new String("XndietroY");
-	   assertEquals(gest_lezioni.controllo_formato_scelta(s),false);
-	   s = new String(" ");
-	   assertEquals(gest_lezioni.controllo_formato_scelta(s),false);
-	   s = new String("");
-	   assertEquals(gest_lezioni.controllo_formato_scelta(s),false);
-	   s = new String();
-	   assertEquals(gest_lezioni.controllo_formato_scelta(s),false);
-   }
-   
-   // =======================================================================
-   
-   @Test
-   //test per controllo_data_e_posti
-   public void test01_controllo_data_e_posti()
-   //RF13_prenota_posto
-	//Autori: Rossari, Marisio
-   {
-	    lezione lez = new lezione(); 
-		lez.anno = 2;
-		lez.nome_corso = "Sistemi_Operativi_1";
-		lez.giorno = LocalDate.parse("12/01/2022", formatter);
-		lez.ora_inizio = LocalTime.parse("12:00", formatter2);
-		lez.ora_fine = LocalTime.parse("16:00", formatter2);
-		lez.cognome_docente = "Cerotti";
-		lez.numero_aula = 7;
-		lez.posti_disponibili = 30;
-		//la chiamata deve restituire "ok"
-		assertEquals("ok",gest_lezioni.controllo_data_e_posti(lez));
-		//altra lezione corretta
-		lez = new lezione(); 
-		lez.anno = 3;
-		lez.nome_corso = "Sistemi_Operativi_2";
-		lez.giorno = LocalDate.parse("01/01/2022", formatter);
-		lez.ora_inizio = LocalTime.parse("12:00", formatter2);
-		lez.ora_fine = LocalTime.parse("16:00", formatter2);
-		lez.cognome_docente = "Cerotti";
-		lez.numero_aula = 7;
-		lez.posti_disponibili = 1;
-		//la chiamata deve restituire "ok"
-		assertEquals(gest_lezioni.controllo_data_e_posti(lez),"ok");
-   }
-   
-   @Test
-   public void test02_controllo_data_e_posti()
-   //RF13_prenota_posto
-	//Autori: Rossari, Marisio
-   {
-	    //lezione NON corretta
-	    lezione lez = new lezione(); 
-		lez.anno = 2;
-		lez.nome_corso = "Sistemi_Operativi_1";
-		lez.giorno = LocalDate.parse("12/11/2021", formatter);
-		lez.ora_inizio = LocalTime.parse("12:00", formatter2);
-		lez.ora_fine = LocalTime.parse("16:00", formatter2);
-		lez.cognome_docente = "Cerotti";
-		lez.numero_aula = 7;
-		lez.posti_disponibili = 30;
-		//la chiamata deve restituire "err_data"
-		assertEquals(gest_lezioni.controllo_data_e_posti(lez),"err_data");
-		//altra lezione NON corretta
-		lez = new lezione(); 
-		lez.anno = 3;
-		lez.nome_corso = "Sistemi_Operativi_2";
-		lez.giorno = LocalDate.parse("01/01/2022", formatter);
-		lez.ora_inizio = LocalTime.parse("12:00", formatter2);
-		lez.ora_fine = LocalTime.parse("16:00", formatter2);
-		lez.cognome_docente = "Cerotti";
-		lez.numero_aula = 7;
-		lez.posti_disponibili = 0;
-		//la chiamata deve restituire "err_posti"
-		assertEquals(gest_lezioni.controllo_data_e_posti(lez),"err_posti");
-   }
-   
-    // =======================================================================
-   
+	   @Test
+	   public void test01_controllo_formato_scelta()
+	    //RF13_prenota_posto
+		//Autori: Rossari, Marisio
+	   {
+		   String s = new String("indietro");
+		   assertEquals(gest_lezioni.controllo_formato_scelta(s),true);
+		   s = new String("procedi");
+		   assertEquals(gest_lezioni.controllo_formato_scelta(s),true);
+	   }
+	   
+	   @Test
+	   public void test02_controllo_formato_scelta()
+	    //RF13_prenota_posto
+		//Autori: Rossari, Marisio
+	   {
+		   String s = new String("XndietroY");
+		   assertEquals(gest_lezioni.controllo_formato_scelta(s),false);
+		   s = new String(" ");
+		   assertEquals(gest_lezioni.controllo_formato_scelta(s),false);
+		   s = new String("");
+		   assertEquals(gest_lezioni.controllo_formato_scelta(s),false);
+		   s = new String();
+		   assertEquals(gest_lezioni.controllo_formato_scelta(s),false);
+	   }
+	   
+	   // =======================================================================
+	   
+	   @Test
+	   //test per controllo_data_e_posti
+	   public void test01_controllo_data_e_posti()
+	    //RF13_prenota_posto
+		//Autori: Rossari, Marisio
+	   {
+			lezione lez = new lezione(); 
+			lez.anno = 2;
+			lez.nome_corso = "Sistemi_Operativi_1";
+			lez.giorno = LocalDate.parse("12/01/2023", formatter);
+			lez.ora_inizio = LocalTime.parse("12:00", formatter2);
+			lez.ora_fine = LocalTime.parse("16:00", formatter2);
+			lez.cognome_docente = "Cerotti";
+			lez.numero_aula = 7;
+			lez.posti_disponibili = 30;
+			//la chiamata deve restituire "ok"
+			assertEquals("ok",gest_lezioni.controllo_data_e_posti(lez));
+			//altra lezione corretta
+			lez = new lezione(); 
+			lez.anno = 3;
+			lez.nome_corso = "Sistemi_Operativi_2";
+			lez.giorno = LocalDate.parse("01/01/2023", formatter);
+			lez.ora_inizio = LocalTime.parse("12:00", formatter2);
+			lez.ora_fine = LocalTime.parse("16:00", formatter2);
+			lez.cognome_docente = "Cerotti";
+			lez.numero_aula = 7;
+			lez.posti_disponibili = 1;
+			//la chiamata deve restituire "ok"
+			assertEquals(gest_lezioni.controllo_data_e_posti(lez),"ok");
+	   }
+	   
+	   @Test
+	   public void test02_controllo_data_e_posti()
+	   //RF13_prenota_posto
+		//Autori: Rossari, Marisio
+	   {
+			//lezione NON corretta
+			lezione lez = new lezione(); 
+			lez.anno = 2;
+			lez.nome_corso = "Sistemi_Operativi_1";
+			lez.giorno = LocalDate.parse("12/11/2021", formatter);
+			lez.ora_inizio = LocalTime.parse("12:00", formatter2);
+			lez.ora_fine = LocalTime.parse("16:00", formatter2);
+			lez.cognome_docente = "Cerotti";
+			lez.numero_aula = 7;
+			lez.posti_disponibili = 30;
+			//la chiamata deve restituire "err_data"
+			assertEquals(gest_lezioni.controllo_data_e_posti(lez),"err_data");
+			//altra lezione NON corretta
+			lez = new lezione(); 
+			lez.anno = 3;
+			lez.nome_corso = "Sistemi_Operativi_2";
+			lez.giorno = LocalDate.parse("01/01/2023", formatter);
+			lez.ora_inizio = LocalTime.parse("12:00", formatter2);
+			lez.ora_fine = LocalTime.parse("16:00", formatter2);
+			lez.cognome_docente = "Cerotti";
+			lez.numero_aula = 7;
+			lez.posti_disponibili = 0;
+			//la chiamata deve restituire "err_posti"
+			assertEquals(gest_lezioni.controllo_data_e_posti(lez),"err_posti");
+	   }
+	   
+		// =======================================================================
+	   
 }

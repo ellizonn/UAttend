@@ -375,6 +375,7 @@ public class DB_lezioni
   
   
   	public void modifica_lezione(lezione updated_lez){
+		
 		//RF13_prenota_posto
 		//Autori: Rossari, Marisio
 		ArrayList<lezione> elenco = carica_lezioni();
@@ -394,6 +395,7 @@ public class DB_lezioni
 				i++;
 		}
 		salva_lezioni(elenco);
+		
 	}
 	
 }

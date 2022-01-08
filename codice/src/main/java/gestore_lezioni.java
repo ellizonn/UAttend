@@ -13,20 +13,19 @@ class gestore_lezioni
     }
 	
 	public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    public static DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm");
 	
 	// =======================================================================
   
-	public String controllo_data_e_posti(lezione lez)
-    {
+	public String controllo_data_e_posti(lezione lez){
+		
     	//RF13_prenota_posto
     	//Autori: Rossari, Marisio
-    	
-		LocalDate oggi = LocalDate.now();
-		//LocalTime orario = LocalTime.now();
-    	LocalDate today = LocalDate.parse(oggi.getDayOfMonth()+"/"+oggi.getMonthValue()+"/"+oggi.getYear(), formatter);
-    	//LocalTime now = LocalTime.parse(orario.getHour()+":"+orario.getMinute(), formatter2);
 		
+		
+		LocalDate oggi = LocalDate.now();
+		String str = oggi.format(formatter);
+    	LocalDate today = LocalDate.parse(str, formatter);
+
     	String esito_data_e_posti;
     	if(lez.giorno.compareTo(today)>0 && lez.posti_disponibili>0) {
     		esito_data_e_posti = new String("ok");
@@ -36,22 +35,25 @@ class gestore_lezioni
     	}
 		else //if(lez.posti_disponibili == 0)
 			esito_data_e_posti = new String("err_posti");
-		
 		return esito_data_e_posti;
+		
     }
 	
 	public boolean controllo_formato_scelta(String scelta_stud){
+		
 		//RF13_prenota_posto
 		//Autori: Rossari, Marisio
 		boolean esito_formato_scelta;
-		if( !(scelta_stud.equals("indietro")) && !(scelta_stud.equals("procedi")) || scelta_stud==null )
+		if( (!(scelta_stud.equals("indietro")) && !(scelta_stud.equals("procedi"))) || scelta_stud==null )
 			esito_formato_scelta = false;
 		else
 			esito_formato_scelta = true;
 		return esito_formato_scelta;
+		
 	}
   
   	public void decrementa_prenota(lezione lez, int matricola){
+		
 		//RF13_prenota_posto
 		//Autori: Rossari, Marisio
 		//creo nuovo oggetto lezione
@@ -69,6 +71,7 @@ class gestore_lezioni
 		obj_preno.presente = false; // di default
 		obj_preno.aula = new_lez.numero_aula;
 		db_lez.aggiungi_prenotazione(obj_preno); //chiamata
+		
 	}
 	
 	
