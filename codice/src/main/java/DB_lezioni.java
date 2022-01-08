@@ -279,8 +279,10 @@ public class DB_lezioni {
                 fw.write(c.nome + "\t" + c.anno + "\t" + c.cognome_docente + "\n");
             }
             fw.close();
-        } catch (IOException e) {
-            System.out.println("ERRORE apertura file lezioni");
+        }
+        catch (IOException e) 
+        {
+            System.out.println("ERRORE apertura file corsi");
         }
 
     }
@@ -295,8 +297,9 @@ public class DB_lezioni {
             fw.write(c.nome + "\t" + c.anno + "\t" + c.cognome_docente + "\n");
             fw.close();
         }
-        catch (IOException e) {
-            System.out.println("ERRORE apertura file aule.txt");
+        catch (IOException e) 
+        {
+            System.out.println("ERRORE apertura file corsi.txt");
         }
     }
 
@@ -329,8 +332,10 @@ public class DB_lezioni {
                 elenco.add(p);
             }
             sc.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("ERRORE apertura file corsi.txt");
+        }
+        catch (FileNotFoundException e) 
+        {
+            System.out.println("ERRORE apertura file prenotazioni.txt");
         }
 
         return elenco;
@@ -349,15 +354,17 @@ public class DB_lezioni {
         // SALVA TUTTO IL FILE
         try {
             // false per modalita' write, true per modalita' append
-            FileWriter fw = new FileWriter(new File("dati/corsi.txt"), false);
+            FileWriter fw = new FileWriter(new File("dati/prenotazioni.txt"), false);
             for (i=0; i<L; i++)
             {
                 p=(prenotazione)elenco.get(i);
                 fw.write(p.matricola_studente + "\t" + p.nome_corso + "\t" + p.cognome_docente + "\t" + p.aula + "\t" + p.giorno.format(formatter) + "\t" + p.ora_inizio.format(formatter2) + "\t" + p.ora_fine.format(formatter2) + "\t" + p.presente + "\n");
             }
             fw.close();
-        } catch (IOException e) {
-            System.out.println("ERRORE apertura file lezioni");
+        }
+        catch (IOException e) 
+        {
+            System.out.println("ERRORE apertura file prenotazioni");
         }
 
     }
@@ -368,12 +375,42 @@ public class DB_lezioni {
         // metodo condiviso
         try {
             // false per modalita' write, true per modalita' append
-            FileWriter fw = new FileWriter(new File("dati/aule.txt"), true);
+            FileWriter fw = new FileWriter(new File("dati/prenotazioni.txt"), true);
             fw.write(p.matricola_studente + "\t" + p.nome_corso + "\t" + p.cognome_docente + "\t" + p.aula + "\t" + p.giorno.format(formatter) + "\t" + p.ora_inizio.format(formatter2) + "\t" + p.ora_fine.format(formatter2) + "\t" + p.presente + "\n");
             fw.close();
-        } catch (IOException e) {
-            System.out.println("ERRORE apertura file aule.txt");
+        }
+        catch (IOException e) 
+        {
+            System.out.println("ERRORE apertura file prenotazioni.txt");
         }
     }
-
+  
+  
+  // =======================================================================
+  
+  
+  	public void modifica_lezione(lezione updated_lez){
+		
+		//RF13_prenota_posto
+		//Autori: Rossari, Marisio
+		ArrayList<lezione> elenco = carica_lezioni();
+		int L = elenco.size();
+		int i = 0;
+		while(i<L){
+			if(	
+				elenco.get(i).nome_corso.equals(updated_lez.nome_corso) &&
+				elenco.get(i).anno == updated_lez.anno &&
+				elenco.get(i).giorno.compareTo(updated_lez.giorno)==0 &&
+				elenco.get(i).ora_inizio.compareTo(updated_lez.ora_inizio)==0 
+			){
+				elenco.get(i).posti_disponibili = updated_lez.posti_disponibili;
+				break;
+			}
+			else
+				i++;
+		}
+		salva_lezioni(elenco);
+		
+	}
+	
 }

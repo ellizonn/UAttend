@@ -13,6 +13,8 @@ public class prenotazione
     public LocalTime ora_inizio;
     public LocalTime ora_fine;
     public boolean presente;
+	public int aula;
+
     
     public prenotazione(int m, String n, String c, int a, LocalDate g, LocalTime oi, LocalTime of, boolean p) {
     	this.matricola_studente=m;
@@ -34,5 +36,6 @@ public class prenotazione
     	return s;
     }
     
+
 }
 
