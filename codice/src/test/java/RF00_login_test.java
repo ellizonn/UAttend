@@ -15,7 +15,6 @@ public class RF00_login_test
         assertNotNull("DB deve ritornare un account", db_ut.cerca_account(100001, "abc"));
     }
 
-
     @Test
     public void test_cerca_account_02()
     {

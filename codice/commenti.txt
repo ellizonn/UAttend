@@ -1,0 +1,88 @@
+RF01 (visualizza avvisi recenti):
+- scrivere "avviso" e "scadenza" all'inizio dell'elenco o per ogni avviso;
+- scrivere anche la data di emissione dell'avviso. 
+
+
+
+RF02 (cambia password):
+- non si puo' avviare dal login.
+
+
+
+RF03 (ricerca avvisi per data):
+- non si puo' avviare dal login.
+
+
+
+RF04 (crea corso):
+- l'annullamento dell'operazione non funziona: premendo INVIO non si esce, ma si ha un errore sulla lunghezza della stringa;
+- se l'indice del docente non e' corretto non c'e' messaggio di errore;
+- scrivere "sedi:" assieme a "Docenti:" all'inizio dell'elenco dei docenti.
+
+
+
+RF05 (aggiungi lezione):
+- manca l'avvio di RF06 (seleziona aula libera);
+- nell'elenco dei corsi scrivere "nome", "docente", "anno" all'inizio. 
+
+
+
+RF06 (seleziona aula libera):
+- non si puo' avviare da RF05 (aggiungi lezione). 
+
+
+
+RF07 (ricerca utente):
+- non si puo' avviare dal login.
+
+
+
+RF08 (cambia stato account):
+- non assegnato a nessun gruppo. 
+
+
+
+RF09 (visualizza prenotazioni):
+- non si puo' avviare dal login per utenti di tipo studente.
+
+
+
+RF10 (annulla prenotazione): 
+- e' necessario che RF09 (visualizza prenotazioni) si avviabile dal login.
+
+
+
+RF11 (registra presenza):
+- e' necessario che RF09 sia avviabile dal login o da RF07 (ricerca utente) o da RF12 (ricerca lezioni).
+
+
+
+RF12 (ricerca lezioni per data):
+- non si puo' avviare dal login.
+
+
+
+RF13 (prenota posto):
+- e' necessario che RF12 (ricerca lezioni per data) sia avviabile dal login. 
+
+
+
+RF14 (cancella lezione posto):
+- e' necessario che RF12 (ricerca lezioni per data) sia avviabile dal login. 
+
+
+
+RF15 (modifica lezione):
+- e' necessario che RF12 (ricerca lezioni per data) sia avviabile dal login. 
+
+
+
+RF16 (scrivi avviso):
+- non si puo' avviare dal login;
+- e' necessario che RF14 (cancella lezione) e RF15 (cancella lezione) siano avviabili dal login.
+
+
+
+RF17 (crea utente):
+- non si puo' avviare dal login.
+
