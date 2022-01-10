@@ -11,10 +11,7 @@ public class VisualizzaPrenotazioni {
 	public enum utente {STUDENTE, STAFF, DOCENTE};
 	private utente tipoUtente;
 	private ArrayList<prenotazione> elenco;
-
-	// RF09 visualizza prenotazioni
-	// Balossino, Battezzati
-
+	
 	public VisualizzaPrenotazioni(utente tipoUtente, ArrayList<prenotazione> elenco) throws IOException {
 		this.tipoUtente=tipoUtente;
 		this.elenco=elenco;
@@ -22,10 +19,7 @@ public class VisualizzaPrenotazioni {
 		else if(this.tipoUtente==utente.STUDENTE) visualizzaStudente();
 		else visualizzaStaff();
 	}
-
-	// RF09 visualizza prenotazioni
-	// Balossino, Battezzati
-
+	
 	private void visualizzaDocente() {
 		
 		try {
@@ -48,9 +42,6 @@ public class VisualizzaPrenotazioni {
 			}
 		
 	}
-
-	// RF09 visualizza prenotazioni
-	// Balossino, Battezzati
 	
 	private void visualizzaStudente() throws IOException{
 		
@@ -73,9 +64,6 @@ public class VisualizzaPrenotazioni {
 			}
 		
 	}
-
-	// RF09 visualizza prenotazioni
-	// Balossino, Battezzati
 	
 	private void visualizzaStaff() throws IOException {
 		try {
