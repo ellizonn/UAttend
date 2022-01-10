@@ -24,17 +24,15 @@ public class UI_lezione {
         g_lez = g1;
     }
 
-    public void visualizza_elenco_corsi() {
+    public void visualizza_elenco_corsi(ArrayList<corso> elencoCorsi) {
         // autori: Simone Garau, Filiberto Melis
-        ArrayList<corso> elencoCorsi = this.g_lez.richiesta_elenco_corsi();
-
         if (elencoCorsi != null) {
             System.out.println("Elenco corsi disponibili");
             for (int i = 0; i < elencoCorsi.size(); i++) {
                 String nome = elencoCorsi.get(i).nome;
                 String cognome_docente = elencoCorsi.get(i).cognome_docente;
                 int anno = elencoCorsi.get(i).anno;
-                System.out.println("Corso " + (i+1) + ": " + nome + " " + anno + " " + cognome_docente);
+                System.out.println("Corso " + (i+1) + ": Nome: " + nome + ", Anno: " + anno + ", Docente: " + cognome_docente);
             }
         }
     }
@@ -92,8 +90,8 @@ public class UI_lezione {
                 int ora_fine = Integer.parseInt(m.group(3));
                 int minuto_fine = Integer.parseInt(m.group(4));
                 try {
-                    this.ora_fine = LocalTime.of(ora_fine, minuto_fine);
                     this.ora_inizio = LocalTime.of(ora_inizio, minuto_inizio);
+                    this.ora_fine = LocalTime.of(ora_fine, minuto_fine);
                 } catch (DateTimeException e) {
                     System.out.println("ATTENZIONE: orario inesistente");
                     formato = false;
@@ -186,11 +184,12 @@ public class UI_lezione {
         do {
             boolean selezione = false;
             do {
-                this.visualizza_elenco_corsi();
+                ArrayList<corso> elencoCorsi = this.g_lez.richiesta_elenco_corsi();
+                this.visualizza_elenco_corsi(elencoCorsi);
                 System.out.print("Selezionare un corso indicandone il numero: ");
                 try {
                     int numero_corso = Integer.parseInt(scanner.nextLine());
-                    corso c = this.g_lez.richiesta_elenco_corsi().get(numero_corso-1);
+                    corso c = elencoCorsi.get(numero_corso-1);
                     this.nome_corso = c.nome;
                     this.anno = c.anno;
                     this.cognome_docente = c.cognome_docente;
@@ -220,8 +219,7 @@ public class UI_lezione {
                         this.mostra_errore_orario(this.ora_inizio, this.ora_fine);
                 } while (errore_orario);
 
-                // aula a = richiamo a RF06 per selezione aula libera;
-                aula a = new aula(); a.capienza = 50; a.numero = 7; // aula di prova (da rimuovere con l'arrivo di RF06)
+                aula a = this.avvia_seleziona_aula_libera(this.giorno, this.ora_inizio, this.ora_fine);
                 errore_aula = (a == null);
                 if (errore_aula) {
                     this.mostra_errore_aula();
@@ -242,18 +240,6 @@ public class UI_lezione {
                 this.anno, this.numero_aula, this.posti_disponibili, this.giorno,
                 this.ora_inizio, this.ora_fine);
     }
-/*
-    public static void main(String[] args) {
-        DB_avvisi da = new DB_avvisi();
-        gestore_avvisi ga = new gestore_avvisi(da);
-        UI_avviso ua = new UI_avviso(ga);
-        DB_lezioni dl = new DB_lezioni();
-        gestore_lezioni gl = new gestore_lezioni(dl);
-        UI_lezione ul = new UI_lezione(ua, gl);
-
-        ul.avvio_aggiungi_lezione();
-    }
- */
 	gestore_utenti g_utn;
  
     public UI_lezione(UI_avviso ui1, gestore_lezioni g1, gestore_utenti g2)
@@ -472,4 +458,121 @@ public class UI_lezione {
 		System.out.println("--- Creazione Corso --- ");
 		System.out.printf("Stai per creare il corso di %s (%d anno) tenuto da %s\nPremi Invio per confermare.\n", nomeCorso, anno, docente);
 	}
+
+
+    /**
+     * Avvia cancella lezione
+     * @author Davide Ceci - 20033793 - RF_14
+     * @author Luca Tamone - 20034235 - RF_14
+     * @param lez la lezione da cancellare
+     */
+    public void avvia_cancella_lezione(lezione lez) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Se la lezione è già avvenuta non posso cancellarla
+        if(g_lez.verifica_lezione(lez.giorno) == true) {
+            System.out.println("Non puoi cancellare una lezione che è già avvenuta.");
+            return;
+        }
+
+        // Conferma eliminazione
+        System.out.println("Vuoi veramente cancellare questa lezione? [s/N]");
+        if(!scanner.nextLine().toLowerCase().equals("s")) {
+            System.out.println("La lezione non è stata cancellata");
+            return;
+        }
+
+        // Elimina lezione
+        try {
+            g_lez.elimina_lezione(lez);
+        } catch (Exception e) {
+            System.out.println("Si è verificato un errore durante l'eliminazione della lezione.");
+            return;
+        }
+
+        // Scrivi avviso
+        try {
+            // Richiama scrivi avviso
+        } catch (Exception e) {
+            System.out.println("La lezione è stata cancellata ma non è stato possibile scrivere l'avviso per via di un errore.");
+            return;
+        }
+        
+        System.out.println("La lezione è stata cancellata con successo");
+    }
+
+
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public aula avvia_seleziona_aula_libera (LocalDate date, LocalTime startHour, LocalTime endHour) {
+    	ArrayList<aula> aule_libere = this.g_lez.verifica_aule_libere(date, startHour, endHour);
+    	if (aule_libere.isEmpty())  {
+    		this.mostra_messaggio_nessunaAulaLibera();
+    		return null;
+    	}	
+    	else {
+    		aula aula_selezionata = new aula();
+    		boolean conferma = true;
+    		boolean accettata = false;
+    		while (!conferma || !accettata) {
+    			aula_selezionata = this.mostra_elenco_aule_libere(aule_libere);
+    			accettata = this.g_lez.verifica_aula_selezionata(aule_libere, aula_selezionata.numero);
+    			if (accettata == true) {
+    				conferma = this.mostra_messaggio_conferma();
+    			}
+    			else {
+    				this.mostra_messaggio_aulaSelezionataNonValida();
+    			}	
+    		}
+    		this.mostra_aula_selezionata_correttamente();
+    		return aula_selezionata;
+    	}
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public void mostra_messaggio_nessunaAulaLibera() {
+    	System.out.println ("Nessuna aula libera presente.");
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public void mostra_messaggio_aulaSelezionataNonValida () {
+    	System.out.println ("Il numero dell'aula selezionata non è presente fra l'elenco delle aule libere.");
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    private aula mostra_elenco_aule_libere (ArrayList<aula> aule_libere){
+    	int numero_aula = 0; 
+		System.out.println ("Elenco aule libere:");
+    	for (aula a : aule_libere) {
+    		System.out.println ("Aula numero: " + a.numero + " Capienza: " + a.capienza);
+    	}
+    	System.out.println("Per selezionare l'aula desiderata digitarne il numero.");
+		Scanner in = new Scanner(System.in);
+		String s = in.nextLine();
+    	numero_aula = Integer.decode(s);
+    	
+    	aula a = new aula();
+    	a.numero = numero_aula;
+    	for (aula aula: aule_libere) {
+			if (aula.numero == numero_aula) {
+				a.capienza = aula.capienza;
+			}
+    	}
+    	return a;
+    	
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public boolean mostra_messaggio_conferma () {
+    	System.out.println("Confermi la scelta? y/n");
+    	Scanner in = new Scanner (System.in);
+    	String s = in.nextLine();
+		if (s.equals("y")) return true;
+		else return false;	
+    }
+    
+    //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+    public void mostra_aula_selezionata_correttamente () {
+    	System.out.println("Aula selezionata correttamente.");
+    }
+
 }

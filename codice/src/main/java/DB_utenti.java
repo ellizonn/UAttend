@@ -234,5 +234,46 @@ public class DB_utenti
         
         return u;
     }
-}
 
+    public int ricerca_ultima_matricola()
+    {
+        //RF17: crea utente
+    	//autori: La Spisa & Frasson
+    	account a;
+        int amax;
+    	ArrayList<account> elenco;
+    	int i, L;
+    	amax=0;
+    	elenco=carica_accounts();
+    	L=elenco.size();
+    	for(i=0; i<L; i++)
+    	{
+    		a=(account)elenco.get(i);
+    		if(a.matricola>amax)
+    			amax=a.matricola;
+    	}
+    	return amax;
+    }
+
+	public ArrayList<utente> ricerca_utente(int matricola, String cognome) {
+		
+		//RF07: ricerca utente
+		//autori: Malavasi-Torta
+		
+		ArrayList<utente> elenco, elenco_utenti = null;
+		utente u;
+		elenco = carica_utenti();
+		int i, l;
+		l=elenco.size();
+		for(i=0; i<l; i++)
+		{
+			if(elenco.get(i).matricola == matricola || elenco.get(i).cognome == cognome)
+			{
+				u = new utente();
+				u=elenco.get(i);
+				elenco_utenti.add(u);
+			}
+		}
+		return elenco_utenti;
+	}
+}
