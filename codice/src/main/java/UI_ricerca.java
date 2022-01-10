@@ -110,7 +110,7 @@ public class UI_ricerca
     	
     }
 	
-	 public void avvio_ricerca_utente(String tipo_utente) throws IOException {
+	 public void avvio_ricerca_utente(String tipo_utente) /*throws IOException*/ {
 	    	
 	    	//RF07: ricerca utente
 	    	//autori: Malavasi - Torta
@@ -190,7 +190,7 @@ public class UI_ricerca
 			return u;
 		}
 
-		private void visualizza_errore(int i) throws IOException {
+		private void visualizza_errore(int i) /*throws IOException*/ {
 			//RF07: ricerca utente
 	    	//autori: Malavasi - Torta
 	    	String conferma;

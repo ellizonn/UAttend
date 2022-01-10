@@ -35,7 +35,7 @@ public class UI_login
 
 
 
-    public void avvio_login() throws IOException
+    public void avvio_login() //throws IOException
     {
         //RF00
         //autore: Codetta
