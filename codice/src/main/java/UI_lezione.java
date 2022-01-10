@@ -2,18 +2,12 @@ import java.time.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-<<<<<<< HEAD
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-=======
-import java.util.ArrayList;
-
->>>>>>> RF04_crea_corso
 
 public class UI_lezione {
     UI_avviso ui_avv;
     gestore_lezioni g_lez;
-<<<<<<< HEAD
 
     String nome_corso;
     String cognome_docente;
@@ -260,7 +254,6 @@ public class UI_lezione {
         ul.avvio_aggiungi_lezione();
     }
  */
-=======
 	gestore_utenti g_utn;
  
     public UI_lezione(UI_avviso ui1, gestore_lezioni g1, gestore_utenti g2)
@@ -289,11 +282,11 @@ public class UI_lezione {
 			esito = g_lez.verifica_nome_corso(nomeCorso);
 			if(esito != "OK")
 			{
+				mostra_errore(esito);
+				System.out.println(esito);
 				if(esito == "ABORT"){
-					System.out.println("\n[ABORT] : Operazione annullata con successo.");
 					return;
 				}
-				mostra_errore(esito);
 			}
 		}while(esito != "OK");
 
@@ -302,7 +295,7 @@ public class UI_lezione {
 		/* verifica selezione docente*/
 		do{
 			if(esito == "SELEZIONE_NON_VALIDA")
-				mostra_errore("SELEZIONE NON VALIDA");
+				mostra_errore("SELEZIONE_NON_VALIDA");
 
 				SUPselezione_docente = mostra_form_selezione_docente(SUPlistaDocenti);
 			
@@ -342,6 +335,17 @@ public class UI_lezione {
 	public void mostra_errore(String errore){
 		Scanner sc = new Scanner(System.in);
 
+		if(errore == "ABORT"){
+			System.out.println("[AVVISO] Operazione annullata con successo.");
+
+			do{
+				System.out.println("\nPremi invio per confermare.");
+			}while(sc.nextLine() == "\n");
+				
+			return;
+
+		}
+
 		if(errore == "SELEZIONE_NON_VALIDA")
 		{
 			System.out.println("[ERRORE] Il docente selezionato non e' valido.");
@@ -352,6 +356,7 @@ public class UI_lezione {
 				
 			return;
 		}
+
 
 		if(errore == "ANNO_NON_VALIDO")
 		{
@@ -399,7 +404,7 @@ public class UI_lezione {
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("--- Creazione Corso ---");
-		System.out.println("Premi [Invio] per annullare");
+		System.out.println("Scrivi \"ESC\" per annullare");
 		System.out.println("Inserisci il nome del corso: ");
 		
 		return sc.nextLine();
@@ -422,7 +427,7 @@ public class UI_lezione {
 		System.out.flush(); 
 
 		System.out.println("--- Creazione Corso ---");
-		System.out.println("Docenti: ");
+		System.out.println("  | Docenti | Sedi ");
 		
 		for(utente u : listaDocenti)
 		{
@@ -467,5 +472,4 @@ public class UI_lezione {
 		System.out.println("--- Creazione Corso --- ");
 		System.out.printf("Stai per creare il corso di %s (%d anno) tenuto da %s\nPremi Invio per confermare.\n", nomeCorso, anno, docente);
 	}
->>>>>>> RF04_crea_corso
 }

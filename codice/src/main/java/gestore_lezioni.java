@@ -108,9 +108,9 @@ class gestore_lezioni {
 	 */
 	public String verifica_nome_corso(String nomeCorso){
 
-		if (nomeCorso == null) return "ABORT";
+		if (nomeCorso.equals("ESC")) return "ABORT";
 		else
-		if (nomeCorso == "") return "CORSO_VUOTO";
+		if (nomeCorso.equals("")) return "CORSO_VUOTO";
 		else
 		if (nomeCorso.length() < 5 ) return "CORSO_CORTO";
 		else

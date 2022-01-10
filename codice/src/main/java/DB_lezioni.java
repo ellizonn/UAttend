@@ -233,15 +233,10 @@ public class DB_lezioni {
             FileWriter fw = new FileWriter(new File("dati/corsi.txt"), true);
             fw.write(c.nome + "\t" + c.anno + "\t" + c.cognome_docente + "\n");
             fw.close();
-<<<<<<< HEAD
-        } catch (IOException e) {
-            System.out.println("ERRORE apertura file aule.txt");
-=======
         }
         catch (IOException e) 
         {
             System.out.println("ERRORE apertura file corsi.txt");
->>>>>>> RF04_crea_corso
         }
     }
 
