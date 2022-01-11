@@ -122,7 +122,18 @@ public class UI_ricerca
 		boolean esito;
 		ArrayList<lezione> elenco_lezioni;
 		lezione lez;
+		int i = 0;
+
 		do {
+			if(i > 0) {
+				System.out.println("MENU' RICERCA LEZIONE:\n0. Menù principale\n1. Ricerca lezioni");
+				sc = new Scanner(System.in);
+				System.out.print("\nInserire scelta: ");
+				scelta_lez = sc.nextInt();
+				if(scelta_lez == 0) {
+					break;
+				}
+			}
 			this.form_ricerca_lezioni();
 			elenco_lezioni = g_ric.controllo_data(data_i,data_f);
 			if(elenco_lezioni == null) {
@@ -156,25 +167,26 @@ public class UI_ricerca
 							mostra_errore_ricerca_lezioni(elenco_lezioni);
 
 						if(scelta_lez == 1 && !tipo_utente.equals("studente")) {
-							// da sostituire con la chiamata del metodo di AVVIO
 							System.out.println("\nAVVIO visualizza prenotazioni");
+							//ui_pren.avvio_visualizza_prenotazioni();
 						}
 						if(scelta_lez == 2 && tipo_utente.equals("studente")) {
-							//ui_pren.avvio_prenota_posto(lez,matricola);
 							System.out.println("\nAVVIO prenota posto");
+							ui_pren.avvio_prenota_posto(lez,matricola);
 						}
 						if(scelta_lez == 3 && tipo_utente.equals("staff")) {
-							// da sostituire con la chiamata del metodo di AVVIO
 							System.out.println("\nAVVIO cancella lezione");
+							ui_lez.avvia_cancella_lezione(lez);
 						}
 						if(scelta_lez == 4 && tipo_utente.equals("staff")) {
-							// da sostituire con la chiamata del metodo di AVVIO
 							System.out.println("\nAVVIO modifica lezione");
 						}
 					}
 				}
 				while(scelta_lez != 0);
 			}
+			i++;
+			System.out.println(elenco_lezioni + " " + scelta_lez);
 		}
 		while(scelta_lez == 0 || elenco_lezioni == null);
 	}
@@ -185,9 +197,9 @@ public class UI_ricerca
 		//autore: Masino, Spina
 
 		sc = new Scanner(System.in);
-		System.out.print("\nInserisci data inizio: ");
+		System.out.print("\nInserisci data inizio (dd/MM/yyyy): ");
 		data_i = sc.nextLine();
-		System.out.print("Inserisci data fine: ");
+		System.out.print("Inserisci data fine (dd/MM/yyyy): ");
 		data_f = sc.nextLine();
 	}
 
@@ -272,7 +284,7 @@ public class UI_ricerca
 		if (tipo_utente.equals("staff") )
 			System.out.println("0. Menù principale\n1. Visualizza prenotazioni\n3. Cancella lezione\n4. Modifica lezione");
 
-		System.out.print("\ninserire scelta: ");
+		System.out.print("\nInserire scelta: ");
 		scelta_lez = sc.nextInt();
 	}
 	

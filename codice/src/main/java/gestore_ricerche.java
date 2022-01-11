@@ -49,7 +49,7 @@ class gestore_ricerche
 		try {
 			LocalDate startDate = LocalDate.parse(data_inizio,formatter);
 			LocalDate endDate = LocalDate.parse(data_fine,formatter);
-			if(startDate.isBefore(LocalDate.now()) || startDate.isAfter(endDate)) {
+			if((startDate.isBefore(LocalDate.now()) && endDate.isBefore(LocalDate.now())) || startDate.isAfter(endDate)) {
 				elenco_lezioni = null;
 			}
 			else {
