@@ -254,5 +254,26 @@ public class DB_utenti
     	}
     	return amax;
     }
-}
 
+	public ArrayList<utente> ricerca_utente(int matricola, String cognome) {
+		
+		//RF07: ricerca utente
+		//autori: Malavasi-Torta
+		
+		ArrayList<utente> elenco, elenco_utenti = null;
+		utente u;
+		elenco = carica_utenti();
+		int i, l;
+		l=elenco.size();
+		for(i=0; i<l; i++)
+		{
+			if(elenco.get(i).matricola == matricola || elenco.get(i).cognome == cognome)
+			{
+				u = new utente();
+				u=elenco.get(i);
+				elenco_utenti.add(u);
+			}
+		}
+		return elenco_utenti;
+	}
+}

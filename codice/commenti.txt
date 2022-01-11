@@ -1,39 +1,45 @@
 RF01 (visualizza avvisi recenti):
-- scrivere "avviso" e "scadenza" all'inizio dell'elenco o per ogni avviso;
-- scrivere anche la data di emissione dell'avviso. 
+- scrivere "|data emissione |data scadenza" piu' a destra possibile, nel caso il messaggio sia lungo.
 
 
 
 RF02 (cambia password):
-- non si puo' avviare dal login.
+- non si puo' avviare dal login;
+- non c'e' la classe di test.
 
 
 
 RF03 (ricerca avvisi per data):
-- non si puo' avviare dal login.
+- il messaggio di errore e' sempre "Le date inserite non sono corrette". Si potrebbe usare un messaggio piu' esplicito? Per esempio, "la seconda data deve essere successiva alla prima".
+- scrivere "data emissione  data scadenza" piu' a destra possibile, nel caso il messaggio sia lungo.
 
 
 
 RF04 (crea corso):
-- l'annullamento dell'operazione non funziona: premendo INVIO non si esce, ma si ha un errore sulla lunghezza della stringa;
-- se l'indice del docente non e' corretto non c'e' messaggio di errore;
-- scrivere "sedi:" assieme a "Docenti:" all'inizio dell'elenco dei docenti.
+- OK
 
 
 
 RF05 (aggiungi lezione):
 - manca l'avvio di RF06 (seleziona aula libera);
-- nell'elenco dei corsi scrivere "nome", "docente", "anno" all'inizio. 
+- nell'elenco dei corsi scrivere "nome", "docente", "anno" all'inizio;
+- se si inserisce la data odierna non c'e' nessun messaggio di errore, ma la richiesta della data viene ripetuta.
 
 
 
 RF06 (seleziona aula libera):
-- non si puo' avviare da RF05 (aggiungi lezione). 
+- scrivere  "Aula numero:" e "Capienza:" una sola volta all'inizio dell'elenco;
+- qualcosa non va nella ricerca delle aule libere: ho provato ad aggiungere tre lezioni nella stessa data e ora.
+Al terzo inserimento l'aula 10 compare tra quelle libere, ma e' occupata.
+Programmazione_1	Codetta		1	10	10	11/01/2022	09:00	11:00
+Sistemi_Operativi_1	Cerotti		2	11	25	11/01/2022	09:00	11:00
+Applicazioni_Web	Mantovani	3	10	10	11/01/2022	09:00	11:00
 
 
 
 RF07 (ricerca utente):
-- non si puo' avviare dal login.
+- dopo aver inserito matricola e cognome si verifica un'eccezione. Controllare il metodo ricerca_utente: elenco_utenti e' null; le stringhe si confrontano con il metodo equals();
+- non c'e' la classe di test. 
 
 
 
@@ -43,22 +49,26 @@ RF08 (cambia stato account):
 
 
 RF09 (visualizza prenotazioni):
-- non si puo' avviare dal login per utenti di tipo studente.
+- non si puo' avviare dal login per utenti di tipo studente;
+- errori di compilazione per la classe di test: package org.junit.jupiter.api does not exist.
 
 
 
 RF10 (annulla prenotazione): 
-- e' necessario che RF09 (visualizza prenotazioni) si avviabile dal login.
+- e' necessario che RF09 (visualizza prenotazioni) si avviabile dal login;
+- non c'e' la classe di test.
 
 
 
 RF11 (registra presenza):
-- e' necessario che RF09 sia avviabile dal login o da RF07 (ricerca utente) o da RF12 (ricerca lezioni).
+- e' necessario che RF09 sia avviabile dal login o da RF07 (ricerca utente) o da RF12 (ricerca lezioni);
+- non c'e' la classe di test.
 
 
 
 RF12 (ricerca lezioni per data):
-- non si puo' avviare dal login.
+- non si puo' avviare dal login;
+- non c'e' la classe di test.
 
 
 
@@ -73,16 +83,20 @@ RF14 (cancella lezione posto):
 
 
 RF15 (modifica lezione):
-- e' necessario che RF12 (ricerca lezioni per data) sia avviabile dal login. 
+- e' necessario che RF12 (ricerca lezioni per data) sia avviabile dal login;
+- non c'e' la classe di test.
 
 
 
 RF16 (scrivi avviso):
 - non si puo' avviare dal login;
-- e' necessario che RF14 (cancella lezione) e RF15 (cancella lezione) siano avviabili dal login.
+- e' necessario che RF14 (cancella lezione) e RF15 (cancella lezione) siano avviabili dal login;
+- non c'e' la classe di test.
+
 
 
 
 RF17 (crea utente):
-- non si puo' avviare dal login.
+- non c'e' il tipo studente, ma c'e' il tipo cliente;
+- la matricola salvata su file e' sempre 0. 
 

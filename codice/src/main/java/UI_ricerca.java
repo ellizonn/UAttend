@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -122,7 +123,7 @@ public class UI_ricerca
 		ArrayList<lezione> elenco_lezioni;
 		lezione lez;
 		do {
-			this.form_ricerca();
+			this.form_ricerca_lezioni();
 			elenco_lezioni = g_ric.controllo_data(data_i,data_f);
 			if(elenco_lezioni == null) {
 				mostra_errore_ricerca_lezioni(elenco_lezioni);
@@ -178,7 +179,7 @@ public class UI_ricerca
 		while(scelta_lez == 0 || elenco_lezioni == null);
 	}
 
-	public void form_ricerca() {
+	public void form_ricerca_lezioni() {
 
 		//RF12 - Ricerca lezioni per data
 		//autore: Masino, Spina
@@ -275,4 +276,96 @@ public class UI_ricerca
 		scelta_lez = sc.nextInt();
 	}
 	
+	 public void avvio_ricerca_utente(String tipo_utente) /*throws IOException*/ {
+	    	
+	    	//RF07: ricerca utente
+	    	//autori: Malavasi - Torta
+	    	
+	    	Scanner sc = new Scanner(System.in);
+	    	int scelta = 1;
+	    	utente ut = null;
+	    	do {
+	    		ArrayList<utente> u = form_ricerca();
+	    		if(u == null)
+				{
+	    			visualizza_errore(1);
+	    			scelta = visualizza_menu(1);
+				}
+	    		else if(u.size() == 0)
+	    		{
+	    			visualizza_errore(2);
+	    			scelta = visualizza_menu(1);
+	    		}
+	    		else {
+	    			visualizza_elenco(u);
+	    			System.out.println("\nSelezionare l'utente sul quale operare\n");
+	    			int x = sc.nextInt();
+	    			for(int i=0; i<u.size(); i++)
+	    			{
+	    				if(i == x)
+	    					ut = u.get(i);
+	    			}
+	    			if(tipo_utente == "staff")
+	    				avvia_visualizza_prenotazioni(ut);
+	    			else if(tipo_utente == "admin")
+	    				cambia_stato_account(ut);
+	    		}
+	    		scelta = visualizza_menu(2);
+	    	}while(scelta == 1 || scelta == 3);
+	    }
+	    
+	    private int visualizza_menu(int i) {
+	    	//RF07: ricerca utente
+	    	//autori: Malavasi - Torta
+	    	Scanner sc = new Scanner(System.in);
+	    	System.out.println("\nMENU\n1. Nuova ricerca\n2. Uscita\n");
+			if(i==2)
+				System.out.println("3. Seleziona nuovo utente\n");
+			final int scelta = sc.nextInt();
+			return scelta;	
+		}
+
+		private void avvia_visualizza_prenotazioni(utente ut) {
+			// TODO Auto-generated method stub
+		}
+
+		private Object cambia_stato_account(utente ut) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		private void visualizza_elenco(ArrayList<utente> u) {
+			//RF07: ricerca utente
+	    	//autori: Malavasi - Torta
+			int s=u.size();
+	    	for(int i=0;i<s;i++) {
+				System.out.println(i + "):\n" + u.get(i));
+			}
+		}
+
+		private ArrayList<utente> form_ricerca() {
+			//RF07: ricerca utente
+	    	//autori: Malavasi - Torta
+			Scanner sc = new Scanner(System.in);
+			System.out.println("\nInserisci matricola: ");
+			int matricola = sc.nextInt();
+			System.out.println("\nInserisci cognome: ");
+			String cognome = sc.next();
+			System.out.println("\nAvvio ricerca utente\n");
+			ArrayList<utente> u = g_ric.verifica_parametri(matricola, cognome);
+			return u;
+		}
+
+		private void visualizza_errore(int i) /*throws IOException*/ {
+			//RF07: ricerca utente
+	    	//autori: Malavasi - Torta
+	    	String conferma;
+	    	Scanner sc = new Scanner(System.in);
+			if(i==1)
+				System.out.println("\nERRORE: formato parametri errato");
+			if(i==2)
+				System.out.println("\nERRORE: utente non trovato");
+			System.out.println("premi INVIO per confermare");
+			conferma = sc.nextLine();
+	    }
 }

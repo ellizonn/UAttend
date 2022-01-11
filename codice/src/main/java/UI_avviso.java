@@ -2,6 +2,7 @@ import java.io.FilterInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Formatter;
 
 public class UI_avviso
 {   
@@ -38,15 +39,13 @@ public class UI_avviso
 
 		// autore: Beccuti/Iabichino RF01
 
-		System.out.println("\nAvviso"+"                                  "+"|data emissione |"+"data scadenza");
-
-		System.out.println("----------------------------------------------------------------------");
-    	
-    	for(avviso b:a) {
-    		
-    		System.out.println(b.testo+ "\t|"+b.emissione+"\t|"+ b.scadenza);
-    		
-    	}
+		Formatter fmt = new Formatter();  
+		fmt.format("%1000s %15s %15s\n", "Avviso", "Emissione", "Scadenza");  
+		for (avviso b: a)   
+		{  
+		fmt.format("%1000s %15s %15s\n", b.testo, b.emissione, b.scadenza);  
+		}  
+		System.out.println(fmt);  
     	
     }
 

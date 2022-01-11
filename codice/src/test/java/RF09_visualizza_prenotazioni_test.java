@@ -1,15 +1,15 @@
-package src;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
 
+import org.junit.Test;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class testVisualizzaPrenotazioni {
+class RF09_visualizza_prenotazioni_test {
 	
 	ArrayList<prenotazione> arrPren= new ArrayList<>();
 	// RF09 visualizza prenotazioni
