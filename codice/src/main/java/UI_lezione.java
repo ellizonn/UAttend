@@ -539,11 +539,12 @@ public class UI_lezione {
     }
     
     //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
-    private aula mostra_elenco_aule_libere (ArrayList<aula> aule_libere){
+    public aula mostra_elenco_aule_libere (ArrayList<aula> aule_libere){
     	int numero_aula = 0; 
 		System.out.println ("Elenco aule libere:");
+		System.out.println ("Aula Capienza");
     	for (aula a : aule_libere) {
-    		System.out.println ("Aula numero: " + a.numero + " Capienza: " + a.capienza);
+    		System.out.println ( a.numero + "	" + a.capienza);
     	}
     	System.out.println("Per selezionare l'aula desiderata digitarne il numero.");
 		Scanner in = new Scanner(System.in);

@@ -182,7 +182,6 @@ class gestore_lezioni {
     //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
     public ArrayList<aula> differenza_insiemistica (ArrayList<aula> tot_aule, ArrayList<aula> aule_occupate) {
     	ArrayList<aula> aule_libere = new ArrayList<aula>();
-    	int i=0;
     	
     	for (aula a : tot_aule) {
     		if (!aule_occupate.contains(a)) {
