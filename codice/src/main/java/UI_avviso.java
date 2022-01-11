@@ -39,13 +39,19 @@ public class UI_avviso
 
 		// autore: Beccuti/Iabichino RF01
 
+		/*
 		Formatter fmt = new Formatter();  
 		fmt.format("%1000s %15s %15s\n", "Avviso", "Emissione", "Scadenza");  
 		for (avviso b: a)   
 		{  
-		fmt.format("%1000s %15s %15s\n", b.testo, b.emissione, b.scadenza);  
+			fmt.format("%1000s %15s %15s\n", b.testo, b.emissione, b.scadenza);  
 		}  
 		System.out.println(fmt);  
+		*/
+
+		System.out.println("Emissione\tScadenza\tAvviso"); 
+		for (avviso b: a)   
+			System.out.println(b.emissione + "\t" + b.scadenza + "\t" + b.testo);		
     	
     }
 
