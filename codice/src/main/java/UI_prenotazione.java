@@ -1,4 +1,8 @@
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class UI_prenotazione
 {   
@@ -74,5 +78,71 @@ public class UI_prenotazione
         String enter = sc.nextLine();
 		
     }
+
+	    //RF09 @autor Balossino, Battezzati
+    public void visualizza_prenotazioni(utente tipoUtente) throws IOException {
+        /*
+		if(tipoUtente==utente.DOCENTE) visualizzaDocente();
+		else if(tipoUtente==utente.STUDENTE) visualizzaStudente();
+		else visualizzaStaff();
+		*/
+	}
+    
+    //RF09 @autor Balossino, Battezzati
+    private void visualizzaDocente() throws IOException {
+    	try {
+    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    		System.out.print("Inserire nome del corso\n");
+    		String nomeCorso = br.readLine();
+    		System.out.print("Inserire cognome del docente\n");
+    		String docente = br.readLine();
+			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_docente(docente, nomeCorso);
+			for(int i=0;i<prenotazioni.size();i++) System.out.print(prenotazioni.get(i).toString()+"\n");
+			System.out.print("Fine\n");
+			System.out.print("Per uscire premere un tasto\n");
+			br.readLine();
+			}
+		catch (IOException e) {
+			System.out.print("Errore I/O\n");
+		}
+    }
+    
+    //RF09 @autor Balossino, Battezzati
+    private void visualizzaStudente() throws IOException{
+		
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Inserire matricola\n");
+			String matr = br.readLine();
+			int matricola = Integer.parseInt(matr);
+			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_studente(matricola);
+			for(int i=0;i<prenotazioni.size();i++) System.out.print(prenotazioni.get(i).toString()+"\n");
+			System.out.print("Fine\n");
+			System.out.print("Per uscire premere un tasto\n");
+			br.readLine();
+			}
+			catch (IOException e) {
+				System.out.print("Errore I/O\n");
+			}
+	}
+    
+    //RF09 @autor Balossino, Battezzati
+    private void visualizzaStaff() throws IOException {
+		try {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Digitare s se si vuole cercare le prenotazioni di uno studente. d per cercare le prenotazioni a una lezione. Digitare un altro qualsiasi altro tasto per uscire.\n");
+		String scelta = br.readLine();
+		if(scelta.compareTo("s")==0) visualizzaStudente();
+		else if(scelta.compareTo("d")==0) visualizzaDocente();
+		else {
+			System.out.print("Fine\n");
+			System.out.print("Per uscire premere un tasto\n");
+			br.readLine();
+		}
+		}
+		catch (IOException e) {
+			System.out.print("Errore I/O\n");
+		}
+	}
 	
 }

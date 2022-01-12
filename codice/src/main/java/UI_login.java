@@ -67,10 +67,8 @@ public class UI_login
                         mostra_errore("error5");
                     else
                     {
-                        if (scelta==1)
-                            // da sostituire con la chiamata del metodo di AVVIO
-                            System.out.println("\nAVVIO cambia password");
-
+                        if (scelta==1) 
+                        	ui_acc.avvio_cambio_password(matricola);
                         if (scelta==2)
 						{
 							System.out.println("\nAVVIO ricerca avvisi per data");
@@ -97,8 +95,8 @@ public class UI_login
                         	ui_ric.avvio_ricerca_utente(tipo_utente);
                         }
                         if (scelta==4 && tipo_utente.equals("studente"))
-                            // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO visualizza prenotazioni");
+                            ui_pren.visualizzaStudente();
 	
                         if (scelta==5 && tipo_utente.equals("staff")) {
                             System.out.println("\nAVVIO crea corso");
