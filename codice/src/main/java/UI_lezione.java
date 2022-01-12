@@ -28,11 +28,12 @@ public class UI_lezione {
         // autori: Simone Garau, Filiberto Melis
         if (elencoCorsi != null) {
             System.out.println("Elenco corsi disponibili");
+            System.out.printf("N. corso\t%-30s\tAnno\tCognome docente\n", "Nome");
             for (int i = 0; i < elencoCorsi.size(); i++) {
                 String nome = elencoCorsi.get(i).nome;
                 String cognome_docente = elencoCorsi.get(i).cognome_docente;
                 int anno = elencoCorsi.get(i).anno;
-                System.out.println("Corso " + (i+1) + ": Nome: " + nome + ", Anno: " + anno + ", Docente: " + cognome_docente);
+                System.out.printf("Corso %d:\t%-30s\t%d\t\t%s\n", i+1, nome, anno, cognome_docente);
             }
         }
     }
@@ -112,7 +113,7 @@ public class UI_lezione {
         if (data == null)
             System.out.println("ERRORE: nessuna data inserita");
         else {
-            if (data.isBefore(LocalDate.now()))
+            if (!data.isAfter(LocalDate.now()))
                 System.out.println("ERRORE: la data deve essere successiva alla data odierna");
             else {
                 if (data.getDayOfWeek().equals(DayOfWeek.SATURDAY))
@@ -240,6 +241,7 @@ public class UI_lezione {
                 this.anno, this.numero_aula, this.posti_disponibili, this.giorno,
                 this.ora_inizio, this.ora_fine);
     }
+
 	gestore_utenti g_utn;
  
     public UI_lezione(UI_avviso ui1, gestore_lezioni g1, gestore_utenti g2)
