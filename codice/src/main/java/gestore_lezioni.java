@@ -203,21 +203,28 @@ class gestore_lezioni {
 	
 	// =======================================================================
   
-	public String controllo_data_e_posti(lezione lez){
-		
-    	//RF13_prenota_posto
-    	//Autori: Rossari, Marisio
-		
-		
+	/**
+	 * Controlla che la lezione non sia passata
+	 * @author RF13 prenota_posto
+	 * @author Paolo Rossari 20034882
+	 * @author Elia Marisio 20036782
+	 * @param lez oggetto lezione
+	 * @return esito_data_e_posti
+	 */
+    public String controllo_data_e_posti(lezione lez){
+
 		LocalDate oggi = LocalDate.now();
-		String str = oggi.format(formatter);
-    	LocalDate today = LocalDate.parse(str, formatter);
+		LocalTime orario = LocalTime.now();
+		String strOggi = oggi.format(formatter);
+		String strOrario = orario.format(formatter2);
+    	LocalDate today = LocalDate.parse(strOggi, formatter);
+		LocalTime now = LocalTime.parse(strOrario, formatter2);
 
     	String esito_data_e_posti;
-    	if(lez.giorno.compareTo(today)>0 && lez.posti_disponibili>0) {
+    	if((lez.giorno.compareTo(today)>0 || (lez.giorno.compareTo(today)==0 && lez.ora_inizio.compareTo(now)>=0)) && lez.posti_disponibili>0) {
     		esito_data_e_posti = new String("ok");
     	}
-    	else if(lez.giorno.compareTo(today)<=0) {
+    	else if(lez.giorno.compareTo(today)<0 || (lez.giorno.compareTo(today)==0 && lez.ora_inizio.compareTo(now)<0)) {
     		esito_data_e_posti = new String("err_data");
     	}
 		else //if(lez.posti_disponibili == 0)
@@ -226,10 +233,16 @@ class gestore_lezioni {
 		
     }
 	
-	public boolean controllo_formato_scelta(String scelta_stud){
+	/**
+	 * Controlla che scelta_stud sia in formato compatibile
+	 * @author RF13 prenota_posto
+	 * @author Paolo Rossari 20034882
+	 * @author Elia Marisio 20036782
+	 * @param scelta_stud input dell'utente nel metodo form_prenotazione delle classe UI_prenotazione
+	 * @return true se il formato e' compatibile, altrimenti false
+	 */
+    public boolean controllo_formato_scelta(String scelta_stud){
 		
-		//RF13_prenota_posto
-		//Autori: Rossari, Marisio
 		boolean esito_formato_scelta;
 		if( (!(scelta_stud.equals("indietro")) && !(scelta_stud.equals("procedi"))) || scelta_stud==null )
 			esito_formato_scelta = false;
@@ -239,24 +252,23 @@ class gestore_lezioni {
 		
 	}
   
-  	public void decrementa_prenota(lezione lez, int matricola){
+  	/**
+  	 * Decrementa i posti disponibili in lez
+  	 * Inserisce una nuova prenotazione nel DB
+  	 * @author RF13 prenota_posto
+	 * @author Paolo Rossari 20034882
+	 * @author Elia Marisio 20036782
+  	 * @param lez oggetto lezione
+  	 * @param matricola numero matricola
+  	 */
+    public void decrementa_prenota(lezione lez, int matricola){
 		
-		//RF13_prenota_posto
-		//Autori: Rossari, Marisio
 		//creo nuovo oggetto lezione
 		lezione new_lez = lez;
 		new_lez.posti_disponibili = lez.posti_disponibili - 1;
 		db_lez.modifica_lezione(new_lez); //chiamata
-		//creo oggetto prenotazione
-		prenotazione obj_preno = new prenotazione();
-		obj_preno.matricola_studente = matricola;
-		obj_preno.nome_corso = new_lez.nome_corso;
-		obj_preno.cognome_docente = new_lez.cognome_docente;
-		obj_preno.giorno = new_lez.giorno;
-		obj_preno.ora_inizio = new_lez.ora_inizio;
-		obj_preno.ora_fine = new_lez.ora_fine;
-		obj_preno.presente = false; // di default
-		obj_preno.aula = new_lez.numero_aula;
+		//creo oggetto prenotazione (inseriamo di default presente=false)
+		prenotazione obj_preno = new prenotazione(matricola, new_lez.nome_corso, new_lez.cognome_docente, new_lez.numero_aula, new_lez.giorno, new_lez.ora_inizio, new_lez.ora_fine, false);
 		db_lez.aggiungi_prenotazione(obj_preno); //chiamata
 		
 	}

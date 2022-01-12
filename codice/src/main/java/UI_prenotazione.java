@@ -19,11 +19,16 @@ public class UI_prenotazione
 	// =======================================================================
   
   
-	//Metodo di avvio del caso d'uso RF13_prenota_posto
+	/**
+     * Metodo di avvio del caso d'uso RF13_prenota_posto
+     * @author RF13 prenota_posto
+	 * @author Paolo Rossari 20034882
+	 * @author Elia Marisio 20036782
+	 * @param lez oggetto lezione
+	 * @param matricola numero matricola
+     */
 	public void avvio_prenota_posto(lezione lez, int matricola){
 		
-		//RF13_prenota_posto
-		//Autori: Rossari, Marisio
 		String scelta_stud = this.form_prenotazione(lez);
 		boolean esito_formato_scelta = g_lez.controllo_formato_scelta(scelta_stud);
 		if(esito_formato_scelta){
@@ -44,12 +49,17 @@ public class UI_prenotazione
 		
 	}
   
+	/**
+	 * Stampa errore in base a tipo_err
+	 * @author RF13 prenota_posto
+	 * @author Paolo Rossari 20034882
+	 * @author Elia Marisio 20036782
+	 * @param tipo_err stringa che indica il tipo di errore (err_data o err_posti)
+	 */
 	public void mostra_errore(String tipo_err){
 		
-		//RF13_prenota_posto
-		//Autori: Rossari, Marisio
 		if(tipo_err.equals("err_data"))
-			System.out.println("Errore: la data della lezione e' antecedente alla data odierna!");
+			System.out.println("Errore: impossibile prenotare una lezione passata!");
 		else if(tipo_err.equals("err_posti"))
 			System.out.println("Errore: i posti della lezione sono esauriti!");
 		System.out.println("Premi INVIO per conferma");
@@ -58,21 +68,32 @@ public class UI_prenotazione
 		
 	}
 	
+	/**
+	 * Stampa il form e chiedo in input scelta_stud
+	 * @author RF13 prenota_posto
+	 * @author Paolo Rossari 20034882
+	 * @author Elia Marisio 20036782
+	 * @param lez oggetto lezione
+	 * @return scelta_stud stringa nel formato "indietro" o "procedi"
+	 */
 	public String form_prenotazione(lezione lez){
 		
-    	//RF13_prenota_posto
-    	//Autori: Rossari, Marisio
         Scanner sc = new Scanner(System.in);
         System.out.print("\nHai selezionato la lezione di "+lez.nome_corso+", prevista alle ore "+lez.ora_inizio+" del "+lez.giorno+".\nDigitare 'procedi' o 'indietro': ");
-        String x = sc.nextLine();
-		return x;
+        String scelta_stud = sc.nextLine();
+		return scelta_stud;
 		
     }
     
-    public void mostra_messaggio(String messaggio){
+    /**
+     * Stampa stringa messaggio
+     * @author RF13 prenota_posto
+	 * @author Paolo Rossari 20034882
+	 * @author Elia Marisio 20036782
+     * @param messaggio stringa
+     */
+	public void mostra_messaggio(String messaggio){
 		
-    	//RF13_prenota_posto
-    	//Autori: Rossari, Marisio
         Scanner sc = new Scanner(System.in);
         System.out.println(messaggio);
         System.out.println("Premi INVIO per conferma");
