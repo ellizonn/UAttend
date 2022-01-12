@@ -171,7 +171,7 @@ public class UI_ricerca
 
 						if(scelta_lez == 1 && !tipo_utente.equals("studente")) {
 							System.out.println("\nAVVIO visualizza prenotazioni");
-							//ui_pren.avvio_visualizza_prenotazioni();
+							ui_pren.visualizza_prenotaz_lez(lez.nome_corso, lez.cognome_docente);
 						}
 						if(scelta_lez == 2 && tipo_utente.equals("studente")) {
 							System.out.println("\nAVVIO prenota posto");
@@ -299,7 +299,7 @@ public class UI_ricerca
 	    	
 	    	Scanner sc = new Scanner(System.in);
 	    	int scelta = 1;
-	    	utente ut = null;
+	    	utente ut = new utente();
 	    	do {
 	    		ArrayList<utente> u = form_ricerca();
 	    		if(u == null)
@@ -313,28 +313,32 @@ public class UI_ricerca
 	    			scelta = visualizza_menu(1);
 	    		}
 	    		else {
-	    			visualizza_elenco(u);
-	    			System.out.println("\nSelezionare l'utente sul quale operare\n");
-	    			int x = sc.nextInt();
-	    			for(int i=0; i<u.size(); i++)
-	    			{
-	    				if(i == x)
-	    					ut = u.get(i);
-	    			}
-	    			if(tipo_utente == "staff")
-	    				avvia_visualizza_prenotazioni(ut);
-	    			else if(tipo_utente == "admin")
-	    				cambia_stato_account(ut);
+	    			do {
+		    			visualizza_elenco(u);
+		    			System.out.println("\nSelezionare l'utente sul quale operare\n");
+		    			int x = sc.nextInt();
+		    			for(int i=0; i<u.size(); i++)
+		    			{
+		    				if(i == x)
+		    				{	
+		    					ut = u.get(i);
+			    				if(tipo_utente == "staff")
+				    				avvia_visualizza_prenotazioni(ut);
+				    			else if(tipo_utente == "admin")
+				    				cambia_stato_account(ut);
+		    				}
+		    			}
+		    			scelta = visualizza_menu(2);	
+	    			}while(scelta==3);
 	    		}
-	    		scelta = visualizza_menu(2);
-	    	}while(scelta == 1 || scelta == 3);
+	    	}while(scelta == 1);
 	    }
 	    
 	    private int visualizza_menu(int i) {
 	    	//RF07: ricerca utente
 	    	//autori: Malavasi - Torta
 	    	Scanner sc = new Scanner(System.in);
-	    	System.out.println("\nMENU\n1. Nuova ricerca\n2. Uscita\n");
+	    	System.out.println("\nMENU\n1. Nuova ricerca\n2. Torna al menu principale\n");
 			if(i==2)
 				System.out.println("3. Seleziona nuovo utente\n");
 			final int scelta = sc.nextInt();
@@ -357,7 +361,7 @@ public class UI_ricerca
 	    	//autori: Malavasi - Torta
 			int s=u.size();
 	    	for(int i=0;i<s;i++) {
-				System.out.println(i + "):\n" + u.get(i));
+				System.out.println(i + "):\n" + u.get(i).matricola + " " + u.get(i).cognome + " " + u.get(i).nome);
 			}
 		}
 

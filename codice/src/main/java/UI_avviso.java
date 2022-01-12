@@ -7,11 +7,168 @@ import java.util.Formatter;
 public class UI_avviso
 {   
     public gestore_avvisi g_avv;
+    private avviso avviso;
 
     public UI_avviso(gestore_avvisi g1)
     {	
 	//autore: Codetta
 	g_avv=g1;
+        avviso = null;
+    }
+    
+    public void avvio_scrittura_avviso() {
+        //autore: Furnari/Gattico RF16
+
+        Scanner scanner = new Scanner(System.in);
+        avviso = new avviso();
+        String check;
+        boolean salvataggio = false;
+        boolean cancellazione = false;
+
+        do {
+            avviso.emissione = LocalDate.now();
+
+            mostra_form_scrittura_avviso();
+            System.out.println("Premi INVIO per continuare.");
+            scanner.nextLine();
+
+            mostra_form_inserimento_scadenza();
+            System.out.println("Premi INVIO per continuare.");
+            scanner.nextLine();
+
+            System.out.print("Salvataggio avviso (s/n)? ");
+
+            if (new ArrayList<>(Arrays.asList("s", "S")).contains(scanner.nextLine())) {
+                check = this.g_avv.controlla_avviso(avviso);
+
+                if (check == null) {
+                    System.out.println("Premi INVIO per continuare.");
+                    scanner.nextLine();
+
+                    System.out.print("Conferma salvataggio avviso (s/n)? ");
+                    if (new ArrayList<>(Arrays.asList("s", "S")).contains(scanner.nextLine())) {
+                        this.g_avv.salva_avviso(avviso);
+                        System.out.println("Premi INVIO per continuare.");
+                        scanner.nextLine();
+                        salvataggio = true;
+                    } else {
+                        System.out.print("Riscrivere avviso (s/n)? ");
+                        if (new ArrayList<>(Arrays.asList("s", "S")).contains(scanner.nextLine())) {
+                            System.out.println("Premi INVIO per continuare.");
+                            scanner.nextLine();
+                        } else {
+                            mostra_avviso_non_salvato();
+                            System.out.println("Premi INVIO per continuare.");
+                            scanner.nextLine();
+                            cancellazione = true;
+                        }
+                    }
+                } else if (check.equals("testo")) {
+                    visualizza_errore_testo();
+                    System.out.println("Premi INVIO per continuare.");
+                    scanner.nextLine();
+
+                    System.out.print("Riscrivere avviso (s/n)? ");
+                    if (new ArrayList<>(Arrays.asList("s", "S")).contains(scanner.nextLine())) {
+                        System.out.println("Premi INVIO per continuare.");
+                        scanner.nextLine();
+                    } else {
+                        mostra_avviso_non_salvato();
+                        System.out.println("Premi INVIO per continuare.");
+                        scanner.nextLine();
+                        cancellazione = true;
+                    }
+                } else {
+                    visualizza_errore_data(check);
+                    System.out.println("Premi INVIO per continuare.");
+                    scanner.nextLine();
+
+                    System.out.print("Riscrivere avviso (s/n)? ");
+                    if (new ArrayList<>(Arrays.asList("s", "S")).contains(scanner.nextLine())) {
+                        System.out.println("Premi INVIO per continuare.");
+                        scanner.nextLine();
+                    } else {
+                        mostra_avviso_non_salvato();
+                        System.out.println("Premi INVIO per continuare.");
+                        scanner.nextLine();
+                        cancellazione = true;
+                    }
+                }
+            } else {
+                System.out.print("Riscrivere avviso (s/n)? ");
+                if (new ArrayList<>(Arrays.asList("s", "S")).contains(scanner.nextLine())) {
+                    System.out.println("Premi INVIO per continuare.");
+                    scanner.nextLine();
+                } else {
+                    mostra_avviso_non_salvato();
+                    System.out.println("Premi INVIO per continuare.");
+                    scanner.nextLine();
+                    cancellazione = true;
+                }
+            }
+        } while (salvataggio || cancellazione);
+        scanner.close();
+    }
+
+    private void mostra_form_inserimento_scadenza() {
+        //autore: Furnari/Gattico RF16
+
+        Scanner scanner = new Scanner(System.in);
+        LocalDate date = null;
+        boolean formato;
+        
+        System.out.print("Inserire data (gg/MM/aaaa): ");
+        String data = scanner.nextLine();
+        Pattern p = Pattern.compile("(\\d{2})/(\\d{2})/(\\d{4})");
+        Matcher m = p.matcher(data);
+
+        formato = m.matches();
+
+        if (formato) {
+            int giorno = Integer.parseInt(m.group(1));
+            int mese = Integer.parseInt(m.group(2));
+            int anno = Integer.parseInt(m.group(3));
+            try {
+                avviso.scadenza = LocalDate.of(anno, mese, giorno);
+            } catch (DateTimeException e) {
+                
+            }
+        } else {
+            System.out.println("ATTENZIONE: formato data errato");
+        }
+        scanner.close();
+    }
+
+    private void mostra_form_scrittura_avviso() {
+        //autore: Furnari/Gattico RF16
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Inserire il testo dell'avviso");
+        avviso.testo = scanner.nextLine();
+        scanner.close();
+    }
+
+    private void mostra_avviso_non_salvato() {
+        //autore: Furnari/Gattico RF16
+
+        System.out.println("Avviso non salvato");
+    }
+
+    public void visualizza_errore_testo() {
+        //autore: Furnari/Gattico RF16
+
+        System.out.println("ERRORE: nessuna testo inserito");
+    }
+
+    public void visualizza_errore_data(String errore) {
+        //autore: Furnari/Gattico RF16
+
+        if (errore.equals("data")) {
+            System.out.println("ERRORE: la data deve essere successiva alla data odierna");
+        } else if (errore.equals("no_scadenza")) {
+            System.out.println("ERRORE: nessuna data inserita");
+        }
     }
     
     public void visualizza_errore() {
