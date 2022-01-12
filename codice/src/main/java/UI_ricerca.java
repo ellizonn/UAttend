@@ -250,7 +250,7 @@ public class UI_ricerca
 		i = 1;
 
 		do {
-			System.out.println("Selezionare lezione o 0 per uscire: ");
+			System.out.println("Selezionare lezione o 0 per tornare al menù ricerca: ");
 			sel_lez = sc.nextInt();
 			if(sel_lez != 0) {
 				for(lezione lez : elenco_lezioni) {
@@ -261,7 +261,8 @@ public class UI_ricerca
 				}
 			}
 			else {
-				exit(0);
+				//exit(0);
+				return null;
 			}
 		}
 		while(sel_lez > elenco_lezioni.size());
@@ -290,14 +291,14 @@ public class UI_ricerca
 		scelta_lez = sc.nextInt();
 	}
 	
-	 public void avvio_ricerca_utente(String tipo_utente) {
+	 public void avvio_ricerca_utente(String tipo_utente) /*throws IOException*/ {
 	    	
 	    	//RF07: ricerca utente
 	    	//autori: Malavasi - Torta
 	    	
 	    	Scanner sc = new Scanner(System.in);
 	    	int scelta = 1;
-	    	utente ut = new utente();
+	    	utente ut = null;
 	    	do {
 	    		ArrayList<utente> u = form_ricerca();
 	    		if(u == null)
@@ -311,36 +312,28 @@ public class UI_ricerca
 	    			scelta = visualizza_menu(1);
 	    		}
 	    		else {
-	    			do{
-		    			visualizza_elenco(u);
-		    			System.out.println("\nSelezionare l'utente sul quale operare\n");
-		    			int x = sc.nextInt();
-	    				for(int i=0; i<u.size(); i++)
-		    			{
-		    				if(i == x)
-	    					{
-		    					ut = u.get(i);
-		    					if(tipo_utente.equals("staff"))
-				    				avvia_visualizza_prenotazioni(ut);
-				    			else if(tipo_utente.equals("admin"))
-				    				cambia_stato_account(ut);
-	    					}
-		    			}
-		    			/*if(tipo_utente == "staff")
-		    				avvia_visualizza_prenotazioni(ut);
-		    			else if(tipo_utente == "admin")
-		    				cambia_stato_account(ut);*/
-		    			scelta = visualizza_menu(2);
-	    			}while(scelta == 3);
+	    			visualizza_elenco(u);
+	    			System.out.println("\nSelezionare l'utente sul quale operare\n");
+	    			int x = sc.nextInt();
+	    			for(int i=0; i<u.size(); i++)
+	    			{
+	    				if(i == x)
+	    					ut = u.get(i);
+	    			}
+	    			if(tipo_utente == "staff")
+	    				avvia_visualizza_prenotazioni(ut);
+	    			else if(tipo_utente == "admin")
+	    				cambia_stato_account(ut);
 	    		}
-	    	}while(scelta == 1);
+	    		scelta = visualizza_menu(2);
+	    	}while(scelta == 1 || scelta == 3);
 	    }
 	    
 	    private int visualizza_menu(int i) {
 	    	//RF07: ricerca utente
 	    	//autori: Malavasi - Torta
 	    	Scanner sc = new Scanner(System.in);
-	    	System.out.println("\nMENU\n1. Nuova ricerca\n2. Torna al menu principale\n");
+	    	System.out.println("\nMENU\n1. Nuova ricerca\n2. Uscita\n");
 			if(i==2)
 				System.out.println("3. Seleziona nuovo utente\n");
 			final int scelta = sc.nextInt();
@@ -349,14 +342,11 @@ public class UI_ricerca
 
 		private void avvia_visualizza_prenotazioni(utente ut) {
 			// TODO Auto-generated method stub
-			System.out.println("\nAvvia visualizza prenotazioni\n");
-			return;
 		}
 
-		private void cambia_stato_account(utente ut) {
+		private Object cambia_stato_account(utente ut) {
 			// TODO Auto-generated method stub
-			System.out.println("\nAvvia cambia stato account\n");
-			return;
+			return null;
 		}
 
 		private void visualizza_elenco(ArrayList<utente> u) {
@@ -364,29 +354,24 @@ public class UI_ricerca
 	    	//autori: Malavasi - Torta
 			int s=u.size();
 	    	for(int i=0;i<s;i++) {
-				System.out.println(i + "):\n" + u.get(i).matricola + " " + u.get(i).cognome + " " + u.get(i).nome);
+				System.out.println(i + "):\n" + u.get(i));
 			}
 		}
 
 		private ArrayList<utente> form_ricerca() {
 			//RF07: ricerca utente
 	    	//autori: Malavasi - Torta
-			int mat=0;
-			String matricola = "";
-			String cognome = "";
 			Scanner sc = new Scanner(System.in);
 			System.out.println("\nInserisci matricola: ");
-			matricola = sc.nextLine();
-			if(!matricola.equals(""))
-				mat=Integer.parseInt(matricola);
+			int matricola = sc.nextInt();
 			System.out.println("\nInserisci cognome: ");
-			cognome = sc.nextLine();
+			String cognome = sc.next();
 			System.out.println("\nAvvio ricerca utente\n");
-			ArrayList<utente> u = g_ric.verifica_parametri(mat, cognome);
+			ArrayList<utente> u = g_ric.verifica_parametri(matricola, cognome);
 			return u;
 		}
 
-		private void visualizza_errore(int i) {
+		private void visualizza_errore(int i) /*throws IOException*/ {
 			//RF07: ricerca utente
 	    	//autori: Malavasi - Torta
 	    	String conferma;

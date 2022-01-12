@@ -68,7 +68,7 @@ public class UI_login
                     else
                     {
                         if (scelta==1) 
-                        	ui_acc.avvio_cambio_password(matricola);
+                        	//ui_acc.avvio_cambio_password(matricola);
                         if (scelta==2)
 						{
 							//System.out.println("\nAVVIO ricerca avvisi per data");
