@@ -114,7 +114,7 @@ public class UI_ricerca
     	
     }
 
-	public void avvio_ricerca_lezioni(String tipo_utente,int matricola) {
+	public void avvio_ricerca_lezioni(String tipo_utente,int matricola) throws IOException{
 		//RF12 - Ricerca lezioni per data
 		//autore: Masino, Spina
 
@@ -171,7 +171,7 @@ public class UI_ricerca
 
 						if(scelta_lez == 1 && !tipo_utente.equals("studente")) {
 							System.out.println("\nAVVIO visualizza prenotazioni");
-							ui_pren.visualizza_prenotaz_lez(lez.nome_corso, lez.cognome_docente);
+							ui_pren.visualizza_prenotaz_lez(lez.nome_corso, lez.cognome_docente, tipo_utente);
 						}
 						if(scelta_lez == 2 && tipo_utente.equals("studente")) {
 							System.out.println("\nAVVIO prenota posto");
@@ -345,9 +345,9 @@ public class UI_ricerca
 			return scelta;	
 		}
 
-		private void avvia_visualizza_prenotazioni(utente ut) {
+		private void avvia_visualizza_prenotazioni(utente ut) throws IOException {
 			System.out.println("\nAvvia visualizza prenotazioni\n");
-			//ui_pren.visualizzaStudente(ut.matricola);
+			ui_pren.visualizza_prenotaz_stud(ut.matricola, "Staff");
 			return;
 		}
 
