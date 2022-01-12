@@ -58,7 +58,6 @@ public class UI_ricerca
         
 		//autore: FABBRO/BRUNI RF03
         Scanner sc = new Scanner(System.in);
-
         
         System.out.println("\nMENU AVVISI PER DATA:\n0. Nuova Ricerca Avvisi per data\n1. ritorna al menu principale");
         System.out.print("\ninserire scelta: ");
@@ -70,27 +69,27 @@ public class UI_ricerca
 		//autore: FABBRO/BRUNI RF03
 		
         Scanner sc = new Scanner(System.in);
-		String data_i="";
-		String data_f="";
+		String data_i = "";
+		String data_f = "";
 		System.out.print("\nINSERIRE LE DATE PER LA RICERCA DEGLI AVVISI\n");
         System.out.print("\ninserisci data di inizio(yyyy-mm-dd): ");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		data_i = sc.nextLine();
-		data_inizio = LocalDate.parse(data_i,dateFormat);
+		data_inizio = LocalDate.parse(data_i, dateFormat);
         System.out.print("inserisci data di fine(yyyy-mm-dd): ");
 		data_f = sc.nextLine();
-		data_fine = LocalDate.parse(data_f,dateFormat);
+		data_fine = LocalDate.parse(data_f, dateFormat);
     }	
 	
 	public void visualizza_elenco_avvisi_per_data(ArrayList<avviso> a) {
 
 		//autore: FABBRO/BRUNI RF03
 
-		System.out.println("\nAvviso"+"                                  "+"data emissione"+"  "+"data scadenza");
+		System.out.println("\ndata emissione"+"\t"+"data scadenza"+"\t"+"avviso");
     	
     	for(avviso b:a) {
     		
-    		System.out.println(b.testo+ "\t"+b.emissione+"\t"+ b.scadenza);
+    		System.out.println(b.emissione+"\t"+ b.scadenza+ "\t"+b.testo);
     		
     	}
     	
