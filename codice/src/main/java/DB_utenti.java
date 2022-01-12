@@ -259,15 +259,16 @@ public class DB_utenti
 		
 		//RF07: ricerca utente
 		//autori: Malavasi-Torta
-		
-		ArrayList<utente> elenco, elenco_utenti = null;
+		ArrayList<utente> elenco;
+		ArrayList<utente> elenco_utenti = new ArrayList<utente>();
 		utente u;
 		elenco = carica_utenti();
+		
 		int i, l;
 		l=elenco.size();
 		for(i=0; i<l; i++)
 		{
-			if(elenco.get(i).matricola == matricola || elenco.get(i).cognome == cognome)
+			if(elenco.get(i).matricola == matricola || elenco.get(i).cognome.equals(cognome))
 			{
 				u = new utente();
 				u=elenco.get(i);
