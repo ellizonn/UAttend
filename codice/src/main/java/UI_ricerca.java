@@ -123,14 +123,15 @@ public class UI_ricerca
 		ArrayList<lezione> elenco_lezioni;
 		lezione lez;
 		int i = 0;
+		int sel_menu = 0;
 
 		do {
 			if(i > 0) {
-				System.out.println("MENU' RICERCA LEZIONE:\n0. Menù principale\n1. Ricerca lezioni");
+				System.out.println("MENU' RICERCA LEZIONE PER DATA:\n0. Menù principale\n1. Ricerca lezioni");
 				sc = new Scanner(System.in);
 				System.out.print("\nInserire scelta: ");
-				scelta_lez = sc.nextInt();
-				if(scelta_lez == 0) {
+				sel_menu = Integer.parseInt(sc.nextLine());
+				if(sel_menu == 0) {
 					break;
 				}
 			}
@@ -141,8 +142,10 @@ public class UI_ricerca
 			}
 			else if(elenco_lezioni.size() == 0) {
 				System.out.println("Nessuna lezione nel periodo selezionato.");
-				System.out.println("\n1. Ricerca altre lezioni");
-				System.out.println("2. Esci");
+				continue;
+				/*System.out.println("\n1. Ricerca altre lezioni");
+				System.out.println("2. Torna al menù principale");
+				System.out.print("Inserire scelta: ");
 				int sel_menu;
 				do {
 					sc = new Scanner(System.in);
@@ -154,7 +157,7 @@ public class UI_ricerca
 						exit(0);
 					}
 				}
-				while(sel_menu < 1 && sel_menu > 2);
+				while(sel_menu < 1 && sel_menu > 2);*/
 			}
 			else {
 				lez = mostra_elenco_lezioni(elenco_lezioni);
@@ -186,9 +189,9 @@ public class UI_ricerca
 				while(scelta_lez != 0);
 			}
 			i++;
-			System.out.println(elenco_lezioni + " " + scelta_lez);
 		}
-		while(scelta_lez == 0 || elenco_lezioni == null);
+		while(scelta_lez == 0 || elenco_lezioni == null || sel_menu == 0);
+		return;
 	}
 
 	public void form_ricerca_lezioni() {
@@ -278,11 +281,11 @@ public class UI_ricerca
 
 
 		if (tipo_utente.equals("docente"))
-			System.out.println("0. Menù principale\n1. Visualizza prenotazioni");
+			System.out.println("0. Menù ricerca lezione\n1. Visualizza prenotazioni");
 		if (tipo_utente.equals("studente") )
-			System.out.println("0. Menù principale\n2. Prenota posto\n");
+			System.out.println("0. Menù ricerca lezione\n2. Prenota posto\n");
 		if (tipo_utente.equals("staff") )
-			System.out.println("0. Menù principale\n1. Visualizza prenotazioni\n3. Cancella lezione\n4. Modifica lezione");
+			System.out.println("0. Menù ricerca lezione\n1. Visualizza prenotazioni\n3. Cancella lezione\n4. Modifica lezione");
 
 		System.out.print("\nInserire scelta: ");
 		scelta_lez = sc.nextInt();

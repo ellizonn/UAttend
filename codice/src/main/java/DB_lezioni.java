@@ -399,7 +399,7 @@ public class DB_lezioni {
 
         for(lezione l : elenco_lezioni_in) {
             lez = l;
-            if((lez.giorno.isAfter(data_inizio) && lez.giorno.isBefore(data_fine)) || lez.giorno.equals(data_inizio) || lez.giorno.equals(data_fine)) {
+            if(((lez.giorno.isAfter(data_inizio) && lez.giorno.isBefore(data_fine)) || lez.giorno.equals(data_inizio) || lez.giorno.equals(data_fine)) && lez.giorno.isAfter(LocalDate.now())) {
                 elenco_lezioni.add(lez);
             }
         }
