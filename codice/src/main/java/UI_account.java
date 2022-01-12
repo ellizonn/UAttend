@@ -2,10 +2,14 @@ import java.util.Scanner;
 
 public class UI_account
 {   
+<<<<<<< HEAD
     gestore_accessi g_acc;
     String current_psw;
    	String new_psw;
    	String confirm_new_psw;
+=======
+    private gestore_accessi g_acc;
+>>>>>>> 93c76159952d2b52619d8713cb29cd94aa82ca01
 
     public UI_account(gestore_accessi g1)
     {	

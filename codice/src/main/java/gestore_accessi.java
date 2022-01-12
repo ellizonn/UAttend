@@ -1,6 +1,6 @@
 class gestore_accessi
 {
-    DB_utenti db_ut;
+    private DB_utenti db_ut;
 
     public gestore_accessi(DB_utenti d1)
     {
@@ -72,6 +72,7 @@ class gestore_accessi
     	String tipo_esito;
         account a;
 
+<<<<<<< HEAD
         int l_current = current_psw.length();
         int l_new = new_psw.length();
         int l_confirm_new = confirm_new_psw.length();
@@ -144,5 +145,22 @@ class gestore_accessi
         return tipo_esito;
     }
     
+=======
+    public boolean generazione_credenziali()
+    {
+    	//RF17: crea utente
+    	//autori: La Spisa & Frasson
+    	int M=db_ut.ricerca_ultima_matricola();
+    	M=M+1;
+    	String password="miapassword";
+    	account A=new account();
+    	A.matricola=M;
+    	A.password=password;
+    	db_ut.aggiungi_account(A);
+    	boolean esito=true;
+    	return esito;
+    }
+
+>>>>>>> 93c76159952d2b52619d8713cb29cd94aa82ca01
 }
 
