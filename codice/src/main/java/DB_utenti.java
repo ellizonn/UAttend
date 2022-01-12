@@ -234,7 +234,7 @@ public class DB_utenti
         
         return u;
     }
-<<<<<<< HEAD
+
     
     
     public void modifica_account(int matricola, String new_psw) 
@@ -262,11 +262,11 @@ public class DB_utenti
     	salva_accounts(elenco);
     	
 	}
-}
+
 
 	
 
-=======
+
 
     public int ricerca_ultima_matricola()
     {
@@ -311,4 +311,3 @@ public class DB_utenti
 		return elenco_utenti;
 	}
 }
->>>>>>> 93c76159952d2b52619d8713cb29cd94aa82ca01

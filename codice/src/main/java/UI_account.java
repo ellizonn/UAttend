@@ -77,9 +77,9 @@ public class UI_account
         Scanner sc = new Scanner(System.in);
 
         if (esito.equals("error1"))
-            System.out.println("\nERRORE: una o più campi vuoti");
+            System.out.println("\nERRORE: una o piu' campi vuoti");
         if (esito.equals("error2"))
-            System.out.println("\nERRORE: la password attuale è sbagliata");
+            System.out.println("\nERRORE: la password attuale e' sbagliata");
         if (esito.equals("error3"))
             System.out.println("\nERRORE: la nuova password deve essere diversa da quella vecchia");
         if (esito.equals("error4"))
@@ -87,7 +87,7 @@ public class UI_account
         if (esito.equals("error5"))
             System.out.println("\nERRORE: la conferma della nuova password non coincide con quella nuova");
         if (esito.equals("ok"))
-            System.out.println("\nPASSWORD CAMBIATA: la password è stata cambiata correttamente");
+            System.out.println("\nPASSWORD CAMBIATA: la password e' stata cambiata correttamente");
 			
         System.out.print("premi INVIO per confermare");
         conferma = sc.nextLine();

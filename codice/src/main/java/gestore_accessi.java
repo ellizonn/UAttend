@@ -72,7 +72,6 @@ class gestore_accessi
     	String tipo_esito;
         account a;
 
-<<<<<<< HEAD
         int l_current = current_psw.length();
         int l_new = new_psw.length();
         int l_confirm_new = confirm_new_psw.length();
@@ -145,7 +144,7 @@ class gestore_accessi
         return tipo_esito;
     }
     
-=======
+
     public boolean generazione_credenziali()
     {
     	//RF17: crea utente
@@ -161,6 +160,5 @@ class gestore_accessi
     	return esito;
     }
 
->>>>>>> 93c76159952d2b52619d8713cb29cd94aa82ca01
 }
 
