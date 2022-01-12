@@ -128,6 +128,15 @@ public class UI_prenotazione
 			}
 			
 	}
+
+	//RF09 @autor Balossino, Battezzati
+    public void visualizzaStudente(int matricola){
+			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_studente(matricola);
+			for(int i=0;i<prenotazioni.size();i++) System.out.print(prenotazioni.get(i).toString()+"\n");
+			System.out.print("Fine\n");
+			System.out.print("Per uscire premere un tasto\n");
+			
+	}
 	
     
     //RF09 @autor Balossino, Battezzati
