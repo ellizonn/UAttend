@@ -82,18 +82,12 @@ public class RF03_test_avvisi_per_data
 		assertEquals(null,g_ric.verifica_date(LocalDate.of(2022, 03 , 15),LocalDate.of(2022, 07 , 15)));
 		
     }
-	@Test
-    public void test_date_non_valide_03()
-    {
-    	//data inizio e fine nulle
-		
-		assertEquals(null,g_ric.verifica_date(null,null));
-    }
+
 	
 	@Test
     public void test_avvisi_non_trovati()
     {
-    	//date valide e avvisi trovati
+    	//date valide e avvisi non trovati
 		ArrayList<avviso> a= db_av.cerca_avvisi_per_data(LocalDate.of(2021, 01 , 15),LocalDate.of(2021, 02 , 15));
         assertEquals(0,a.size());
     }

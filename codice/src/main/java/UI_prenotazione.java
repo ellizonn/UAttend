@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class UI_prenotazione
 {   
+	public enum utente {STUDENTE, DOCENTE, STAFF};
     private gestore_lezioni g_lez;
 
     public UI_prenotazione(gestore_lezioni g1)
@@ -81,11 +82,11 @@ public class UI_prenotazione
 
 	    //RF09 @autor Balossino, Battezzati
     public void visualizza_prenotazioni(utente tipoUtente) throws IOException {
-        /*
+        
 		if(tipoUtente==utente.DOCENTE) visualizzaDocente();
 		else if(tipoUtente==utente.STUDENTE) visualizzaStudente();
 		else visualizzaStaff();
-		*/
+		
 	}
     
     //RF09 @autor Balossino, Battezzati
@@ -108,7 +109,7 @@ public class UI_prenotazione
     }
     
     //RF09 @autor Balossino, Battezzati
-    private void visualizzaStudente() throws IOException{
+    public void visualizzaStudente() /*throws IOException */{
 		
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -121,10 +122,13 @@ public class UI_prenotazione
 			System.out.print("Per uscire premere un tasto\n");
 			br.readLine();
 			}
+			
 			catch (IOException e) {
 				System.out.print("Errore I/O\n");
 			}
+			
 	}
+	
     
     //RF09 @autor Balossino, Battezzati
     private void visualizzaStaff() throws IOException {

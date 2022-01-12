@@ -26,7 +26,7 @@ class gestore_ricerche
 		ArrayList<avviso> elenco_avvisi= new ArrayList<>();
 		LocalDate odierna=LocalDate.now();;
 		
-		if(data_inizio==null||data_fine==null||data_inizio.isAfter(odierna)|| data_inizio.isAfter(data_fine))
+		if(data_inizio.isAfter(odierna)|| data_inizio.isAfter(data_fine))
 		{
 			return null;
 		}
