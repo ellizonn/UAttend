@@ -2,7 +2,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-public class ok {
+public class RF09_visualizza_prenotazioni_test {
 
 	@Test
 	public void test() throws IOException {

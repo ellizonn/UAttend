@@ -109,7 +109,7 @@ public class UI_prenotazione
     }
     
     //RF09 @autor Balossino, Battezzati
-    private void visualizzaStudente() throws IOException{
+    public void visualizzaStudente() /*throws IOException */{
 		
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -122,10 +122,13 @@ public class UI_prenotazione
 			System.out.print("Per uscire premere un tasto\n");
 			br.readLine();
 			}
+			
 			catch (IOException e) {
 				System.out.print("Errore I/O\n");
 			}
+			
 	}
+	
     
     //RF09 @autor Balossino, Battezzati
     private void visualizzaStaff() throws IOException {

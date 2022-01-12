@@ -22,7 +22,7 @@ public class RF07_ricerca_utente_test {
 	
 	@Test
 	public void test_verifica_parametri_03() {
-		//matricola ha più di 6 cifre e cognome vuoto
+		//matricola ha piu' di 6 cifre e cognome vuoto
 		assertNull("DB deve ritornare null", g_ric.verifica_parametri(0000000, ""));
 	}
 	
