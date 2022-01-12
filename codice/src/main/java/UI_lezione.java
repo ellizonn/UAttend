@@ -6,17 +6,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UI_lezione {
-    private UI_avviso ui_avv;
-    private gestore_lezioni g_lez;
+    UI_avviso ui_avv;
+    gestore_lezioni g_lez;
 
-    private String nome_corso;
-    private String cognome_docente;
-    private int anno;
-    private int numero_aula;
-    private int posti_disponibili;
-    private LocalDate giorno;
-    private LocalTime ora_inizio;
-    private LocalTime ora_fine;
+    String nome_corso;
+    String cognome_docente;
+    int anno;
+    int numero_aula;
+    int posti_disponibili;
+    LocalDate giorno;
+    LocalTime ora_inizio;
+    LocalTime ora_fine;
 
     public UI_lezione(UI_avviso ui1, gestore_lezioni g1) {
         //autore: Codetta
@@ -28,11 +28,12 @@ public class UI_lezione {
         // autori: Simone Garau, Filiberto Melis
         if (elencoCorsi != null) {
             System.out.println("Elenco corsi disponibili");
+            System.out.printf("N. corso\t%-30s\tAnno\tCognome docente\n", "Nome");
             for (int i = 0; i < elencoCorsi.size(); i++) {
                 String nome = elencoCorsi.get(i).nome;
                 String cognome_docente = elencoCorsi.get(i).cognome_docente;
                 int anno = elencoCorsi.get(i).anno;
-                System.out.println("Corso " + (i+1) + ": Nome: " + nome + ", Anno: " + anno + ", Docente: " + cognome_docente);
+                System.out.printf("Corso %d:\t%-30s\t%d\t\t%s\n", i+1, nome, anno, cognome_docente);
             }
         }
     }
@@ -112,7 +113,7 @@ public class UI_lezione {
         if (data == null)
             System.out.println("ERRORE: nessuna data inserita");
         else {
-            if (data.isBefore(LocalDate.now()))
+            if (!data.isAfter(LocalDate.now()))
                 System.out.println("ERRORE: la data deve essere successiva alla data odierna");
             else {
                 if (data.getDayOfWeek().equals(DayOfWeek.SATURDAY))
@@ -269,11 +270,11 @@ public class UI_lezione {
 			esito = g_lez.verifica_nome_corso(nomeCorso);
 			if(esito != "OK")
 			{
+				mostra_errore(esito);
+				System.out.println(esito);
 				if(esito == "ABORT"){
-					System.out.println("\n[ABORT] : Operazione annullata con successo.");
 					return;
 				}
-				mostra_errore(esito);
 			}
 		}while(esito != "OK");
 
@@ -282,7 +283,7 @@ public class UI_lezione {
 		/* verifica selezione docente*/
 		do{
 			if(esito == "SELEZIONE_NON_VALIDA")
-				mostra_errore("SELEZIONE NON VALIDA");
+				mostra_errore("SELEZIONE_NON_VALIDA");
 
 				SUPselezione_docente = mostra_form_selezione_docente(SUPlistaDocenti);
 			
@@ -322,6 +323,17 @@ public class UI_lezione {
 	public void mostra_errore(String errore){
 		Scanner sc = new Scanner(System.in);
 
+		if(errore == "ABORT"){
+			System.out.println("[AVVISO] Operazione annullata con successo.");
+
+			do{
+				System.out.println("\nPremi invio per confermare.");
+			}while(sc.nextLine() == "\n");
+				
+			return;
+
+		}
+
 		if(errore == "SELEZIONE_NON_VALIDA")
 		{
 			System.out.println("[ERRORE] Il docente selezionato non e' valido.");
@@ -332,6 +344,7 @@ public class UI_lezione {
 				
 			return;
 		}
+
 
 		if(errore == "ANNO_NON_VALIDO")
 		{
@@ -379,7 +392,7 @@ public class UI_lezione {
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("--- Creazione Corso ---");
-		System.out.println("Premi [Invio] per annullare");
+		System.out.println("Scrivi \"ESC\" per annullare");
 		System.out.println("Inserisci il nome del corso: ");
 		
 		return sc.nextLine();
@@ -402,7 +415,7 @@ public class UI_lezione {
 		System.out.flush(); 
 
 		System.out.println("--- Creazione Corso ---");
-		System.out.println("Docenti: ");
+		System.out.println("  | Docenti | Sedi ");
 		
 		for(utente u : listaDocenti)
 		{
@@ -528,11 +541,12 @@ public class UI_lezione {
     }
     
     //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
-    private aula mostra_elenco_aule_libere (ArrayList<aula> aule_libere){
+    public aula mostra_elenco_aule_libere (ArrayList<aula> aule_libere){
     	int numero_aula = 0; 
 		System.out.println ("Elenco aule libere:");
+		System.out.println ("Aula Capienza");
     	for (aula a : aule_libere) {
-    		System.out.println ("Aula numero: " + a.numero + " Capienza: " + a.capienza);
+    		System.out.println ( a.numero + "	" + a.capienza);
     	}
     	System.out.println("Per selezionare l'aula desiderata digitarne il numero.");
 		Scanner in = new Scanner(System.in);

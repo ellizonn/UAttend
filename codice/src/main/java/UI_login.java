@@ -75,9 +75,14 @@ public class UI_login
 							System.out.println("\nAVVIO ricerca avvisi per data");
 							ui_ric.avvio_ricerca_avvisi_per_data();
 						}
+                        if (scelta==3 && !tipo_utente.equals("admin")) {
+                            System.out.println("\nAVVIO ricerca lezioni per data");
+                            ui_ric.avvio_ricerca_lezioni(tipo_utente,matricola);
+                        }
                         if (scelta==3 && !tipo_utente.equals("admin"))
                             // da sostituire con la chiamata del metodo di AVVIO
-                            System.out.println("\nAVVIO ricerca lezioni per data");
+                            //System.out.println("\nAVVIO ricerca lezioni per data");
+		            ui_ric.avvio_ricerca_lezioni(tipo_utente, matricola);
 
                         if (scelta==3 && tipo_utente.equals("admin"))
                         {
@@ -91,8 +96,8 @@ public class UI_login
                         	ui_ric.avvio_ricerca_utente(tipo_utente);
                         }
                         if (scelta==4 && tipo_utente.equals("studente"))
-                            // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO visualizza prenotazioni");
+                            VisualizzaPrenotazioni.visualizzaStudente();
 	
                         if (scelta==5 && tipo_utente.equals("staff")) {
                             System.out.println("\nAVVIO crea corso");

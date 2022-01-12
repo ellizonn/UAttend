@@ -37,7 +37,7 @@ public class RF04_crea_corso_test {
 	@Test
 	public void annulla_creazione()
 	{
-		String nomeCorso = null; 
+		String nomeCorso = "ESC"; 
 		assertEquals("ABORT",g_lez.verifica_nome_corso(nomeCorso));
 	}
 

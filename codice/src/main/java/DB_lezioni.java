@@ -197,7 +197,7 @@ public class DB_lezioni {
         }
     }
 
-    // autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+     // autore: RF06 Rosilde Garavoglia, Roberto Aitchison
     public ArrayList<aula> restituisci_elenco_aule_occupate(LocalDate date, LocalTime startHour, LocalTime endHour) {
     	ArrayList<lezione> lezioni = this.carica_lezioni();
     	ArrayList<lezione> lezioni_corrispondenti = new ArrayList<lezione>();
@@ -214,8 +214,8 @@ public class DB_lezioni {
     	
     	ArrayList<aula> tot_aule = this.carica_aule();
     	ArrayList<aula> aule_occupate = new ArrayList<aula> ();
-    	aula a = new aula();
     	for (lezione l : lezioni_corrispondenti) {
+    		aula a = new aula();
     		a.numero = l.numero_aula;
     		for (aula a2 : tot_aule) {
     			if (a.numero == a2.numero) {
@@ -383,6 +383,30 @@ public class DB_lezioni {
         {
             System.out.println("ERRORE apertura file prenotazioni.txt");
         }
+    }
+
+    // ----------------------------------------------------------------------------
+
+    public ArrayList<lezione> cerca_lezioni(LocalDate data_inizio, LocalDate data_fine) {
+
+        // autore: Masino, Spina
+        // RF12 - Ricerca lezioni per data
+
+        ArrayList<lezione> elenco_lezioni_in;
+        ArrayList<lezione> elenco_lezioni = new ArrayList<>();
+        elenco_lezioni_in = carica_lezioni();
+        lezione lez = null;
+
+        for(lezione l : elenco_lezioni_in) {
+            lez = l;
+            if((lez.giorno.isAfter(data_inizio) && lez.giorno.isBefore(data_fine)) || lez.giorno.equals(data_inizio) || lez.giorno.equals(data_fine)) {
+                elenco_lezioni.add(lez);
+            }
+        }
+
+        return elenco_lezioni;
+
+
     }
   
   
