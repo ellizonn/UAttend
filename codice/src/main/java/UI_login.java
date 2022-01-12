@@ -96,8 +96,8 @@ public class UI_login
                         	ui_ric.avvio_ricerca_utente(tipo_utente);
                         }
                         if (scelta==4 && tipo_utente.equals("studente"))
-                            // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO visualizza prenotazioni");
+                            VisualizzaPrenotazioni.visualizzaStudente();
 	
                         if (scelta==5 && tipo_utente.equals("staff")) {
                             System.out.println("\nAVVIO crea corso");
