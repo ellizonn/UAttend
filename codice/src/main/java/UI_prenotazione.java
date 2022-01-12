@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class UI_prenotazione
 {   
+	public enum utente {STUDENTE, DOCENTE, STAFF};
     private gestore_lezioni g_lez;
 
     public UI_prenotazione(gestore_lezioni g1)
@@ -81,11 +82,11 @@ public class UI_prenotazione
 
 	    //RF09 @autor Balossino, Battezzati
     public void visualizza_prenotazioni(utente tipoUtente) throws IOException {
-        /*
+        
 		if(tipoUtente==utente.DOCENTE) visualizzaDocente();
 		else if(tipoUtente==utente.STUDENTE) visualizzaStudente();
 		else visualizzaStaff();
-		*/
+		
 	}
     
     //RF09 @autor Balossino, Battezzati
