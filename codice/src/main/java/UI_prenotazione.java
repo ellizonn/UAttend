@@ -88,6 +88,13 @@ public class UI_prenotazione
 		else visualizzaStaff();
 		
 	}
+
+	public void visualizza_prenotaz_lez(String nomeCorso, String docente) throws IOException {
+    	
+			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_docente(docente, nomeCorso);
+			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+prenotazioni.get(i).toString()+"\n");
+			System.out.print("Fine\n");
+    }
     
     //RF09 @autor Balossino, Battezzati
     private void visualizzaDocente() throws IOException {
