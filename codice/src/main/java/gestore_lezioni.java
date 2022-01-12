@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 class gestore_lezioni {
     private DB_lezioni db_lez;
 	public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	public static DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm");
     private lezione l;
 
     public gestore_lezioni(DB_lezioni d1) {
