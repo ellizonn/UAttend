@@ -233,5 +233,34 @@ public class DB_utenti
         
         return u;
     }
+    
+    
+    public void modifica_account(int matricola, String new_psw) 
+    {
+    	//RF02
+        //autore: Miglio -Mazzarino
+    	
+    	ArrayList<account> elenco;
+    	account a;
+    	
+    	elenco = carica_accounts();
+    	
+    	int l = elenco.size();
+    	
+    	for(int i = 0; i < l; i++) 
+    	{
+    		a=(account)elenco.get(i);
+    		if(a.matricola == matricola)
+    		{
+    			a.password = new_psw;
+    			break;
+    		}
+    	}
+    	
+    	salva_accounts(elenco);
+    	
+	}
 }
+
+	
 

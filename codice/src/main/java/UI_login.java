@@ -65,10 +65,8 @@ public class UI_login
                         mostra_errore("error5");
                     else
                     {
-                        if (scelta==1)
-                            // da sostituire con la chiamata del metodo di AVVIO
-                            System.out.println("\nAVVIO cambia password");
-
+                        if (scelta==1) 
+                        	ui_acc.avvio_cambio_password(matricola);
                         if (scelta==2)
                             // da sostituire con la chiamata del metodo di AVVIO
                             System.out.println("\nAVVIO ricerca avvisi per data");
