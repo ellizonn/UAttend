@@ -260,5 +260,31 @@ class gestore_lezioni {
 		db_lez.aggiungi_prenotazione(obj_preno); //chiamata
 		
 	}
+
+	//RF09 @autor Balossino, Battezzati
+  	public ArrayList<prenotazione> get_prenotazioni_docente(String docente, String nomeCorso){
+  		
+		ArrayList<prenotazione> prenotazioni=db_lez.carica_prenotazioni();
+		ArrayList<prenotazione> prenotazioni_return = new ArrayList<>();
+		int l = prenotazioni.size();
+		for(int i=0;i<l;i++) {
+			prenotazione prenotazione = prenotazioni.get(i);
+			if (prenotazione.cognome_docente.compareTo(docente)==0 && prenotazione.nome_corso.compareTo(nomeCorso)==0) prenotazioni_return.add(prenotazione);
+		}
+		return prenotazioni_return;
+  	}
+  	
+  	//RF09 @autor Balossino, Battezzati
+  	public ArrayList<prenotazione> get_prenotazioni_studente(int matricola){
+  		
+		ArrayList<prenotazione> prenotazioni=db_lez.carica_prenotazioni();
+		ArrayList<prenotazione> prenotazioni_return = new ArrayList<>();
+		int l = prenotazioni.size();
+		for(int i=0;i<l;i++) {
+			prenotazione prenotazione = prenotazioni.get(i);
+			if (prenotazione.matricola_studente==matricola) prenotazioni_return.add(prenotazione);
+		}
+		return prenotazioni_return;
+  	}
 	
 }
