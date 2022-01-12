@@ -367,14 +367,19 @@ public class UI_ricerca
 
 		private ArrayList<utente> form_ricerca() {
 			//RF07: ricerca utente
-	    	//autori: Malavasi - Torta
+	    		//autori: Malavasi - Torta
+			int mat=0;
+			String matricola = "";
+			String cognome = "";
 			Scanner sc = new Scanner(System.in);
 			System.out.println("\nInserisci matricola: ");
-			int matricola = sc.nextInt();
+			matricola = sc.nextLine();
+			if(!matricola.equals(""))
+				mat=Integer.parseInt(matricola);
 			System.out.println("\nInserisci cognome: ");
-			String cognome = sc.next();
+			cognome = sc.nextLine();
 			System.out.println("\nAvvio ricerca utente\n");
-			ArrayList<utente> u = g_ric.verifica_parametri(matricola, cognome);
+			ArrayList<utente> u = g_ric.verifica_parametri(mat, cognome);
 			return u;
 		}
 
