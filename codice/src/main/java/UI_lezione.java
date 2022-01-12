@@ -33,7 +33,7 @@ public class UI_lezione {
                 String nome = elencoCorsi.get(i).nome;
                 String cognome_docente = elencoCorsi.get(i).cognome_docente;
                 int anno = elencoCorsi.get(i).anno;
-                System.out.printf("Corso %d:\t%-30s\t%d\t\t%s\n", i+1, nome, anno, cognome_docente);
+                System.out.printf("Corso %d:\t%-30s\t%-4d\t%s\n", i+1, nome, anno, cognome_docente);
             }
         }
     }
@@ -58,11 +58,11 @@ public class UI_lezione {
                 try {
                     this.giorno = LocalDate.of(anno, mese, giorno);
                 } catch (DateTimeException e) {
-                    System.out.println("ATTENZIONE: data inesistente");
+                    System.out.println("\nATTENZIONE: data inesistente\n");
                     formato = false;
                 }
             } else
-                System.out.println("ATTENZIONE: formato data errato");
+                System.out.println("\nATTENZIONE: formato data errato\n");
 
             if (formato) {
                 System.out.print("Confermi la data (s/n)? ");
@@ -94,11 +94,11 @@ public class UI_lezione {
                     this.ora_inizio = LocalTime.of(ora_inizio, minuto_inizio);
                     this.ora_fine = LocalTime.of(ora_fine, minuto_fine);
                 } catch (DateTimeException e) {
-                    System.out.println("ATTENZIONE: orario inesistente");
+                    System.out.println("\nATTENZIONE: orario inesistente\n");
                     formato = false;
                 }
             } else
-                System.out.println("ATTENZIONE: formato ora errato");
+                System.out.println("\nATTENZIONE: formato ora errato\n");
 
             if (formato) {
                 System.out.print("Confermi l'orario (s/n)? ");
@@ -110,6 +110,7 @@ public class UI_lezione {
 
     public void mostra_errore_data(LocalDate data) {
         // autori: Simone Garau, Filiberto Melis
+        System.out.println();
         if (data == null)
             System.out.println("ERRORE: nessuna data inserita");
         else {
@@ -126,10 +127,12 @@ public class UI_lezione {
         }
         System.out.print("Premi INVIO per conferma");
         new Scanner(System.in).nextLine();
+        System.out.println();
     }
 
     public void mostra_errore_orario(LocalTime ora_inizio, LocalTime ora_fine) {
         // autori: Simone Garau, Filiberto Melis
+        System.out.println();
         if (ora_inizio == null || ora_fine == null) {
             if (ora_inizio == null)
                 System.out.println("ERRORE: nessun orario di inizio inserito");
@@ -153,17 +156,21 @@ public class UI_lezione {
         }
         System.out.print("Premi INVIO per conferma");
         new Scanner(System.in).nextLine();
+        System.out.println();
     }
 
     public void mostra_errore_aula() {
         // autori: Simone Garau, Filiberto Melis
+        System.out.println();
         System.out.println("ERRORE: nessuna aula disponibile");
         System.out.print("Premi INVIO per conferma");
         new Scanner(System.in).nextLine();
+        System.out.println();
     }
 
     public void mostra_dati_lezione_da_aggiungere() {
         // autori: Simone Garau, Filiberto Melis
+        System.out.println();
         System.out.println("Dati lezione");
         System.out.println("Corso: " + this.nome_corso);
         System.out.println("Docente: " + this.cognome_docente);
@@ -175,6 +182,7 @@ public class UI_lezione {
         System.out.println("Ora fine: " + this.ora_fine);
         System.out.print("Premi INVIO per conferma");
         new Scanner(System.in).nextLine();
+        System.out.println();
     }
 
     public void avvio_aggiungi_lezione() {
