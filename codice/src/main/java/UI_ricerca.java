@@ -342,7 +342,9 @@ public class UI_ricerca
 		}
 
 		private void avvia_visualizza_prenotazioni(utente ut) {
-			// TODO Auto-generated method stub
+			System.out.println("\nAvvia visualizza prenotazioni\n");
+			ui_pren.visualizzaStudente(ut.matricola);
+			return;
 		}
 
 		private Object cambia_stato_account(utente ut) {
