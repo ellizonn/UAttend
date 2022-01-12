@@ -101,88 +101,84 @@ public class UI_prenotazione
 		
     }
 
-	    //RF09 @autor Balossino, Battezzati
-    public void visualizza_prenotazioni(utente tipoUtente) throws IOException {
-        
-		if(tipoUtente==utente.DOCENTE) visualizzaDocente();
-		else if(tipoUtente==utente.STUDENTE) visualizzaStudente();
-		else visualizzaStaff();
-		
-	}
-
-	public void visualizza_prenotaz_lez(String nomeCorso, String docente)  {
+	   //RF09 @autor Balossino, Battezzati
+    public void visualizza_prenotaz_lez(String nomeCorso, String docente, String tipo_utente) throws IOException{
     	
-			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_docente(docente, nomeCorso);
-			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+prenotazioni.get(i).toString()+"\n");
-			System.out.print("Fine\n");
-    }
-    
-    //RF09 @autor Balossino, Battezzati
-    private void visualizzaDocente() throws IOException {
     	try {
-    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    		System.out.print("Inserire nome del corso\n");
-    		String nomeCorso = br.readLine();
-    		System.out.print("Inserire cognome del docente\n");
-    		String docente = br.readLine();
 			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_docente(docente, nomeCorso);
-			for(int i=0;i<prenotazioni.size();i++) System.out.print(prenotazioni.get(i).toString()+"\n");
-			System.out.print("Fine\n");
-			System.out.print("Per uscire premere un tasto\n");
-			br.readLine();
+			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+i+"\n"+prenotazioni.get(i).toString()+"\n");
+			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+i+"\n"+prenotazioni.get(i).toString()+"\n");
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			if(tipo_utente=="Staff") {
+				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza");
+				String scelta = br.readLine();
+				if(scelta.compareTo("0")==0) {
+					System.out.print("\nFine\n");
+					return;
+				}
+				else {
+					prenotazione p=prenotazioni.get(Integer.valueOf(scelta)-1);
+					System.out.print("Digitare 1 per annullare la prenotazione, oppure 2 per confermarne la presenza");
+					scelta = br.readLine();
+					//if(scelta.compareTo("1")==0)) annulla_prenotazione(p)
+					//if()scelta.compareTo("2")==0)) conferma_presenza(p)
+					System.out.print("\nFine\n");
+					return;
+				}
+
 			}
-		catch (IOException e) {
-			System.out.print("Errore I/O\n");
-		}
+			else {
+				System.out.print("\nFine\n");
+				return;
+			}
+    	}
+    	catch(IOException e) {
+    		System.out.print("\ninput non valido\n");
+    	}
     }
     
-    //RF09 @autor Balossino, Battezzati
-    public void visualizzaStudente() /*throws IOException */{
-		
-		try {
+  //RF09 @autor Balossino, Battezzati
+    public void visualizza_prenotaz_stud(int matricola, String tipo_utente) throws IOException{
+    	try {
+			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_studente(matricola);
+			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+i+"\n"+prenotazioni.get(i).toString()+"\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			System.out.print("Inserire matricola\n");
-			String matr = br.readLine();
-			int matricola = Integer.parseInt(matr);
-			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_studente(matricola);
-			for(int i=0;i<prenotazioni.size();i++) System.out.print(prenotazioni.get(i).toString()+"\n");
-			System.out.print("Fine\n");
-			System.out.print("Per uscire premere un tasto\n");
-			br.readLine();
+			if(tipo_utente=="Staff") {
+				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza");
+				String scelta = br.readLine();
+				if(scelta.compareTo("0")==0) {
+					System.out.print("\nFine\n");
+					return;
+				}
+				else {
+					prenotazione p=prenotazioni.get(Integer.valueOf(scelta)-1);
+					System.out.print("Digitare 1 per annullare la prenotazione, oppure 2 per confermarne la presenza");
+					scelta = br.readLine();
+					//if(scelta.compareTo("1")==0)) annulla_prenotazione(p)
+					//if()scelta.compareTo("2")==0)) conferma_presenza(p)
+					System.out.print("\nFine\n");
+					return;
+				}
 			}
-			
-			catch (IOException e) {
-				System.out.print("Errore I/O\n");
+			else {
+				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla");
+				String scelta = br.readLine();
+				if(scelta.compareTo("0")==0) {
+					System.out.print("\nFine\n");
+					return;
+				}
+				else {
+					prenotazione p=prenotazioni.get(Integer.valueOf(scelta)-1);
+					//if(scelta.compareTo("1")==0)) annulla_prenotazione(p)
+					System.out.print("\nFine\n");
+					return;
+				}
 			}
-			
+    	}
+    	catch(IOException e) {
+    		System.out.print("\ninput non valido\n");
+    	}	
 	}
-
-	//RF09 @autor Balossino, Battezzati
-    public void visualizzaStudente(int matricola){
-			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_studente(matricola);
-			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+prenotazioni.get(i).toString()+"\n");
-			System.out.print("Fine\n");
-			
-	}
-	
-    
-    //RF09 @autor Balossino, Battezzati
-    private void visualizzaStaff() throws IOException {
-		try {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Digitare s se si vuole cercare le prenotazioni di uno studente. d per cercare le prenotazioni a una lezione. Digitare un altro qualsiasi altro tasto per uscire.\n");
-		String scelta = br.readLine();
-		if(scelta.compareTo("s")==0) visualizzaStudente();
-		else if(scelta.compareTo("d")==0) visualizzaDocente();
-		else {
-			System.out.print("Fine\n");
-			System.out.print("Per uscire premere un tasto\n");
-			br.readLine();
-		}
-		}
-		catch (IOException e) {
-			System.out.print("Errore I/O\n");
-		}
-	}
-	
 }
+    
+    
