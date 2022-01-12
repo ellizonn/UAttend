@@ -141,6 +141,7 @@ public class UI_ricerca
 			}
 			else if(elenco_lezioni.size() == 0) {
 				System.out.println("Nessuna lezione nel periodo selezionato.");
+				i++;
 				continue;
 				/*System.out.println("\n1. Ricerca altre lezioni");
 				System.out.println("2. Torna al menù principale");
