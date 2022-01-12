@@ -32,7 +32,7 @@ public class UI_avviso
         boolean cancellazione = false;
 
         do {
-            avviso.emissione = LocalDate.now();
+            avv.emissione = LocalDate.now();
 
             mostra_form_scrittura_avviso();
             System.out.println("Premi INVIO per continuare.");
