@@ -171,7 +171,7 @@ public class UI_ricerca
 
 						if(scelta_lez == 1 && !tipo_utente.equals("studente")) {
 							System.out.println("\nAVVIO visualizza prenotazioni");
-							//ui_pren.avvio_visualizza_prenotazioni();
+							ui_pren.visualizza_prenotaz_lez(lez.nome_corso, lez.cognome_docente);
 						}
 						if(scelta_lez == 2 && tipo_utente.equals("studente")) {
 							System.out.println("\nAVVIO prenota posto");
@@ -322,9 +322,9 @@ public class UI_ricerca
 		    				if(i == x)
 		    				{	
 		    					ut = u.get(i);
-			    				if(tipo_utente.equals("staff"))
+			    				if(tipo_utente == "staff")
 				    				avvia_visualizza_prenotazioni(ut);
-				    			else if(tipo_utente.equals("admin"))
+				    			else if(tipo_utente == "admin")
 				    				cambia_stato_account(ut);
 		    				}
 		    			}
@@ -368,18 +368,13 @@ public class UI_ricerca
 		private ArrayList<utente> form_ricerca() {
 			//RF07: ricerca utente
 	    	//autori: Malavasi - Torta
-			int mat=0;
-			String matricola="";
-			String cognome="";
 			Scanner sc = new Scanner(System.in);
 			System.out.println("\nInserisci matricola: ");
-			matricola = sc.nextLine();
-			if(!matricola.equals(""))
-				mat=Integer.parseInt(matricola);
+			int matricola = sc.nextInt();
 			System.out.println("\nInserisci cognome: ");
-			cognome = sc.nextLine();
+			String cognome = sc.next();
 			System.out.println("\nAvvio ricerca utente\n");
-			ArrayList<utente> u = g_ric.verifica_parametri(mat, cognome);
+			ArrayList<utente> u = g_ric.verifica_parametri(matricola, cognome);
 			return u;
 		}
 
