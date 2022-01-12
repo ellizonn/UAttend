@@ -338,7 +338,7 @@ public class UI_ricerca
 	    	//RF07: ricerca utente
 	    	//autori: Malavasi - Torta
 	    	Scanner sc = new Scanner(System.in);
-	    	System.out.println("\nMENU\n1. Nuova ricerca\n2. Uscita\n");
+	    	System.out.println("\nMENU\n1. Nuova ricerca\n2. Torna al menu principale\n");
 			if(i==2)
 				System.out.println("3. Seleziona nuovo utente\n");
 			final int scelta = sc.nextInt();
@@ -361,7 +361,7 @@ public class UI_ricerca
 	    	//autori: Malavasi - Torta
 			int s=u.size();
 	    	for(int i=0;i<s;i++) {
-				System.out.println(i + "):\n" + u.get(i));
+				System.out.println(i + "):\n" + u.get(i).matricola + " " + u.get(i).cognome + " " + u.get(i).nome);
 			}
 		}
 
