@@ -298,7 +298,7 @@ public class UI_ricerca
 	    	
 	    	Scanner sc = new Scanner(System.in);
 	    	int scelta = 1;
-	    	utente ut = null;
+	    	utente ut = new utente();
 	    	do {
 	    		ArrayList<utente> u = form_ricerca();
 	    		if(u == null)
@@ -312,21 +312,25 @@ public class UI_ricerca
 	    			scelta = visualizza_menu(1);
 	    		}
 	    		else {
-	    			visualizza_elenco(u);
-	    			System.out.println("\nSelezionare l'utente sul quale operare\n");
-	    			int x = sc.nextInt();
-	    			for(int i=0; i<u.size(); i++)
-	    			{
-	    				if(i == x)
-	    					ut = u.get(i);
-	    			}
-	    			if(tipo_utente == "staff")
-	    				avvia_visualizza_prenotazioni(ut);
-	    			else if(tipo_utente == "admin")
-	    				cambia_stato_account(ut);
+	    			do {
+		    			visualizza_elenco(u);
+		    			System.out.println("\nSelezionare l'utente sul quale operare\n");
+		    			int x = sc.nextInt();
+		    			for(int i=0; i<u.size(); i++)
+		    			{
+		    				if(i == x)
+		    				{	
+		    					ut = u.get(i);
+			    				if(tipo_utente == "staff")
+				    				avvia_visualizza_prenotazioni(ut);
+				    			else if(tipo_utente == "admin")
+				    				cambia_stato_account(ut);
+		    				}
+		    			}
+		    			scelta = visualizza_menu(2);	
+	    			}while(scelta==3);
 	    		}
-	    		scelta = visualizza_menu(2);
-	    	}while(scelta == 1 || scelta == 3);
+	    	}while(scelta == 1);
 	    }
 	    
 	    private int visualizza_menu(int i) {
