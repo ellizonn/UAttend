@@ -343,7 +343,7 @@ public class UI_ricerca
 
 		private void avvia_visualizza_prenotazioni(utente ut) {
 			System.out.println("\nAvvia visualizza prenotazioni\n");
-			ui_pren.visualizzaStudente(ut.matricola);
+			//ui_pren.visualizzaStudente(ut.matricola);
 			return;
 		}
 
