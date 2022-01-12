@@ -68,7 +68,7 @@ public class UI_login
                     else
                     {
                         if (scelta==1) 
-                        	ui_acc.avvio_cambio_password(matricola);
+                        	//ui_acc.avvio_cambio_password(matricola);
                         if (scelta==2)
 						{
 							System.out.println("\nAVVIO ricerca avvisi per data");
@@ -96,7 +96,7 @@ public class UI_login
                         }
                         if (scelta==4 && tipo_utente.equals("studente"))
                             System.out.println("\nAVVIO visualizza prenotazioni");
-                            ui_pren.visualizzaStudente();
+                            //ui_pren.visualizzaStudente();
 	
                         if (scelta==5 && tipo_utente.equals("staff")) {
                             System.out.println("\nAVVIO crea corso");
