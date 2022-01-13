@@ -322,9 +322,9 @@ public class UI_ricerca
 		    				if(i == x)
 		    				{	
 		    					ut = u.get(i);
-			    				if(tipo_utente == "staff")
+			    				if(tipo_utente.equals("staff"))
 				    				avvia_visualizza_prenotazioni(ut);
-				    			else if(tipo_utente == "admin")
+				    			else if(tipo_utente.equals("admin"))
 				    				cambia_stato_account(ut);
 		    				}
 		    			}
@@ -346,7 +346,7 @@ public class UI_ricerca
 		}
 
 		private void avvia_visualizza_prenotazioni(utente ut) /*throws IOException*/ {
-			System.out.println("\nAvvia visualizza prenotazioni\n");
+			//System.out.println("\nAvvia visualizza prenotazioni\n");
 			ui_pren.visualizza_prenotaz_stud(ut.matricola, "Staff");
 			return;
 		}

@@ -16,7 +16,7 @@ public class RF17_Crea_utenti_test {
 		residenza.CAP=20113;
 		residenza.localita="Milano";
 		residenza.numero=5;
-		residenza.via="Via Roma";
+		residenza.via="Via_Roma";
 		assertEquals(true, g1.controllo_generalita("Mario", "Rossi", residenza, "docente", 0));
 		assertEquals(false, g1.controllo_generalita("", "Rossi", residenza, "docente", 0));
 		assertEquals(false, g1.controllo_generalita("Mario", "", residenza, "docente", 0));
