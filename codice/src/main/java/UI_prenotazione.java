@@ -33,13 +33,18 @@ public class UI_prenotazione
 		boolean esito_formato_scelta = g_lez.controllo_formato_scelta(scelta_stud);
 		if(esito_formato_scelta){
 			if(scelta_stud.equals("procedi")){
-				String esito_data_e_posti = g_lez.controllo_data_e_posti(lez);
-				if(esito_data_e_posti.equals("ok")){
-					g_lez.decrementa_prenota(lez, matricola);
-					this.mostra_messaggio("Prenotazione avvenuta con successo!");
+				boolean esito_prenotazione_doppia = g_lez.controllo_prenotazione_doppia(lez, matricola);
+				if(!esito_prenotazione_doppia){
+					String esito_data_e_posti = g_lez.controllo_data_e_posti(lez);
+					if(esito_data_e_posti.equals("ok")){
+						g_lez.decrementa_prenota(lez, matricola);
+						this.mostra_messaggio("Prenotazione avvenuta con successo!");
+					}
+					else
+						this.mostra_errore(esito_data_e_posti);
 				}
 				else
-					this.mostra_errore(esito_data_e_posti);
+					this.mostra_messaggio("La lezione e' gia' stata prenotata!");
 			}
 			else
 				this.mostra_messaggio("Hai cliccato indietro, arrivederci.");

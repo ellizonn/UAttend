@@ -289,10 +289,10 @@ class gestore_lezioni {
 		prenotazione obj_preno = new prenotazione(matricola, lez.nome_corso, lez.cognome_docente, lez.numero_aula, lez.giorno, lez.ora_inizio, lez.ora_fine, false);
 		prenotazione obj_cercato = db_lez.cerca_prenotazione(obj_preno);
 		if (obj_cercato != null) {
-			esito_prenotazione_doppia = false;
+			esito_prenotazione_doppia = true;
 		}
 		else { //obj_cercato == null
-			esito_prenotazione_doppia = true;
+			esito_prenotazione_doppia = false;
 		}
 		return esito_prenotazione_doppia;
 		
