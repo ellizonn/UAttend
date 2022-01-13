@@ -344,7 +344,8 @@ public class UI_ricerca
 	    	//autori: Malavasi - Torta
 			int s=u.size();
 	    	for(int i=0;i<s;i++) {
-				System.out.println(i + "):\n" + u.get(i).matricola + " " + u.get(i).cognome + " " + u.get(i).nome);
+				System.out.println(i + "):\n" + u.get(i).matricola + " " + u.get(i).cognome + " " + u.get(i).nome + " " + u.get(i).tipo_utente + " " + u.get(i).anno
+									+ " " + u.get(i).residenza.via + " " + u.get(i).residenza.numero + " " + u.get(i).residenza.localita + " " + u.get(i).residenza.cap);
 			}
 		}
 
