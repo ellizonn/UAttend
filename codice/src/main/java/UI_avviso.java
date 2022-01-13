@@ -8,30 +8,34 @@ import java.util.Scanner;
 import java.util.Formatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UI_avviso
 {   
     public gestore_avvisi g_avv;
-    private avviso avviso;
+    private avviso avv;
 
     public UI_avviso(gestore_avvisi g1)
     {	
 	//autore: Codetta
 	g_avv=g1;
-        avviso = null;
+        avv = null;
     }
     
     public void avvio_scrittura_avviso() {
         //autore: Furnari/Gattico RF16
 
         Scanner scanner = new Scanner(System.in);
-        avviso = new avviso();
+        avv = new avviso();
         String check;
         boolean salvataggio = false;
         boolean cancellazione = false;
 
         do {
-            avviso.emissione = LocalDate.now();
+            avv.emissione = LocalDate.now();
 
             mostra_form_scrittura_avviso();
             System.out.println("Premi INVIO per continuare.");
@@ -44,7 +48,7 @@ public class UI_avviso
             System.out.print("Salvataggio avviso (s/n)? ");
 
             if (new ArrayList<>(Arrays.asList("s", "S")).contains(scanner.nextLine())) {
-                check = this.g_avv.controlla_avviso(avviso);
+                check = g_avv.controlla_avviso(avv);
 
                 if (check == null) {
                     System.out.println("Premi INVIO per continuare.");
@@ -52,7 +56,7 @@ public class UI_avviso
 
                     System.out.print("Conferma salvataggio avviso (s/n)? ");
                     if (new ArrayList<>(Arrays.asList("s", "S")).contains(scanner.nextLine())) {
-                        //this.g_avv.salva_avviso(avviso);
+                        g_avv.salva_avviso(avv);
                         System.out.println("Premi INVIO per continuare.");
                         scanner.nextLine();
                         salvataggio = true;
@@ -119,7 +123,6 @@ public class UI_avviso
         //autore: Furnari/Gattico RF16
 
         Scanner scanner = new Scanner(System.in);
-        LocalDate date = null;
         boolean formato;
         
         System.out.print("Inserire data (gg/MM/aaaa): ");
@@ -134,7 +137,7 @@ public class UI_avviso
             int mese = Integer.parseInt(m.group(2));
             int anno = Integer.parseInt(m.group(3));
             try {
-                avviso.scadenza = LocalDate.of(anno, mese, giorno);
+                avv.scadenza = LocalDate.of(anno, mese, giorno);
             } catch (DateTimeException e) {
                 
             }
@@ -150,7 +153,7 @@ public class UI_avviso
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Inserire il testo dell'avviso");
-        avviso.testo = scanner.nextLine();
+        avv.testo = scanner.nextLine();
         scanner.close();
     }
 

@@ -19,19 +19,25 @@ public class gestore_avvisi
     }
     
     public String controlla_avviso(avviso avviso) {
-            //autore: Furnari/Gattico RF16
+        //autore: Furnari/Gattico RF16
 
-            String check_avviso = null;
+        String check_avviso = null;
 
-            if (avviso.testo == null) {
-                check_avviso = "testo";
-            } else if (avviso.scadenza == null) {
-                check_avviso = "no_scadenza";
-            } else {
-                if (avviso.scadenza.isBefore(LocalDate.now())) {
-                    check_avviso = "data";
-                }
+        if (avviso.testo == null) {
+            check_avviso = "testo";
+        } else if (avviso.scadenza == null) {
+            check_avviso = "no_scadenza";
+        } else {
+            if (avviso.scadenza.isBefore(LocalDate.now())) {
+                check_avviso = "data";
             }
-            return check_avviso;
         }
+        return check_avviso;
+    }
+    
+    public void salva_avviso(avviso avviso) {
+        //autore: Furnari/Gattico RF16
+        
+        db_avv.aggiungi_avviso(avviso);
+    }
 }
