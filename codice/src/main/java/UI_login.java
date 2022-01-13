@@ -78,11 +78,6 @@ public class UI_login
                             //System.out.println("\nAVVIO ricerca lezioni per data");
                             ui_ric.avvio_ricerca_lezioni(tipo_utente,matricola);
                         }
-                        if (scelta==3 && !tipo_utente.equals("admin")) {
-                            // da sostituire con la chiamata del metodo di AVVIO
-                            //System.out.println("\nAVVIO ricerca lezioni per data");
-                            ui_ric.avvio_ricerca_lezioni(tipo_utente, matricola);
-                        }
                         if (scelta==3 && tipo_utente.equals("admin"))
                         {
                             //System.out.println("\nAVVIO crea utente");
