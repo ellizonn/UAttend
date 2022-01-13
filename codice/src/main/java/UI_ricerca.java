@@ -72,12 +72,12 @@ public class UI_ricerca
 		String data_i = "";
 		String data_f = "";
 		System.out.print("\nINSERIRE LE DATE PER LA RICERCA DEGLI AVVISI\n");
-		System.out.print("\n---La data di inizio deve essere precedente alla data odierna e alla data di fine---\n"); //questa
+		System.out.print("\n---La data di inizio deve essere precedente alla data odierna e alla data di fine---\n");
         System.out.print("\nInserisci data di inizio(yyyy-mm-dd): ");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		data_i = sc.nextLine();
 		data_inizio = LocalDate.parse(data_i, dateFormat);
-		System.out.print("\n---La data di fine deve essere successiva alla data di inizio---\n"); //questa
+		System.out.print("\n---La data di fine deve essere successiva alla data di inizio---\n");
         System.out.print("inserisci data di fine(yyyy-mm-dd): ");
 		data_f = sc.nextLine();
 		data_fine = LocalDate.parse(data_f, dateFormat);
