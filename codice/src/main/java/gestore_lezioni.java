@@ -274,6 +274,30 @@ class gestore_lezioni {
 		
 	}
 
+	/**
+  	 * Controllo se l'utente matricola ha gia' prenotato la lezione lez
+  	 * @author RF13 prenota_posto
+	 * @author Paolo Rossari 20034882
+	 * @author Elia Marisio 20036782
+  	 * @param lez oggetto lezione
+  	 * @param matricola numero matricola
+	 * @return false se la prenotazione non esiste nel db, altrimenti true (l'utente si e' gia' prenotato)
+  	 */
+	public boolean controllo_prenotazione_doppia(lezione lez, int matricola) {
+		
+		boolean esito_prenotazione_doppia;
+		prenotazione obj_preno = new prenotazione(matricola, lez.nome_corso, lez.cognome_docente, lez.numero_aula, lez.giorno, lez.ora_inizio, lez.ora_fine, false);
+		prenotazione obj_cercato = db_lez.cerca_prenotazione(obj_preno);
+		if (obj_cercato != null) {
+			esito_prenotazione_doppia = false;
+		}
+		else { //obj_cercato == null
+			esito_prenotazione_doppia = true;
+		}
+		return esito_prenotazione_doppia;
+		
+	}
+
 	//RF09 @autor Balossino, Battezzati
   	public ArrayList<prenotazione> get_prenotazioni_docente(String docente, String nomeCorso){
   		

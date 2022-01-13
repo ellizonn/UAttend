@@ -412,11 +412,15 @@ public class DB_lezioni {
   
   // =======================================================================
   
-  
-  	public void modifica_lezione(lezione updated_lez){
+    /**
+     * Aggiorna entry nel db secondo updated_lez
+     * @author RF13 prenota_posto
+     * @author Paolo Rossari 20034882
+     * @author Elia Marisio 20036782
+     * @param updated_lez oggetto lezione con posti disponibili decrementati
+     */
+    public void modifica_lezione(lezione updated_lez){
 		
-		//RF13_prenota_posto
-		//Autori: Rossari, Marisio
 		ArrayList<lezione> elenco = carica_lezioni();
 		int L = elenco.size();
 		int i = 0;
@@ -436,5 +440,31 @@ public class DB_lezioni {
 		salva_lezioni(elenco);
 		
 	}
+
+    /**
+     * Cerca se la prenotazione obj_preno e' gia' presente sul db (l'utente si e' gia' prenotato)
+     * @author RF13 prenota_posto
+     * @author Paolo Rossari 20034882
+     * @author Elia Marisio 20036782
+     * @param obj_preno oggetto prenotazione
+     * @return l'oggetto cercato (prenotazione) se presente, altrimenti null
+     */
+    public prenotazione cerca_prenotazione(prenotazione obj_preno) {
+        
+        prenotazione obj_cercato = null, preno_ricerca = null;
+        ArrayList elenco = carica_prenotazioni();
+
+        for (int i=0; i<elenco.size() && obj_cercato==null; i++)
+        {
+            preno_ricerca = (prenotazione)elenco.get(i);
+            if (preno_ricerca.matricola_studente == obj_preno.matricola_studente && preno_ricerca.nome_corso.equals(obj_preno.nome_corso) && preno_ricerca.aula == obj_preno.aula && preno_ricerca.giorno.compareTo(obj_preno.giorno)==0 && preno_ricerca.ora_inizio.compareTo(obj_preno.ora_inizio)==0)
+            {
+                obj_cercato = preno_ricerca;
+            }
+
+        }
+
+        return obj_cercato;	
+    }
 	
 }
