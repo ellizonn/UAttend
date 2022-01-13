@@ -98,8 +98,10 @@ class gestore_utenti {
 						ut.cognome=cognome;
 						ut.residenza=residenza;
 						ut.tipo_utente=tipo_utente;
-						if (tipo_utente=="cliente")
+						if (tipo_utente=="studente")
 							ut.anno=anno_immatricolazione;
+						int M=db_ut.ricerca_ultima_matricola();
+						ut.matricola=M+1;
 						db_ut.aggiungi_utente(ut);
 						esito=true;
 					}
