@@ -140,24 +140,9 @@ public class UI_ricerca
 				mostra_errore_ricerca_lezioni(elenco_lezioni);
 			}
 			else if(elenco_lezioni.size() == 0) {
-				System.out.println("Nessuna lezione nel periodo selezionato.");
+				System.out.println("\nNessuna lezione nel periodo selezionato.\n");
 				i++;
 				continue;
-				/*System.out.println("\n1. Ricerca altre lezioni");
-				System.out.println("2. Torna al menù principale");
-				System.out.print("Inserire scelta: ");
-				int sel_menu;
-				do {
-					sc = new Scanner(System.in);
-					sel_menu = sc.nextInt();
-					if(sel_menu == 1) {
-						break;
-					}
-					else {
-						exit(0);
-					}
-				}
-				while(sel_menu < 1 && sel_menu > 2);*/
 			}
 			else {
 				lez = mostra_elenco_lezioni(elenco_lezioni);
@@ -190,8 +175,7 @@ public class UI_ricerca
 			}
 			i++;
 		}
-		while(scelta_lez == 0 || elenco_lezioni == null || sel_menu == 0);
-		return;
+		while(scelta_lez == 0 || elenco_lezioni == null);
 	}
 
 	public void form_ricerca_lezioni() {
@@ -262,7 +246,6 @@ public class UI_ricerca
 				}
 			}
 			else {
-				//exit(0);
 				return null;
 			}
 		}
