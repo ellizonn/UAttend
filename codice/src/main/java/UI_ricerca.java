@@ -114,7 +114,7 @@ public class UI_ricerca
     	
     }
 
-	public void avvio_ricerca_lezioni(String tipo_utente,int matricola) throws IOException{
+	public void avvio_ricerca_lezioni(String tipo_utente,int matricola) /*throws IOException*/ {
 		//RF12 - Ricerca lezioni per data
 		//autore: Masino, Spina
 
@@ -345,7 +345,7 @@ public class UI_ricerca
 			return scelta;	
 		}
 
-		private void avvia_visualizza_prenotazioni(utente ut) throws IOException {
+		private void avvia_visualizza_prenotazioni(utente ut) /*throws IOException*/ {
 			System.out.println("\nAvvia visualizza prenotazioni\n");
 			ui_pren.visualizza_prenotaz_stud(ut.matricola, "Staff");
 			return;
