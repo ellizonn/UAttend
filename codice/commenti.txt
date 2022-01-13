@@ -20,7 +20,7 @@ RF04 (crea corso):
 
 
 RF05 (aggiungi lezione):
-- OK
+- uno dei test fallisce.
 
 
 
@@ -91,6 +91,7 @@ RF16 (scrivi avviso):
 
 RF17 (crea utente):
 - nel messaggio di successo si chiede di premere invio per continuare, ma non e' necessario;
-- l'account appena creato e' bloccato (false); forse e' meglio impostarlo a true (RF08 non e' stato implementato). 
+- l'account appena creato e' bloccato (false); forse e' meglio impostarlo a true (RF08 non e' stato implementato);
+- uno dei test fallisce.
 
 
