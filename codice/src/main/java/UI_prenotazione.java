@@ -102,7 +102,7 @@ public class UI_prenotazione
     }
 
 	   //RF09 @autor Balossino, Battezzati
-    public void visualizza_prenotaz_lez(String nomeCorso, String docente, String tipo_utente) throws IOException{
+    public void visualizza_prenotaz_lez(String nomeCorso, String docente, String tipo_utente) /*throws IOException */{
     	
     	try {
 			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_docente(docente, nomeCorso);
@@ -138,7 +138,7 @@ public class UI_prenotazione
     }
     
   //RF09 @autor Balossino, Battezzati
-    public void visualizza_prenotaz_stud(int matricola, String tipo_utente) throws IOException{
+    public void visualizza_prenotaz_stud(int matricola, String tipo_utente) /*throws IOException */ {
     	try {
 			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_studente(matricola);
 			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+i+"\n"+prenotazioni.get(i).toString()+"\n");
