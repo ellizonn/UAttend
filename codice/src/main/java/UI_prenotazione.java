@@ -125,7 +125,7 @@ public class UI_prenotazione
 					System.out.print("Digitare 1 per annullare la prenotazione, oppure 2 per confermarne la presenza");
 					scelta = br.readLine();
 					//if(scelta.compareTo("1")==0)) annulla_prenotazione(p)
-					//if()scelta.compareTo("2")==0)) conferma_presenza(p)
+					if()scelta.compareTo("2")==0)) g_lez.avvio_registra_presenza(p);
 					System.out.print("\nFine\n");
 					return;
 				}
@@ -159,7 +159,7 @@ public class UI_prenotazione
 					System.out.print("Digitare 1 per annullare la prenotazione, oppure 2 per confermarne la presenza");
 					scelta = br.readLine();
 					//if(scelta.compareTo("1")==0)) annulla_prenotazione(p)
-					//if()scelta.compareTo("2")==0)) conferma_presenza(p)
+					if()scelta.compareTo("2")==0)) g_lez.avvio_registra_presenza(p);
 					System.out.print("\nFine\n");
 					return;
 				}
