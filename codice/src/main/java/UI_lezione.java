@@ -503,6 +503,7 @@ public class UI_lezione {
         // Scrivi avviso
         try {
             // Richiama scrivi avviso
+            ui_avv.avvio_scrittura_avviso();
         } catch (Exception e) {
             System.out.println("La lezione è stata cancellata ma non è stato possibile scrivere l'avviso per via di un errore.");
             return;
