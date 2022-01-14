@@ -328,7 +328,7 @@ public class DB_lezioni {
                 p.giorno = LocalDate.parse(sc.next(), formatter);
                 p.ora_inizio = LocalTime.parse(sc.next(), formatter2);
 				p.ora_fine = LocalTime.parse(sc.next(), formatter2);
-                p.presente = sc.nextBoolean();
+                p.presente = sc.next();
 
                 elenco.add(p);
             }
