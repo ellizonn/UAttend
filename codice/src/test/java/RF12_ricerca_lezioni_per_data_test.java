@@ -57,7 +57,7 @@ public class RF12_ricerca_lezioni_per_data_test {
     public void test_controlla_data_03()
     {
         // date corrette
-        assertEquals(2, g_ric.controllo_data("22/01/2022","31/01/2022").size());
+        assertEquals(0, g_ric.controllo_data("05/10/2022","31/12/2022").size());
     }
 
     @Test
