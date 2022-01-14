@@ -25,12 +25,8 @@ public class gestore_avvisi
 
         if (avviso.testo == null) {
             check_avviso = "testo";
-        } else if (avviso.scadenza == null) {
-            check_avviso = "no_scadenza";
-        } else {
-            if (avviso.scadenza.isBefore(LocalDate.now())) {
-                check_avviso = "data";
-            }
+        } else if (avviso.scadenza == null || avviso.scadenza.isBefore(LocalDate.now())) {
+            check_avviso = "data";
         }
         return check_avviso;
     }

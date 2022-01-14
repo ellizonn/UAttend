@@ -106,8 +106,8 @@ public class UI_login
                         }
                         if (scelta==7 && tipo_utente.equals("staff"))
                         {
-                            // da sostituire con la chiamata del metodo di AVVIO
-                            System.out.println("\nAVVIO scrivi avviso");
+                            //System.out.println("\nAVVIO scrivi avviso");
+                            ui_avv.avvio_scrittura_avviso();
                         }
                     }
                 }
