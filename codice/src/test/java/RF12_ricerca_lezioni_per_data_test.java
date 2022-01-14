@@ -1,5 +1,4 @@
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 
 import java.time.LocalDate;
 
@@ -19,7 +18,7 @@ public class RF12_ricerca_lezioni_per_data_test {
     public void test_cerca_lezioni() {
         LocalDate date_start = LocalDate.of(2021, 10, 01);
         LocalDate date_end = LocalDate.of(2021, 10, 03);
-        Assertions.assertNotNull(db_lezioni.cerca_lezioni(date_start,date_end),"DB deve ritornare elenco lezioni");
+        assertNotNull("DB deve ritornare elenco lezioni",db_lezioni.cerca_lezioni(date_start,date_end));
     }
 
     @Test
@@ -28,7 +27,7 @@ public class RF12_ricerca_lezioni_per_data_test {
         LocalDate date_start = LocalDate.of(2021, 10, 06);
         LocalDate date_end = LocalDate.of(2021, 10, 11);
         //date non presenti nel file
-        Assertions.assertEquals(db_lezioni.cerca_lezioni(date_start,date_end).size(), 0);
+        assertEquals(db_lezioni.cerca_lezioni(date_start,date_end).size(), 0);
     }
 
     @Test
@@ -37,58 +36,58 @@ public class RF12_ricerca_lezioni_per_data_test {
         LocalDate date_start = LocalDate.of(2022, 01, 03);
         LocalDate date_end = LocalDate.of(2022, 01, 05);
         //date non presenti nel file
-        Assertions.assertNotNull(db_lezioni.cerca_lezioni(date_start,date_end), "DB non deve ritornare null");
+        assertNotNull( "DB non deve ritornare null",db_lezioni.cerca_lezioni(date_start,date_end));
     }
 
     @Test
     public void test_controlla_data()
     {
         // data_inizio > data_fine
-        Assertions.assertNull(g_ric.controllo_data("03/10/2021", "01/10/2021"));
+        assertNull(g_ric.controllo_data("03/10/2021", "01/10/2021"));
     }
 
     @Test
     public void test_controlla_data_02()
     {
         // data passata
-        Assertions.assertNull(g_ric.controllo_data("01/10/2021", "03/10/2021"));
+        assertNull(g_ric.controllo_data("01/10/2021", "03/10/2021"));
     }
 
     @Test
     public void test_controlla_data_03()
     {
         // date corrette
-        Assertions.assertEquals(2, g_ric.controllo_data("22/01/2022","31/01/2022").size());
+        assertEquals(2, g_ric.controllo_data("22/01/2022","31/01/2022").size());
     }
 
     @Test
     public void test_controlla_data_04() {
         // date formato errato
-        Assertions.assertNull(g_ric.controllo_data("1/1/2022","15/1/2022"));
+        assertNull(g_ric.controllo_data("1/1/2022","15/1/2022"));
     }
 
     @Test
     public void controlla_scelta() {
         //utente staff
-        Assertions.assertTrue(g_ric.controlla_scelta(0,"staff"));
+        assertTrue(g_ric.controlla_scelta(0,"staff"));
     }
 
     @Test
     public void controlla_scelta01() {
         //utente staff
-        Assertions.assertTrue(g_ric.controlla_scelta(1,"staff"));
+        assertTrue(g_ric.controlla_scelta(1,"staff"));
     }
 
     @Test
     public void controlla_scelta02() {
         //utente staff
-        Assertions.assertTrue(g_ric.controlla_scelta(3,"staff"));
+        assertTrue(g_ric.controlla_scelta(3,"staff"));
     }
 
     @Test
     public void controlla_scelta03() {
         //utente staff
-        Assertions.assertTrue(g_ric.controlla_scelta(4,"staff"));
+        assertTrue(g_ric.controlla_scelta(4,"staff"));
     }
 
     @Test
@@ -136,28 +135,28 @@ public class RF12_ricerca_lezioni_per_data_test {
     @Test
     public void controlla_scelta_11()
     {
-        //utente studente
+        //utente docente
         assertTrue(g_ric.controlla_scelta(0, "docente"));
     }
 
     @Test
     public void controlla_scelta_12()
     {
-        //utente studente
+        //utente docente
         assertTrue(g_ric.controlla_scelta(1, "docente"));
     }
 
     @Test
     public void controlla_scelta_14()
     {
-        //utente studente
+        //utente docente
         assertFalse(g_ric.controlla_scelta(-1, "docente"));
     }
 
     @Test
     public void controlla_scelta_15()
     {
-        //utente studente
+        //utente docente
         assertFalse(g_ric.controlla_scelta(3, "docente"));
     }
 }
