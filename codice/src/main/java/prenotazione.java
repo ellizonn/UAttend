@@ -10,14 +10,14 @@ public class prenotazione
     public LocalDate giorno;
     public LocalTime ora_inizio;
     public LocalTime ora_fine;
-    public boolean presente;
+    public String presente;
     //public int aula;
 
     public prenotazione()
     {
     }
 
-    public prenotazione(int m, String n, String c, int a, LocalDate g, LocalTime oi, LocalTime of, boolean p) {
+    public prenotazione(int m, String n, String c, int a, LocalDate g, LocalTime oi, LocalTime of, String p) {
     	this.matricola_studente=m;
     	this.nome_corso=n;
     	this.cognome_docente=c;
