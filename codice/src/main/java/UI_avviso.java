@@ -125,6 +125,7 @@ public class UI_avviso
 
         System.out.println("Inserire il testo dell'avviso");
         avv.testo = scanner.nextLine();
+        avv.testo = avv.testo.replace(' ', '_');
     }
 
     private void mostra_avviso_non_salvato() {
