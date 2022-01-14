@@ -155,6 +155,7 @@ class gestore_accessi
     	account A=new account();
     	A.matricola=M;
     	A.password=password;
+        A.attivo=true;
     	db_ut.aggiungi_account(A);
     	boolean esito=true;
     	return esito;
