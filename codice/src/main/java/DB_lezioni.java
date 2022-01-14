@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class DB_lezioni {
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm");
+    private UI_prenotazione ui_pren;
 
     public ArrayList<lezione> carica_lezioni() {
         // autore: Codetta
@@ -466,5 +467,31 @@ public class DB_lezioni {
 
         return obj_cercato;	
     }
-	
+
+    /**
+     * RF11 Registra_presenza
+     * Aggiorna il campo "presente" della prenotazione.
+     * @author Almasio, Borova
+     * @param p : prenotazione
+     * @param scelta_opzione : scelta dell'utente
+     */
+    public void inserisci_scelta(prenotazione p, String scelta_opzione){
+        ArrayList<prenotazione> pren = carica_prenotazioni();
+        int len = pren.size();
+        int index = 0;
+        while(index<len){
+            if(pren.get(index).matricola_studente == p.matricola_studente &&
+                    pren.get(index).giorno.equals(p.giorno) &&
+                    pren.get(index).ora_inizio.equals(p.ora_inizio)){
+                pren.get(index).presente = p.presente;
+                break;
+            }
+        }
+        salva_prenotazioni(pren);
+        ui_pren.mostra_messaggio_conferma(scelta_opzione);
+    }
+
 }
+
+
+

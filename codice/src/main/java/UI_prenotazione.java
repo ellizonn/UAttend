@@ -184,6 +184,86 @@ public class UI_prenotazione
     		System.out.print("\ninput non valido\n");
     	}	
 	}
+	/**
+	 * RF11 Registra_presenza
+	 * Richiede all'utente di inserire la presenza, l'assenza o di annullare l'operazione.
+	 * In base alla scelta, richiama il metodo gestione_scelta(), annulla l'operazione o mostra un messaggio di errore.
+	 * @author Almasio, Borova
+	 * @param p : prenotazione
+	 */
+	public void mostra_form_registra_presenze(prenotazione p){
+		try{
+			System.out.println("Inserire: 'p'-PRESENTE ---- 'a'-ASSENTE ---- 'annulla' per annullare.\n");
+			Scanner sc = new Scanner(System.in);
+			String scelta = sc.nextLine();
+			if(scelta==null || !scelta.equals('a') || !scelta.equals('p') || !scelta.equals("annulla")){
+				mostra_errore_registrazione("err3", p);
+			} else if(scelta.equals("annulla")){
+				return;
+			} else {
+				g_lez.gestione_scelta(scelta, p);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * RF11 Registra_presenza
+	 * In base all'input, stampa un differente messaggio di errore; l'utente dovra' confermarne la lettura.
+	 * @author Almasio, Borova
+	 * @param esito : esito dei controlli effettuati
+	 */
+	public void mostra_errore_registrazione(String esito, prenotazione p){
+		String enter;
+		switch (esito){
+			case "err1":
+				System.out.println("ERRORE REGISTRAZIONE!\nLa lezione in data: " + p.giorno + " delle ore: " + p.ora_inizio + " non e' ancora avvenuta.\n");
+				System.out.println("Premere ENTER per confermare lettura.\n");
+				Scanner s1 = new Scanner(System.in);
+				enter = s1.nextLine();
+				break;
+			case "err2":
+				System.out.println("Registrazione gia' effettuata!\n");
+				System.out.println("Premere ENTER per confermare lettura.\n");
+				Scanner s2 = new Scanner(System.in);
+				enter = s2.nextLine();
+				break;
+			case "err3":
+				System.out.println("Scelta non valida!\n");
+				System.out.println("Premere ENTER per confermare lettura.\n");
+				Scanner s3 = new Scanner(System.in);
+				enter = s3.nextLine();
+				break;
+
+		}
+	}
+
+	/**
+	 * RF11 Registra_presenza
+	 * In base all'input, stampa un differente messaggio; l'utente dovra' confermarne la lettura.
+	 * @author Almasio, Borova
+	 * @param scelta_opzione
+	 */
+	public void mostra_messaggio_conferma(String scelta_opzione){
+		String enter;
+		if(scelta_opzione.equals('p')){
+			System.out.println("Presenza confermata con successo!\n");
+			System.out.println("Premere ENTER per confermare lettura.\n");
+			Scanner s1 = new Scanner(System.in);
+			enter = s1.nextLine();
+		} else if(scelta_opzione.equals('a')){
+			System.out.println("Assenza confermata con successo!\n");
+			System.out.println("Premere ENTER per confermare lettura.\n");
+			Scanner s2 = new Scanner(System.in);
+			enter = s2.nextLine();
+		} else {
+			System.out.println("Errore nell'inserimento della scelta.\n");
+			System.out.println("Premere ENTER per confermare lettura.\n");
+			Scanner s3 = new Scanner(System.in);
+			enter = s3.nextLine();
+		}
+	}
 }
     
     

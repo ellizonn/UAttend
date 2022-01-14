@@ -10,10 +10,12 @@ class gestore_lezioni {
 	public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	public static DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm");
     private lezione l;
+    private UI_prenotazione ui_pren;
 
     public gestore_lezioni(DB_lezioni d1) {
         //autore: Codetta
         db_lez = d1;
+
     }
 
     /**
@@ -323,5 +325,44 @@ class gestore_lezioni {
 		}
 		return prenotazioni_return;
   	}
-	
+
+	/**
+	 * RF11 Registra_presenza
+	 * Metodo d'avvio del caso d'uso.
+	 * Esegue, in ordine:
+	 * Confronto tra data e ora della prenotazione con data e ora attuali;
+	 * Controllo del campo "presente" della prenotazione per verificare se e' gia' stata registrata la scelta.
+	 * In base all'esito, mostra un messaggio di errore oppure richiama il metodo mostra_form_registra_presenze().
+	 * @author Almasio, Borova
+	 * @param p : prenotazione
+	 */
+	public void avvio_registra_presenza(prenotazione p){
+		LocalDate giorno_att = LocalDate.now();
+		LocalTime ora_att = LocalTime.now();
+		String esito;
+		if(giorno_att.isBefore(p.giorno) && ora_att.isBefore(p.ora_inizio)){
+			esito = "err1";
+			ui_pren.mostra_errore_registrazione(esito, p);
+		} else if(p.presente.equals("Presente") || p.presente.equals("Assente")){
+			esito = "err2";
+			ui_pren.mostra_errore_registrazione(esito, p);
+		} else {
+			ui_pren.mostra_form_registra_presenze(p);
+		}
+	}
+
+	/**
+	 * RF11 Registra_presenza
+	 * Prende la scelta passata come parametro e la modifica in una stringa piu' esplicativa da inserire nel DB.
+	 * @author Almasio, Borova
+	 * @param scelta_opzione : scelta dell'utente
+	 * @param p : prenotazione
+	 */
+	public void gestione_scelta(String scelta_opzione, prenotazione p){
+		if(scelta_opzione.equals('p')){
+			db_lez.inserisci_scelta(p, "Presente");
+		} else if(scelta_opzione.equals('a')){
+			db_lez.inserisci_scelta(p, "Assente");
+		}
+	}
 }
