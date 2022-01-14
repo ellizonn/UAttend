@@ -271,7 +271,7 @@ class gestore_lezioni {
 		new_lez.posti_disponibili = lez.posti_disponibili - 1;
 		db_lez.modifica_lezione(new_lez); //chiamata
 		//creo oggetto prenotazione (inseriamo di default presente=false)
-		prenotazione obj_preno = new prenotazione(matricola, new_lez.nome_corso, new_lez.cognome_docente, new_lez.numero_aula, new_lez.giorno, new_lez.ora_inizio, new_lez.ora_fine, false);
+		prenotazione obj_preno = new prenotazione(matricola, new_lez.nome_corso, new_lez.cognome_docente, new_lez.numero_aula, new_lez.giorno, new_lez.ora_inizio, new_lez.ora_fine, "non_registrato");
 		db_lez.aggiungi_prenotazione(obj_preno); //chiamata
 		
 	}
@@ -288,7 +288,7 @@ class gestore_lezioni {
 	public boolean controllo_prenotazione_doppia(lezione lez, int matricola) {
 		
 		boolean esito_prenotazione_doppia;
-		prenotazione obj_preno = new prenotazione(matricola, lez.nome_corso, lez.cognome_docente, lez.numero_aula, lez.giorno, lez.ora_inizio, lez.ora_fine, false);
+		prenotazione obj_preno = new prenotazione(matricola, lez.nome_corso, lez.cognome_docente, lez.numero_aula, lez.giorno, lez.ora_inizio, lez.ora_fine, "non_registrato");
 		prenotazione obj_cercato = db_lez.cerca_prenotazione(obj_preno);
 		if (obj_cercato != null) {
 			esito_prenotazione_doppia = true;
@@ -365,18 +365,18 @@ class gestore_lezioni {
 			db_lez.inserisci_scelta(p, "Assente");
 		}
 	}
-}
+
 //RF10 -Annulla_prenotazione Autori: Orsetti,Lopez
-	public void Verifica_data(Prenotazione p)
+	public void Verifica_data(prenotazione p)
 	{
 		LocalDate odierna=LocalDate.now();
-		if(p.data_inizio.isAfter(odierna))
+		if(p.giorno.isAfter(odierna))
 		{
-			Cancella_prenotazione(p);
+			db_lez.Cancella_prenotazione(p);
 		}
 		else 
 		{
-			println("impossibile annullare prenotazione");
+			System.out.println("impossibile annullare prenotazione");
 		}
 	}
-
+}

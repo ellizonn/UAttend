@@ -11,7 +11,6 @@ public class prenotazione
     public LocalTime ora_inizio;
     public LocalTime ora_fine;
     public String presente;
-    //public int aula;
 
     public prenotazione()
     {

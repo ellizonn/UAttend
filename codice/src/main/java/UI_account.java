@@ -34,7 +34,7 @@ public class UI_account
     			esito = g_acc.controlla_credenziali(matricola,current_psw, new_psw, confirm_new_psw);
     			mostra_esito(esito);
     			scelta = form_scelta();
-    			if(scelta == false) break:
+    			if(scelta == false) break;
  
     		}while(esito.equals("error1") || esito.equals("error2") || esito.equals("error3") || esito.equals("error4") || esito.equals("error5"));
     	}
