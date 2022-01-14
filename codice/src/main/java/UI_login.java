@@ -12,7 +12,7 @@ public class UI_login
 
     private gestore_accessi g_acc;
 
-    public int scelta;
+    private int scelta;
     private String tipo_utente;
     private int matricola;
     private String password;
@@ -119,7 +119,7 @@ public class UI_login
 
 
 
-    public void form_login()
+    private void form_login()
     {
         //RF00
         //autore: Codetta
@@ -135,7 +135,7 @@ public class UI_login
 
 
 
-    public void mostra_errore(String tipo_errore)
+    private void mostra_errore(String tipo_errore)
     {
         //RF00
         //autore: Codetta
@@ -160,7 +160,7 @@ public class UI_login
 
 
 
-    public void mostra_menu(String tipo_utente)
+    private void mostra_menu(String tipo_utente)
     {
         //RF00
         //autore: Codetta

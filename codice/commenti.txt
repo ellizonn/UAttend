@@ -49,7 +49,9 @@ RF09 (visualizza prenotazioni):
 
 
 RF10 (annulla prenotazione): 
-- non implemenato.
+- controllare esecuzione;
+- non c'e' la classe di test;
+- integrare con RF09.
 
 
 
