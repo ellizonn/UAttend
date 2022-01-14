@@ -20,6 +20,8 @@ public class UI_utente
     	//autori: La Spisa & Frasson
     	boolean esito=false;
     	Scanner sc= new Scanner(System.in);
+		Scanner sc1= new Scanner(System.in);
+    	Scanner sc2= new Scanner(System.in);
     	DB_utenti db=new DB_utenti();
     	gestore_utenti ut=new gestore_utenti(db);
     	boolean esito_scelta;
@@ -37,7 +39,7 @@ public class UI_utente
 	    	if (esito_scelta==false)
 	    	{
 	    		System.out.println("error1, premere invio per continuare");
-	    		sc.nextLine();
+	    		sc1.nextLine();
 	    	}
 	    	switch(scelta)
 	    	{
@@ -59,7 +61,7 @@ public class UI_utente
 	    		break;
 	    	case 5:
 	    		System.out.println("la creazione e' annullata, premere invio per continuare");
-	    		sc.nextLine();
+	    		sc2.nextLine();
 	    		return;
 	    	case 6:
 	    		esito=ut.controllo_generalita(nome, cognome, residenza, tipo_utente, anno_immatricolazione);
@@ -68,8 +70,7 @@ public class UI_utente
     	}
     	gestore_accessi accesso=new gestore_accessi(db);
     	esito=accesso.generazione_credenziali();
-    	System.out.println("la creazione e' avvenuta con successo, premere invio per continuare");
-		sc.nextLine();
+    	System.out.println("la creazione e' avvenuta con successo");
     }
     
     private String form_inserimento_nome()
