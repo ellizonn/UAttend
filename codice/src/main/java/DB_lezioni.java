@@ -385,7 +385,6 @@ public class DB_lezioni {
             System.out.println("ERRORE apertura file prenotazioni.txt");
         }
     }
-    
 
     // ----------------------------------------------------------------------------
 
