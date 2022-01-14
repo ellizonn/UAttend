@@ -34,8 +34,9 @@ public class UI_account
     			esito = g_acc.controlla_credenziali(matricola,current_psw, new_psw, confirm_new_psw);
     			mostra_esito(esito);
     			scelta = form_scelta();
+    			if(scelta == false) break:
  
-    		}while(scelta || esito.equals("error1") || esito.equals("error2") || esito.equals("error3") || esito.equals("error4") || esito.equals("error5"));
+    		}while(esito.equals("error1") || esito.equals("error2") || esito.equals("error3") || esito.equals("error4") || esito.equals("error5"));
     	}
     }
     
@@ -63,6 +64,7 @@ public class UI_account
     	System.out.print("\ninserire password corrente: ");
         current_psw = sc.nextLine();
         System.out.print("\ninserire la nuova password: ");
+        System.out.print("\n(N.B la password deve contenere un carattere maiuscolo, un carattere minuscolo, un numero,\n un carattere speciale tra '.', ',', '#', '@', '$', '%'. La Lunghezza minima e' 8 caratteri)");
         new_psw = sc.nextLine();
         System.out.print("\nconfermare la nuova password: ");
         confirm_new_psw = sc.nextLine();
