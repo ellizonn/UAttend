@@ -81,7 +81,7 @@ RF15 (modifica lezione):
 
 
 RF16 (scrivi avviso):
-- da integrare con RF14 se implementato;
+- da integrare con RF15;
 - non c'e' la classe di test.
 
 
