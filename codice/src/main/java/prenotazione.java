@@ -27,15 +27,6 @@ public class prenotazione
     	this.presente=p;
     }
     
-    // RF09 visualizza prenotazioni
-	// Balossino, Battezzati
-
-    public String toString() {
-    	String s="";
-    	s=s+this.matricola_studente+"\t"+this.nome_corso+"\t"+this.cognome_docente+"\t"+this.aula+"\t"+this.giorno+"\t"+this.ora_inizio+"\t"+this.ora_fine+"\t"+this.presente;
-    	return s;
-    }
-    
 
 }
 
