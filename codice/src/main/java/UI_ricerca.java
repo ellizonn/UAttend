@@ -277,7 +277,7 @@ public class UI_ricerca
 		scelta_lez = sc.nextInt();
 	}
 	
-	 public void avvio_ricerca_utente(String tipo_utente) throws IOException {
+	 public void avvio_ricerca_utente(String tipo_utente) /*throws IOException*/ {
 	    	
 	    	//RF07: ricerca utente
 	    	//autori: Malavasi - Torta

@@ -10,7 +10,7 @@ RF02 (cambia password):
 
 
 RF03 (ricerca avvisi per data):
-- dato che il messaggio di errore e' generico, si potrebbero stampare i vincoli sulle date appena prima di chiedere all'utente l'inserimento.
+- OK
 
 
 
@@ -20,7 +20,7 @@ RF04 (crea corso):
 
 
 RF05 (aggiungi lezione):
-- uno dei test fallisce.
+- OK
 
 
 
@@ -30,7 +30,8 @@ RF06 (seleziona aula libera):
 
 
 RF07 (ricerca utente):
-- stampare tutti gli attributi degli utenti.
+- stampare i nomi degli attributi (matricola, nome, cognome, ...) all'inizio dell'elenco;
+- usare \t per incolonnare gli attributi.
 
 
 
@@ -44,12 +45,11 @@ RF09 (visualizza prenotazioni):
 - visualizzare i nomi degli attributi all'inizio dell'elenco: matricola, corso, docente, ...
 - le prenotazioni sono  numerate come 0, 1, 2, ... Percio' non si puo' usare 0 per uscire;
 - se l'elenco e' vuoto mostrare il messaggio "nessuna prenotazione" o simile;
-- se si arriva da RF12 non c'e' la possibilita' di selezionare la prenotazione.
+- se si arriva da RF12 l'elenco e' sbagliato e non c'e' la possibilita' di selezionare la prenotazione.
 
 
 RF10 (annulla prenotazione): 
-- da integrare in RF09;
-- non c'e' la classe di test.
+- non implemenato.
 
 
 
@@ -60,13 +60,12 @@ RF11 (registra presenza):
 
 
 RF12 (ricerca lezioni per data):
-- non c'e' la classe di test;
-- quando si inserisce 0 per ritornare al menu principale, a volte viene richiesta la data di inizio. 
+- OK
 
 
 
 RF13 (prenota posto):
-- lo studente puo' prenotarsi alla stessa lezione piu' volte, ma questo controllo non era previsto nella specifica. 
+- OK 
 
 
 
@@ -82,16 +81,13 @@ RF15 (modifica lezione):
 
 
 RF16 (scrivi avviso):
-- non si puo' avviare dal login;
-- da integrare con RF14 e RF15;
+- da integrare con RF14 se implementato;
 - non c'e' la classe di test.
 
 
 
 
 RF17 (crea utente):
-- nel messaggio di successo si chiede di premere invio per continuare, ma non e' necessario;
-- l'account appena creato e' bloccato (false); forse e' meglio impostarlo a true (RF08 non e' stato implementato);
 - uno dei test fallisce.
 
 
