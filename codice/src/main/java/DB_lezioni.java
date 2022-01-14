@@ -385,6 +385,7 @@ public class DB_lezioni {
             System.out.println("ERRORE apertura file prenotazioni.txt");
         }
     }
+
     //Autore : Orsetti,Lopez
     //RF10 -Annulla_prenotazione
       public void Cancella_prenotazione(prenotazione p)
@@ -421,6 +422,7 @@ public class DB_lezioni {
         }
         System.out.println("Cancellazione eseguita");
     }
+
 
     // ----------------------------------------------------------------------------
 

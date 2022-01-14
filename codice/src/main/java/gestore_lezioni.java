@@ -366,6 +366,7 @@ class gestore_lezioni {
 		}
 	}
 
+
 //RF10 -Annulla_prenotazione Autori: Orsetti,Lopez
 	public void Verifica_data(prenotazione p)
 	{
@@ -380,3 +381,5 @@ class gestore_lezioni {
 		}
 	}
 }
+
+
