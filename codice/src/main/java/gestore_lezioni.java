@@ -366,3 +366,17 @@ class gestore_lezioni {
 		}
 	}
 }
+//RF10 -Annulla_prenotazione Autori: Orsetti,Lopez
+	public void Verifica_data(Prenotazione p)
+	{
+		LocalDate odierna=LocalDate.now();
+		if(p.data_inizio.isAfter(odierna))
+		{
+			Cancella_prenotazione(p);
+		}
+		else 
+		{
+			println("impossibile annullare prenotazione");
+		}
+	}
+
