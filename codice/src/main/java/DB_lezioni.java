@@ -385,6 +385,42 @@ public class DB_lezioni {
             System.out.println("ERRORE apertura file prenotazioni.txt");
         }
     }
+    //Autore : Orsetti,Lopez
+    //RF10 -Annulla_prenotazione
+      public void Cancella_prenotazione(Prenotazione p)
+    {
+        Arraylist<prenotazione> elenco_prenotazioni=carica_prenotazioni();
+        ArrayList<lezione> elenco_lezioni = carica_lezioni();
+        Lezione l;
+        int elimina=-1;
+        for (int i=0; i< elenco_prenotazioni.size() && elimina==-1; i++)
+        {
+            if(p.nome_corso.equals(elenco_prenotazioni.get(i).nome_corso) && 
+            p.cognome_docente.equals(elenco_prenotazioni.get(i).cognome_docente) &&
+            p.aula == elenco_prenotazioni.get(i).aula &&
+            p.presente == elenco_prenotazioni.get(i).presente &&
+            p.giorno.equals(elenco_prenotazioni.get(i).giorno) &&
+            p.ora_inizio.equals(elenco_prenotazioni.get(i).ora_inizio) &&
+            p.ora_fine.equals(elenco_prenotazioni.get(i).ora_fine)) 
+                    eliminare = i;
+
+            if(p.nome_corso.equals(elenco_lezioni.get(i).nome_corso) &&
+            p.cognome_docente.equals(elenco_lezioni.get(i).cognome_docente) &&
+            p.aula==elenco_lezioni.get(i).aula &&
+            p.giorno.equals(elenco_lezioni.get(i).giorno) &&
+            p.ora_inizio.equals(elenco_lezioni.get(i).ora_inizio)&&
+            p.ora_fine.equals(elenco_lezioni.get(i).ora_fine))
+                elenco_lezioni.get(i).posti_disponibili++;
+            
+            if(eliminare != -1) 
+            {
+                elenco_prenotazioni.remove(eliminare);
+                salva_prenotazioni(elenco_prenotazioni);
+            }
+            
+        }
+        println("Cancellazione eseguita");
+    }
 
     // ----------------------------------------------------------------------------
 
