@@ -111,7 +111,8 @@ public class UI_prenotazione
     	
     	try {
 			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_docente(docente, nomeCorso);
-			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\n"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\n"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\n"+prenotazioni.get(i).cognome_docente+"\nAULA:\n"+prenotazioni.get(i).aula+"\nGIORNO:\n"+prenotazioni.get(i).giorno+"\nORA INIZIO:\n"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\n"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\n"+prenotazioni.get(i).presente);
+			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\t"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\t"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\t"+prenotazioni.get(i).cognome_docente+"\nAULA:\t"+prenotazioni.get(i).aula+"\nGIORNO:\t"+prenotazioni.get(i).giorno+"\nORA INIZIO:\t"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\t"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\t"+prenotazioni.get(i).presente+"\n");
+			System.out.print("\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			if(tipo_utente=="Staff") {
 				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza");
@@ -145,7 +146,8 @@ public class UI_prenotazione
     public void visualizza_prenotaz_stud(int matricola, String tipo_utente) /*throws IOException */ {
     	try {
 			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_studente(matricola);
-			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\n"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\n"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\n"+prenotazioni.get(i).cognome_docente+"\nAULA:\n"+prenotazioni.get(i).aula+"\nGIORNO:\n"+prenotazioni.get(i).giorno+"\nORA INIZIO:\n"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\n"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\n"+prenotazioni.get(i).presente);
+			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\t"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\t"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\t"+prenotazioni.get(i).cognome_docente+"\nAULA:\t"+prenotazioni.get(i).aula+"\nGIORNO:\t"+prenotazioni.get(i).giorno+"\nORA INIZIO:\t"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\t"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\t"+prenotazioni.get(i).presente+"\n");
+			System.out.print("\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			if(tipo_utente=="Staff") {
 				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza");
