@@ -1,0 +1,28 @@
+RF02_cambia_password_test.java
+ RF02_cambia_password_test
+RF11_registra_presenza.java
+ RF11_registra_presenza
+RF12_ricerca_lezioni_per_data_test.java
+ RF12_ricerca_lezioni_per_data_test
+RF01_visualizza_avvisi_recenti_test.java
+ RF01_visualizza_avvisi_recenti_test
+RF06_seleziona_aula_libera_test.java
+ RF06_seleziona_aula_libera_test
+RF03_test_avvisi_per_data.java
+ RF03_test_avvisi_per_data
+RF05_aggiungi_lezione_test.java
+ RF05_aggiungi_lezione_test
+RF13_prenota_posto_test.java
+ RF13_prenota_posto_test
+RF09_visualizza_prenotazioni_test.java
+ RF09_visualizza_prenotazioni_test
+RF00_login_test.java
+ RF00_login_test
+RF14_cancella_lezione_test.java
+ RF14_cancella_lezione_test
+RF07_ricerca_utente_test.java
+ RF07_ricerca_utente_test
+RF06_test_prototipo.java
+ RF06_test_prototipo
+RF04_crea_corso_test.java
+ RF04_crea_corso_test
