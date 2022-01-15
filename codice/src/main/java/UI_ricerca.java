@@ -158,7 +158,7 @@ public class UI_ricerca
 
 						if(scelta_lez == 1 && !tipo_utente.equals("studente")) {
 							System.out.println("\nAVVIO visualizza prenotazioni");
-							ui_pren.visualizza_prenotaz_lez(lez.nome_corso, lez.cognome_docente, tipo_utente);
+							ui_pren.visualizza_prenotaz_lez(lez, tipo_utente);
 						}
 						if(scelta_lez == 2 && tipo_utente.equals("studente")) {
 							System.out.println("\nAVVIO prenota posto");
