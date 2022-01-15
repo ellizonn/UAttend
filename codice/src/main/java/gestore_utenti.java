@@ -58,55 +58,23 @@ class gestore_utenti {
 		//RF17: crea utente
     	//autori: La Spisa & Frasson
 		int N=nome.length();
+		int C=cognome.length();
 		boolean esito;
-		Scanner sc= new Scanner(System.in);
-		if(N==0)
-		{
-			System.out.println("errore inserimento nome, premere invio per continuare");
-			sc.nextLine();
+		if(N==0 || C==0 || tipo_utente==null || residenza==null)
 			esito=false;
-		}
 		else
-		{
-			int C=cognome.length();
-			if(C==0)
-			{
-				System.out.println("errore inserimento cognome, premere invio per continuare");
-				sc.nextLine();
-				esito=false;
-			}
-			else
-			{
-				if(residenza==null)
-				{
-					System.out.println("errore inserimento residenza, premere invio per continuare");
-					sc.nextLine();
-					esito=false;
-				}
-				else
-				{
-					if(tipo_utente==null)
-					{
-						System.out.println("errore inserimento tipo_utente, premere invio per continuare");
-						sc.nextLine();
-						esito=false;
-					}
-					else
-					{
-						utente ut=new utente();
-						ut.nome=nome;
-						ut.cognome=cognome;
-						ut.residenza=residenza;
-						ut.tipo_utente=tipo_utente;
-						if (tipo_utente=="studente")
-							ut.anno=anno_immatricolazione;
-						int M=db_ut.ricerca_ultima_matricola();
-						ut.matricola=M+1;
-						db_ut.aggiungi_utente(ut);
-						esito=true;
-					}
-				}
-			}
+		{	
+			utente ut=new utente();
+			ut.nome=nome;
+			ut.cognome=cognome;
+			ut.residenza=residenza;
+			ut.tipo_utente=tipo_utente;
+			if (tipo_utente=="studente")
+				ut.anno=anno_immatricolazione;
+			int M=db_ut.ricerca_ultima_matricola();
+			ut.matricola=M+1;
+			db_ut.aggiungi_utente(ut);
+			esito=true;
 		}
 		return esito;
 	}
