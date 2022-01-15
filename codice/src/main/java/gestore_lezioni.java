@@ -301,7 +301,7 @@ class gestore_lezioni {
 	}
 
 	//RF09 @autor Balossino, Battezzati
-  	public ArrayList<prenotazione> get_prenotazioni_docente(String docente, String nomeCorso){
+  	public ArrayList<prenotazione> get_prenotazioni_docente(lezione lez, String nomeCorso){
   		
 		ArrayList<prenotazione> prenotazioni=db_lez.carica_prenotazioni();
 		ArrayList<prenotazione> prenotazioni_return = new ArrayList<>();
