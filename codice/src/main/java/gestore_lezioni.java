@@ -270,8 +270,8 @@ class gestore_lezioni {
 		lezione new_lez = lez;
 		new_lez.posti_disponibili = lez.posti_disponibili - 1;
 		db_lez.modifica_lezione(new_lez); //chiamata
-		//creo oggetto prenotazione (inseriamo di default presente=false)
-		prenotazione obj_preno = new prenotazione(matricola, new_lez.nome_corso, new_lez.cognome_docente, new_lez.numero_aula, new_lez.giorno, new_lez.ora_inizio, new_lez.ora_fine, "non_registrato");
+		//creo oggetto prenotazione (inseriamo di default presente=indefinito)
+		prenotazione obj_preno = new prenotazione(matricola, new_lez.nome_corso, new_lez.cognome_docente, new_lez.numero_aula, new_lez.giorno, new_lez.ora_inizio, new_lez.ora_fine, "indefinito");
 		db_lez.aggiungi_prenotazione(obj_preno); //chiamata
 		
 	}
@@ -288,7 +288,7 @@ class gestore_lezioni {
 	public boolean controllo_prenotazione_doppia(lezione lez, int matricola) {
 		
 		boolean esito_prenotazione_doppia;
-		prenotazione obj_preno = new prenotazione(matricola, lez.nome_corso, lez.cognome_docente, lez.numero_aula, lez.giorno, lez.ora_inizio, lez.ora_fine, "non_registrato");
+		prenotazione obj_preno = new prenotazione(matricola, lez.nome_corso, lez.cognome_docente, lez.numero_aula, lez.giorno, lez.ora_inizio, lez.ora_fine, "indefinito");
 		prenotazione obj_cercato = db_lez.cerca_prenotazione(obj_preno);
 		if (obj_cercato != null) {
 			esito_prenotazione_doppia = true;
