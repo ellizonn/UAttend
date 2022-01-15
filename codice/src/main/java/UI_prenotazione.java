@@ -106,7 +106,7 @@ public class UI_prenotazione
     }
 
 	   //RF09 @autor Balossino, Battezzati
-    public void visualizza_prenotaz_lez(lezione lez String tipo_utente) /*throws IOException */{
+    public void visualizza_prenotaz_lez(lezione lez, String tipo_utente) /*throws IOException */{
     	
     	try {
 			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_docente(lez);
