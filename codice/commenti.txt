@@ -77,8 +77,7 @@ RF14 (cancella lezione):
 
 
 RF15 (modifica lezione):
-- da integrare con RF12;
-- non c'e' la classe di test.
+- controllare esecuzione.
 
 
 
