@@ -124,8 +124,8 @@ public class UI_prenotazione
 					prenotazione p=prenotazioni.get(Integer.valueOf(scelta)-1);
 					System.out.print("Digitare 1 per annullare la prenotazione, oppure 2 per confermarne la presenza");
 					scelta = br.readLine();
-					if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
-					if(scelta.compareTo("2")==0) g_lez.avvio_registra_presenza(p);
+					//if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
+					//if(scelta.compareTo("2")==0) g_lez.avvio_registra_presenza(p);
 
 					System.out.print("\nFine\n");
 					return;
@@ -160,7 +160,7 @@ public class UI_prenotazione
 					prenotazione p=prenotazioni.get(Integer.valueOf(scelta)-1);
 					System.out.print("Digitare 1 per annullare la prenotazione, oppure 2 per confermarne la presenza: ");
 					scelta = br.readLine();
-					if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
+					//if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
 					if(scelta.compareTo("2")==0) mostra_form_registra_presenze(p);
 					System.out.print("\nFine\n");
 					return;
@@ -175,7 +175,7 @@ public class UI_prenotazione
 				}
 				else {
 					prenotazione p=prenotazioni.get(Integer.valueOf(scelta)-1);
-					if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
+					//if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
 					System.out.print("\nFine\n");
 					return;
 				}
