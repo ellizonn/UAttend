@@ -66,8 +66,11 @@ public class UI_utente
 	    		return;
 	    	case 6:
 	    		esito=ut.controllo_generalita(nome, cognome, residenza, tipo_utente, anno_immatricolazione);
+				if(esito==false)
+				{
 	    		System.out.println("errore: una o più generalità non sono state inserite, premere invio per continuare");
 	    		sc3.nextLine();
+				}
 	    		break;
 	    	}
     	}
