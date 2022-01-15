@@ -3,11 +3,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 
 public class UI_prenotazione
 {   
 	public enum utente {STUDENTE, DOCENTE, STAFF};
     private gestore_lezioni g_lez;
+	public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public UI_prenotazione(gestore_lezioni g1)
     {	
@@ -84,7 +86,7 @@ public class UI_prenotazione
 	public String form_prenotazione(lezione lez){
 		
         Scanner sc = new Scanner(System.in);
-        System.out.print("\nHai selezionato la lezione di "+lez.nome_corso+", prevista alle ore "+lez.ora_inizio+" del "+lez.giorno+".\nDigitare 'procedi' o 'indietro': ");
+        System.out.print("\nHai selezionato la lezione di "+lez.nome_corso+", prevista alle ore "+lez.ora_inizio+" del "+lez.giorno.format(formatter)+".\nDigitare 'procedi' o 'indietro': ");
         String scelta_stud = sc.nextLine();
 		return scelta_stud;
 		
