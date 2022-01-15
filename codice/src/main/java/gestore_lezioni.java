@@ -365,21 +365,6 @@ class gestore_lezioni {
 			db_lez.inserisci_scelta(p, "Assente");
 		}
 	}
-
-
-//RF10 -Annulla_prenotazione Autori: Orsetti,Lopez
-	public void Verifica_data(prenotazione p)
-	{
-		LocalDate odierna=LocalDate.now();
-		if(p.giorno.isAfter(odierna))
-		{
-			db_lez.Cancella_prenotazione(p);
-		}
-		else 
-		{
-			System.out.println("impossibile annullare prenotazione");
-		}
-	}
 }
 
 
