@@ -3,21 +3,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.time.format.DateTimeFormatter;
 
 public class UI_prenotazione
 {   
 	public enum utente {STUDENTE, DOCENTE, STAFF};
     private gestore_lezioni g_lez;
-	public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public UI_prenotazione(gestore_lezioni g1)
     {	
 	//autore: Codetta
 	g_lez=g1;
     }
-	
-	
+
 	// =======================================================================
   
   
@@ -86,7 +83,7 @@ public class UI_prenotazione
 	public String form_prenotazione(lezione lez){
 		
         Scanner sc = new Scanner(System.in);
-        System.out.print("\nHai selezionato la lezione di "+lez.nome_corso+", prevista alle ore "+lez.ora_inizio+" del "+lez.giorno.format(formatter)+".\nDigitare 'procedi' o 'indietro': ");
+        System.out.print("\nHai selezionato la lezione di "+lez.nome_corso+", prevista alle ore "+lez.ora_inizio+" del "+lez.giorno+".\nDigitare 'procedi' o 'indietro': ");
         String scelta_stud = sc.nextLine();
 		return scelta_stud;
 		
@@ -109,12 +106,10 @@ public class UI_prenotazione
     }
 
 	   //RF09 @autor Balossino, Battezzati
-    public void visualizza_prenotaz_lez(lezione lez, String tipo_utente) /*throws IOException */{
+    public void visualizza_prenotaz_lez(String nomeCorso, String docente, String tipo_utente) /*throws IOException */{
     	
     	try {
-			ArrayList<prenotazione> prenotazioni = g_lez.get_prenotazioni_docente(lez, lez.nome_corso);
-			if(prenotazioni.size()==0) System.out.print("\nNESSUNA PRENOTAZIONE\n");
-			else {
+			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_docente(docente, nomeCorso);
 			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\t"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\t"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\t"+prenotazioni.get(i).cognome_docente+"\nAULA:\t"+prenotazioni.get(i).aula+"\nGIORNO:\t"+prenotazioni.get(i).giorno+"\nORA INIZIO:\t"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\t"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\t"+prenotazioni.get(i).presente+"\n");
 			System.out.print("\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -141,7 +136,6 @@ public class UI_prenotazione
 				System.out.print("\nFine\n");
 				return;
 			}
-			}
     	}
     	catch(IOException e) {
     		System.out.print("\ninput non valido\n");
@@ -152,13 +146,11 @@ public class UI_prenotazione
     public void visualizza_prenotaz_stud(int matricola, String tipo_utente) /*throws IOException */ {
     	try {
 			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_studente(matricola);
-			if(prenotazioni.size()==0) System.out.print("\nNESSUNA PRENOTAZIONE\n");
-			else {
 			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\t"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\t"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\t"+prenotazioni.get(i).cognome_docente+"\nAULA:\t"+prenotazioni.get(i).aula+"\nGIORNO:\t"+prenotazioni.get(i).giorno+"\nORA INIZIO:\t"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\t"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\t"+prenotazioni.get(i).presente+"\n");
 			System.out.print("\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			if(tipo_utente=="Staff") {
-				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza");
+				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza: ");
 				String scelta = br.readLine();
 				if(scelta.compareTo("0")==0) {
 					System.out.print("\nFine\n");
@@ -166,16 +158,16 @@ public class UI_prenotazione
 				}
 				else {
 					prenotazione p=prenotazioni.get(Integer.valueOf(scelta)-1);
-					System.out.print("Digitare 1 per annullare la prenotazione, oppure 2 per confermarne la presenza");
+					System.out.print("Digitare 1 per annullare la prenotazione, oppure 2 per confermarne la presenza: ");
 					scelta = br.readLine();
 					if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
-					if(scelta.compareTo("2")==0) g_lez.avvio_registra_presenza(p);
+					if(scelta.compareTo("2")==0) mostra_form_registra_presenze(p);
 					System.out.print("\nFine\n");
 					return;
 				}
 			}
 			else {
-				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla");
+				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla: ");
 				String scelta = br.readLine();
 				if(scelta.compareTo("0")==0) {
 					System.out.print("\nFine\n");
@@ -187,7 +179,6 @@ public class UI_prenotazione
 					System.out.print("\nFine\n");
 					return;
 				}
-			}
 			}
     	}
     	catch(IOException e) {
@@ -202,19 +193,29 @@ public class UI_prenotazione
 	 * @param p : prenotazione
 	 */
 	public void mostra_form_registra_presenze(prenotazione p){
+		Scanner sc = new Scanner(System.in);
+		String scelta = null;
 		try{
-			System.out.println("Inserire: 'p'-PRESENTE ---- 'a'-ASSENTE ---- 'annulla' per annullare.\n");
-			Scanner sc = new Scanner(System.in);
-			String scelta = sc.nextLine();
-			if(scelta==null || !scelta.equals('a') || !scelta.equals('p') || !scelta.equals("annulla")){
-				mostra_errore_registrazione("err3", p);
-			} else if(scelta.equals("annulla")){
-				return;
-			} else {
+		String str = g_lez.avvio_registra_presenza(p);
+		if(str.equals("err1")) {
+			mostra_errore_registrazione("err1",p);
+		} else if (str.equals("err2")){
+			mostra_errore_registrazione("err2", p);
+		} else if (str.equals("noerr")){
+			System.out.println("Inserire: 'p'-PRESENTE ---- 'a'-ASSENTE ---- 'annulla' per annullare: ");
+			scelta = sc.nextLine();
+			if (scelta.equals("p")) {
 				g_lez.gestione_scelta(scelta, p);
+			} else if (scelta.equals("a")) {
+				g_lez.gestione_scelta(scelta, p);
+			} else if (scelta.equals("annulla")) {
+
+			} else {
+				mostra_errore_registrazione("err3", p);
 			}
-		} catch (Exception e){
-			e.printStackTrace();
+		}
+		} catch (NullPointerException e){
+			System.out.println("Input non valido. (UI_prenotazione.java)");
 		}
 	}
 
@@ -229,24 +230,24 @@ public class UI_prenotazione
 		switch (esito){
 			case "err1":
 				System.out.println("ERRORE REGISTRAZIONE!\nLa lezione in data: " + p.giorno + " delle ore: " + p.ora_inizio + " non e' ancora avvenuta.\n");
-				System.out.println("Premere ENTER per confermare lettura.\n");
+				System.out.println("Premere ENTER per confermare lettura.");
 				Scanner s1 = new Scanner(System.in);
 				enter = s1.nextLine();
 				break;
 			case "err2":
-				System.out.println("Registrazione gia' effettuata!\n");
-				System.out.println("Premere ENTER per confermare lettura.\n");
+				System.out.println("Registrazione gia' effettuata!");
+				System.out.println("Premere ENTER per confermare lettura.");
 				Scanner s2 = new Scanner(System.in);
 				enter = s2.nextLine();
 				break;
 			case "err3":
-				System.out.println("Scelta non valida!\n");
-				System.out.println("Premere ENTER per confermare lettura.\n");
+				System.out.println("Scelta non valida!");
+				System.out.println("Premere ENTER per confermare lettura.");
 				Scanner s3 = new Scanner(System.in);
 				enter = s3.nextLine();
 				break;
-
 		}
+		return;
 	}
 
 	/**
@@ -257,19 +258,19 @@ public class UI_prenotazione
 	 */
 	public void mostra_messaggio_conferma(String scelta_opzione){
 		String enter;
-		if(scelta_opzione.equals('p')){
-			System.out.println("Presenza confermata con successo!\n");
-			System.out.println("Premere ENTER per confermare lettura.\n");
+		if(scelta_opzione.equals("Presente")){
+			System.out.println("Presenza confermata con successo!");
+			System.out.println("Premere ENTER per confermare lettura.");
 			Scanner s1 = new Scanner(System.in);
 			enter = s1.nextLine();
-		} else if(scelta_opzione.equals('a')){
-			System.out.println("Assenza confermata con successo!\n");
-			System.out.println("Premere ENTER per confermare lettura.\n");
+		} else if(scelta_opzione.equals("Assente")){
+			System.out.println("Assenza confermata con successo!");
+			System.out.println("Premere ENTER per confermare lettura.");
 			Scanner s2 = new Scanner(System.in);
 			enter = s2.nextLine();
 		} else {
-			System.out.println("Errore nell'inserimento della scelta.\n");
-			System.out.println("Premere ENTER per confermare lettura.\n");
+			System.out.println("Errore nell'inserimento della scelta.");
+			System.out.println("Premere ENTER per confermare lettura.");
 			Scanner s3 = new Scanner(System.in);
 			enter = s3.nextLine();
 		}
