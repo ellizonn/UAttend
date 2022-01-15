@@ -520,9 +520,10 @@ public class DB_lezioni {
             if(pren.get(index).matricola_studente == p.matricola_studente &&
             pren.get(index).giorno.compareTo(p.giorno)==0 &&
             pren.get(index).ora_inizio.compareTo(p.ora_inizio)==0){
-                pren.get(index).presente.equals(scelta_opzione);
+                pren.get(index).presente = scelta_opzione;
                 break;
             }
+            index++;
         }
         salva_prenotazioni(pren);
         return;

@@ -203,13 +203,13 @@ public class UI_prenotazione
 			mostra_errore_registrazione("err2", p);
 		} else if (str.equals("noerr")){
 			System.out.println("Inserire: 'p'-PRESENTE ---- 'a'-ASSENTE ---- 'annulla' per annullare: ");
-			scelta = sc.nextLine();
+			scelta = sc.next();
 			if (scelta.equals("p")) {
 				g_lez.gestione_scelta(scelta, p);
 			} else if (scelta.equals("a")) {
 				g_lez.gestione_scelta(scelta, p);
 			} else if (scelta.equals("annulla")) {
-
+				return;
 			} else {
 				mostra_errore_registrazione("err3", p);
 			}
@@ -217,6 +217,7 @@ public class UI_prenotazione
 		} catch (NullPointerException e){
 			System.out.println("Input non valido. (UI_prenotazione.java)");
 		}
+		mostra_messaggio_conferma(scelta);
 	}
 
 	/**
@@ -258,12 +259,12 @@ public class UI_prenotazione
 	 */
 	public void mostra_messaggio_conferma(String scelta_opzione){
 		String enter;
-		if(scelta_opzione.equals("Presente")){
+		if(scelta_opzione.equals("p")){
 			System.out.println("Presenza confermata con successo!");
 			System.out.println("Premere ENTER per confermare lettura.");
 			Scanner s1 = new Scanner(System.in);
 			enter = s1.nextLine();
-		} else if(scelta_opzione.equals("Assente")){
+		} else if(scelta_opzione.equals("a")){
 			System.out.println("Assenza confermata con successo!");
 			System.out.println("Premere ENTER per confermare lettura.");
 			Scanner s2 = new Scanner(System.in);
