@@ -113,6 +113,8 @@ public class UI_prenotazione
     	
     	try {
 			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_docente(lez);
+			if(prenotazioni.size()==0) System.out.print("\nNESSUNA PRENOTAZIONE\n");
+			else {
 			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\t"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\t"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\t"+prenotazioni.get(i).cognome_docente+"\nAULA:\t"+prenotazioni.get(i).aula+"\nGIORNO:\t"+prenotazioni.get(i).giorno+"\nORA INIZIO:\t"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\t"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\t"+prenotazioni.get(i).presente+"\n");
 			System.out.print("\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -139,6 +141,7 @@ public class UI_prenotazione
 				System.out.print("\nFine\n");
 				return;
 			}
+			}
     	}
     	catch(IOException e) {
     		System.out.print("\ninput non valido\n");
@@ -149,6 +152,8 @@ public class UI_prenotazione
     public void visualizza_prenotaz_stud(int matricola, String tipo_utente) /*throws IOException */ {
     	try {
 			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_studente(matricola);
+			if(prenotazioni.size()==0) System.out.print("\nNESSUNA PRENOTAZIONE\n");
+			else {
 			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\t"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\t"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\t"+prenotazioni.get(i).cognome_docente+"\nAULA:\t"+prenotazioni.get(i).aula+"\nGIORNO:\t"+prenotazioni.get(i).giorno+"\nORA INIZIO:\t"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\t"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\t"+prenotazioni.get(i).presente+"\n");
 			System.out.print("\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -182,6 +187,7 @@ public class UI_prenotazione
 					System.out.print("\nFine\n");
 					return;
 				}
+			}
 			}
     	}
     	catch(IOException e) {
