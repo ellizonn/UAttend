@@ -109,10 +109,10 @@ public class UI_prenotazione
     }
 
 	   //RF09 @autor Balossino, Battezzati
-    public void visualizza_prenotaz_lez(String nomeCorso, String docente, String tipo_utente) /*throws IOException */{
+    public void visualizza_prenotaz_lez(lezione lez, String tipo_utente) /*throws IOException */{
     	
     	try {
-			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_docente(docente, nomeCorso);
+			ArrayList<prenotazione> prenotazioni = this.g_lez.get_prenotazioni_docente(lez);
 			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\t"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\t"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\t"+prenotazioni.get(i).cognome_docente+"\nAULA:\t"+prenotazioni.get(i).aula+"\nGIORNO:\t"+prenotazioni.get(i).giorno+"\nORA INIZIO:\t"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\t"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\t"+prenotazioni.get(i).presente+"\n");
 			System.out.print("\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
