@@ -127,6 +127,7 @@ public class UI_prenotazione
 					scelta = br.readLine();
 					if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
 					if(scelta.compareTo("2")==0) g_lez.avvio_registra_presenza(p);
+
 					System.out.print("\nFine\n");
 					return;
 				}
