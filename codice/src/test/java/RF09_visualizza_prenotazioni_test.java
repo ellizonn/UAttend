@@ -1,16 +1,16 @@
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class RF09_visualizza_prenotazioni_test {
-/*
+
 	@Test
-	public void test() throws IOException {
+	public void test(){
 		DB_lezioni db_lez = new DB_lezioni();
 		gestore_lezioni g_lez = new gestore_lezioni(db_lez);
-		UI_prenotazione ui_pren = new UI_prenotazione(g_lez);
 		
 		lezione lez1=new lezione();
 		lez1.nome_corso=("Programmazione_1");
@@ -42,28 +42,31 @@ public class RF09_visualizza_prenotazioni_test {
 		lez3.ora_inizio=(LocalTime.of(11,0));
 		lez3.ora_fine=(LocalTime.of(13,0));
 		
-		System.out.print("\n//STAFF LEZIONI//\n");
-		ui_pren.visualizza_prenotaz_lez(lez1, "Staff");
-		System.out.print("\n//STAFF LEZIONI//\n");
-		ui_pren.visualizza_prenotaz_lez(lez3, "Staff");
-		System.out.print("\n//STAFF LEZIONI//\n");
-		ui_pren.visualizza_prenotaz_lez(lez2, "Staff");
+		ArrayList<prenotazione> arr=g_lez.get_prenotazioni_docente(lez1);
+		Assert.assertEquals(5,arr.size());
+		Assert.assertEquals(100006,arr.get(0).matricola_studente);
+		Assert.assertEquals(100007,arr.get(1).matricola_studente);
+		Assert.assertEquals(100020,arr.get(2).matricola_studente);
+		Assert.assertEquals(100022,arr.get(3).matricola_studente);
+		Assert.assertEquals(100021,arr.get(4).matricola_studente);
 		
-		System.out.print("\n//DOCENTE LEZIONI//\n");
-		ui_pren.visualizza_prenotaz_lez(lez1, "Docente");
-		System.out.print("\n//DOCENTE LEZIONI//\n");
-		ui_pren.visualizza_prenotaz_lez(lez3, "Docente");
-		System.out.print("\n//DOCENTE LEZIONI//\n");
-		ui_pren.visualizza_prenotaz_lez(lez2, "Docente");
+		arr=g_lez.get_prenotazioni_docente(lez2);
+		Assert.assertEquals(0,arr.size());
 		
-		System.out.print("\n//STUDENTE LEZIONI//\n");
-		ui_pren.visualizza_prenotaz_lez(lez1, "Studente");
+		arr=g_lez.get_prenotazioni_docente(lez3);
+		Assert.assertEquals(4,arr.size());
+		Assert.assertEquals(100004,arr.get(0).matricola_studente);
+		Assert.assertEquals(100005,arr.get(1).matricola_studente);
+		Assert.assertEquals(100022,arr.get(2).matricola_studente);
+		Assert.assertEquals(100021,arr.get(3).matricola_studente);
 		
-		System.out.print("\n//STUDENTE//\n");
-		ui_pren.visualizza_prenotaz_stud(100003, "Studente");
-		System.out.print("\n//STUDENTE//\n");
-		ui_pren.visualizza_prenotaz_stud(100003, "Docente");
+		arr=g_lez.get_prenotazioni_studente(100003);
+		Assert.assertEquals(0,arr.size());
+		arr=g_lez.get_prenotazioni_studente(100021);
+		Assert.assertEquals(2,arr.size());
+		Assert.assertEquals("Programmazione_1",arr.get(0).nome_corso);
+		Assert.assertEquals("Sistemi_Operativi_1",arr.get(1).nome_corso);
 		
 	}
-*/
+
 }
