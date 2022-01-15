@@ -20,8 +20,9 @@ public class UI_utente
     	//autori: La Spisa & Frasson
     	boolean esito=false;
     	Scanner sc= new Scanner(System.in);
-		Scanner sc1= new Scanner(System.in);
+    	Scanner sc1= new Scanner(System.in);
     	Scanner sc2= new Scanner(System.in);
+    	Scanner sc3= new Scanner(System.in);
     	DB_utenti db=new DB_utenti();
     	gestore_utenti ut=new gestore_utenti(db);
     	boolean esito_scelta;
@@ -65,6 +66,8 @@ public class UI_utente
 	    		return;
 	    	case 6:
 	    		esito=ut.controllo_generalita(nome, cognome, residenza, tipo_utente, anno_immatricolazione);
+	    		System.out.println("errore: una o più generalità non sono state inserite, premere invio per continuare");
+	    		sc3.nextLine();
 	    		break;
 	    	}
     	}
