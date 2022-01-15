@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class DB_lezioni {
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm");
-    private UI_prenotazione ui_pren;
 
     public ArrayList<lezione> carica_lezioni() {
         // autore: Codetta
@@ -386,7 +385,43 @@ public class DB_lezioni {
         }
     }
 
-   
+    //Autore : Orsetti,Lopez
+    //RF10 -Annulla_prenotazione
+      public void Cancella_prenotazione(prenotazione p)
+    {
+        ArrayList<prenotazione> elenco_prenotazioni=carica_prenotazioni();
+        ArrayList<lezione> elenco_lezioni = carica_lezioni();
+        lezione l;
+        int eliminare=-1;
+        for (int i=0; i< elenco_prenotazioni.size() && eliminare==-1; i++)
+        {
+            if(p.nome_corso.equals(elenco_prenotazioni.get(i).nome_corso) && 
+            p.cognome_docente.equals(elenco_prenotazioni.get(i).cognome_docente) &&
+            p.aula == elenco_prenotazioni.get(i).aula &&
+            p.presente == elenco_prenotazioni.get(i).presente &&
+            p.giorno.equals(elenco_prenotazioni.get(i).giorno) &&
+            p.ora_inizio.equals(elenco_prenotazioni.get(i).ora_inizio) &&
+            p.ora_fine.equals(elenco_prenotazioni.get(i).ora_fine)) 
+                    eliminare = i;
+
+            if(p.nome_corso.equals(elenco_lezioni.get(i).nome_corso) &&
+            p.cognome_docente.equals(elenco_lezioni.get(i).cognome_docente) &&
+            p.aula==elenco_lezioni.get(i).numero_aula &&
+            p.giorno.equals(elenco_lezioni.get(i).giorno) &&
+            p.ora_inizio.equals(elenco_lezioni.get(i).ora_inizio)&&
+            p.ora_fine.equals(elenco_lezioni.get(i).ora_fine))
+                elenco_lezioni.get(i).posti_disponibili++;
+            
+            if(eliminare != -1) 
+            {
+                elenco_prenotazioni.remove(eliminare);
+                salva_prenotazioni(elenco_prenotazioni);
+            }
+            
+        }
+        System.out.println("Cancellazione eseguita");
+    }
+
 
     // ----------------------------------------------------------------------------
 
@@ -483,14 +518,14 @@ public class DB_lezioni {
         int index = 0;
         while(index<len){
             if(pren.get(index).matricola_studente == p.matricola_studente &&
-                    pren.get(index).giorno.equals(p.giorno) &&
-                    pren.get(index).ora_inizio.equals(p.ora_inizio)){
-                pren.get(index).presente = p.presente;
+            pren.get(index).giorno.compareTo(p.giorno)==0 &&
+            pren.get(index).ora_inizio.compareTo(p.ora_inizio)==0){
+                pren.get(index).presente.equals(scelta_opzione);
                 break;
             }
         }
         salva_prenotazioni(pren);
-        ui_pren.mostra_messaggio_conferma(scelta_opzione);
+        return;
     }
 
 }
