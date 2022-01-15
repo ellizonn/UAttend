@@ -43,20 +43,18 @@ RF08 (cambia stato account):
 RF09 (visualizza prenotazioni):
 - la classe di test non compila (ho commentato il contenuto);
 - visualizzare i nomi degli attributi all'inizio dell'elenco: matricola, corso, docente, ...
-- le prenotazioni sono  numerate come 0, 1, 2, ... Percio' non si puo' usare 0 per uscire;
 - se l'elenco e' vuoto mostrare il messaggio "nessuna prenotazione" o simile;
 - se si arriva da RF12 l'elenco e' sbagliato e non c'e' la possibilita' di selezionare la prenotazione.
 
 
 RF10 (annulla prenotazione): 
 - controllare esecuzione;
-- non c'e' la classe di test;
-- integrare con RF09.
+- non c'e' la classe di test.
 
 
 
 RF11 (registra presenza):
-- da integrare in RF09;
+- controllare esecuzione;
 - non c'e' la classe di test.
 
 
@@ -89,6 +87,6 @@ RF16 (scrivi avviso):
 
 
 RF17 (crea utente):
-- uno dei test fallisce.
+- controllare esecuzione.
 
 

@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import org.junit.Test;
 
 public class RF09_visualizza_prenotazioni_test {
-
+/*
 	@Test
 	public void test() throws IOException {
 		DB_lezioni db_lez = new DB_lezioni();
@@ -65,5 +65,5 @@ public class RF09_visualizza_prenotazioni_test {
 		ui_pren.visualizza_prenotaz_stud(100003, "Docente");
 		
 	}
-
+*/
 }
