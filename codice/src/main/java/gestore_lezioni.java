@@ -1,3 +1,5 @@
+import org.checkerframework.checker.guieffect.qual.UI;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,12 +12,10 @@ class gestore_lezioni {
 	public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	public static DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm");
     private lezione l;
-    private UI_prenotazione ui_pren;
 
     public gestore_lezioni(DB_lezioni d1) {
         //autore: Codetta
         db_lez = d1;
-
     }
 
     /**
@@ -301,14 +301,14 @@ class gestore_lezioni {
 	}
 
 	//RF09 @autor Balossino, Battezzati
-  	public ArrayList<prenotazione> get_prenotazioni_docente(lezione lez, String nomeCorso){
+  	public ArrayList<prenotazione> get_prenotazioni_docente(String docente, String nomeCorso){
   		
 		ArrayList<prenotazione> prenotazioni=db_lez.carica_prenotazioni();
 		ArrayList<prenotazione> prenotazioni_return = new ArrayList<>();
 		int l = prenotazioni.size();
 		for(int i=0;i<l;i++) {
 			prenotazione prenotazione = prenotazioni.get(i);
-			if (prenotazione.cognome_docente.compareTo(lez.cognome_docente)==0 && prenotazione.nome_corso.compareTo(lez.nome_corso)==0 && prenotazione.aula==lez.numero_aula && prenotazione.giorno.compareTo(lez.giorno)==0 && prenotazione.ora_inizio.compareTo(lez.ora_inizio)==0 && prenotazione.ora_fine.compareTo(lez.ora_fine)==0) prenotazioni_return.add(prenotazione);
+			if (prenotazione.cognome_docente.compareTo(docente)==0 && prenotazione.nome_corso.compareTo(nomeCorso)==0) prenotazioni_return.add(prenotazione);
 		}
 		return prenotazioni_return;
   	}
@@ -336,19 +336,16 @@ class gestore_lezioni {
 	 * @author Almasio, Borova
 	 * @param p : prenotazione
 	 */
-	public void avvio_registra_presenza(prenotazione p){
-		LocalDate giorno_att = LocalDate.now();
-		LocalTime ora_att = LocalTime.now();
-		String esito;
-		if(giorno_att.isBefore(p.giorno) && ora_att.isBefore(p.ora_inizio)){
-			esito = "err1";
-			ui_pren.mostra_errore_registrazione(esito, p);
-		} else if(p.presente.equals("Presente") || p.presente.equals("Assente")){
-			esito = "err2";
-			ui_pren.mostra_errore_registrazione(esito, p);
-		} else {
-			ui_pren.mostra_form_registra_presenze(p);
-		}
+	public String avvio_registra_presenza(prenotazione p){
+		String text = null;
+			if(LocalDate.now().isBefore(p.giorno) && LocalTime.now().isBefore(p.ora_inizio)){
+				text = "err1";
+			} else if (p.presente.equals("Presente") || p.presente.equals("Assente")){
+				text = "err2";
+			} else {
+				text = "noerr";
+			}
+		return text;
 	}
 
 	/**
@@ -359,10 +356,26 @@ class gestore_lezioni {
 	 * @param p : prenotazione
 	 */
 	public void gestione_scelta(String scelta_opzione, prenotazione p){
-		if(scelta_opzione.equals('p')){
+		if(scelta_opzione.toLowerCase().equals("p")){
 			db_lez.inserisci_scelta(p, "Presente");
-		} else if(scelta_opzione.equals('a')){
+		} else if(scelta_opzione.equals("a")){
 			db_lez.inserisci_scelta(p, "Assente");
+		}
+		return;
+	}
+
+
+//RF10 -Annulla_prenotazione Autori: Orsetti,Lopez
+	public void Verifica_data(prenotazione p)
+	{
+		LocalDate odierna=LocalDate.now();
+		if(p.giorno.isAfter(odierna))
+		{
+			db_lez.Cancella_prenotazione(p);
+		}
+		else 
+		{
+			System.out.println("impossibile annullare prenotazione");
 		}
 	}
 }
