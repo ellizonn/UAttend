@@ -308,7 +308,7 @@ class gestore_lezioni {
 		int l = prenotazioni.size();
 		for(int i=0;i<l;i++) {
 			prenotazione prenotazione = prenotazioni.get(i);
-			if (prenotazione.cognome_docente.compareTo(docente)==0 && prenotazione.nome_corso.compareTo(nomeCorso)==0) prenotazioni_return.add(prenotazione);
+			if (prenotazione.cognome_docente.compareTo(lez.cognome_docente)==0 && prenotazione.nome_corso.compareTo(lez.nome_corso)==0 && prenotazione.aula==lez.numero_aula && prenotazione.giorno.compareTo(lez.giorno)==0 && prenotazione.ora_inizio.compareTo(lez.ora_inizio)==0 && prenotazione.ora_fine.compareTo(lez.ora_fine)==0) prenotazioni_return.add(prenotazione);
 		}
 		return prenotazioni_return;
   	}
