@@ -325,6 +325,9 @@ class gestore_lezioni {
 		}
 		return prenotazioni_return;
   	}
+	
+}
+
 
 	/**
 	 * RF11 Registra_presenza
