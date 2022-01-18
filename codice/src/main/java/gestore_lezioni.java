@@ -368,11 +368,12 @@ class gestore_lezioni {
 	}
 
 
-//RF10 -Annulla_prenotazione Autori: Orsetti,Lopez
+
+	//RF10 -Annulla_prenotazione Autori: Orsetti,Lopez
 	public void Verifica_data(prenotazione p)
 	{
-		LocalDate odierna=LocalDate.now();
-		if(p.giorno.isAfter(odierna))
+		LocalTime odierna=LocalTime.now();
+		if(p.ora_inizio.isAfter(odierna))
 		{
 			db_lez.Cancella_prenotazione(p);
 		}
@@ -382,5 +383,6 @@ class gestore_lezioni {
 		}
 	}
 }
+
 
 
