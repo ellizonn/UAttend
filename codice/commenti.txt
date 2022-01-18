@@ -4,8 +4,7 @@ RF01 (visualizza avvisi recenti):
 
 
 RF02 (cambia password):
-- problemi a ritornare al menu in caso di errori durante il cambio password;
-- indicare i vincoli della password quando si chiede all'utente di aggiornarla.
+- se dopo aver cambiato la password con successo, si inserisce 0 per cambiarla ancora, si ritorna al menu principale del login.
 
 
 
@@ -35,27 +34,19 @@ RF07 (ricerca utente):
 
 
 
-RF08 (cambia stato account):
-- non assegnato a nessun gruppo. 
-
-
-
 RF09 (visualizza prenotazioni):
-- la classe di test non compila (ho commentato il contenuto);
-- visualizzare i nomi degli attributi all'inizio dell'elenco: matricola, corso, docente, ...
-- se l'elenco e' vuoto mostrare il messaggio "nessuna prenotazione" o simile;
-- se si arriva da RF12 l'elenco e' sbagliato e non c'e' la possibilita' di selezionare la prenotazione.
+- se si arriva da RF12 (ricerca lezioni per data) non c'e' la possibilita' di selezionare la prenotazione sui cui operare (annulla o registra presenza).
+
 
 
 RF10 (annulla prenotazione): 
-- controllare esecuzione;
+- non e' integrato con RF09;
 - non c'e' la classe di test.
 
 
 
 RF11 (registra presenza):
-- controllare esecuzione;
-- non c'e' la classe di test.
+- se la prenotazione e' gia' stata processata, il messaggio di conferma genera un'eccezione.
 
 
 
@@ -75,18 +66,18 @@ RF14 (cancella lezione):
 
 
 RF15 (modifica lezione):
-- controllare esecuzione.
+- non e' integrato con RF12;
+- i test non sono eseguiti da gradle perche' sono in una sottocartella di src/test/java/
+- e' implementato? Non trovo il codice.
 
 
 
 RF16 (scrivi avviso):
-- da integrare con RF15;
-- non c'e' la classe di test.
-
+- da integrare con RF15.
 
 
 
 RF17 (crea utente):
-- controllare esecuzione.
+- OK.
 
 

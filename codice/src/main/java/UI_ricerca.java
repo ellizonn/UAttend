@@ -157,15 +157,15 @@ public class UI_ricerca
 							mostra_errore_ricerca_lezioni(elenco_lezioni);
 
 						if(scelta_lez == 1 && !tipo_utente.equals("studente")) {
-							System.out.println("\nAVVIO visualizza prenotazioni");
+							//System.out.println("\nAVVIO visualizza prenotazioni");
 							ui_pren.visualizza_prenotaz_lez(lez, tipo_utente);
 						}
 						if(scelta_lez == 2 && tipo_utente.equals("studente")) {
-							System.out.println("\nAVVIO prenota posto");
+							//System.out.println("\nAVVIO prenota posto");
 							ui_pren.avvio_prenota_posto(lez,matricola);
 						}
 						if(scelta_lez == 3 && tipo_utente.equals("staff")) {
-							System.out.println("\nAVVIO cancella lezione");
+							//System.out.println("\nAVVIO cancella lezione");
 							ui_lez.avvia_cancella_lezione(lez);
 						}
 						if(scelta_lez == 4 && tipo_utente.equals("staff")) {
