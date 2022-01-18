@@ -41,6 +41,7 @@ RF09 (visualizza prenotazioni):
 
 RF10 (annulla prenotazione): 
 - non e' integrato con RF09;
+- si aumenta il numero di posti disponibili per la lezione?
 - non c'e' la classe di test.
 
 
