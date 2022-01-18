@@ -326,7 +326,7 @@ class gestore_lezioni {
 		return prenotazioni_return;
   	}
 	
-}
+
 
 
 	/**

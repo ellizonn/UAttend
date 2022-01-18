@@ -43,12 +43,12 @@ public class RF09_visualizza_prenotazioni_test {
 		lez3.ora_fine=(LocalTime.of(13,0));
 		
 		ArrayList<prenotazione> arr=g_lez.get_prenotazioni_docente(lez1);
-		Assert.assertEquals(5,arr.size());
+		Assert.assertEquals(4,arr.size());
 		Assert.assertEquals(100006,arr.get(0).matricola_studente);
 		Assert.assertEquals(100007,arr.get(1).matricola_studente);
-		Assert.assertEquals(100020,arr.get(2).matricola_studente);
-		Assert.assertEquals(100022,arr.get(3).matricola_studente);
-		Assert.assertEquals(100021,arr.get(4).matricola_studente);
+		Assert.assertEquals(100021,arr.get(2).matricola_studente);
+		Assert.assertEquals(100011,arr.get(3).matricola_studente);
+		//Assert.assertEquals(100021,arr.get(4).matricola_studente);
 		
 		arr=g_lez.get_prenotazioni_docente(lez2);
 		Assert.assertEquals(0,arr.size());
@@ -57,11 +57,11 @@ public class RF09_visualizza_prenotazioni_test {
 		Assert.assertEquals(4,arr.size());
 		Assert.assertEquals(100004,arr.get(0).matricola_studente);
 		Assert.assertEquals(100005,arr.get(1).matricola_studente);
-		Assert.assertEquals(100022,arr.get(2).matricola_studente);
+		Assert.assertEquals(100011,arr.get(2).matricola_studente);
 		Assert.assertEquals(100021,arr.get(3).matricola_studente);
 		
 		arr=g_lez.get_prenotazioni_studente(100003);
-		Assert.assertEquals(0,arr.size());
+		Assert.assertEquals(1,arr.size());
 		arr=g_lez.get_prenotazioni_studente(100021);
 		Assert.assertEquals(2,arr.size());
 		Assert.assertEquals("Programmazione_1",arr.get(0).nome_corso);
