@@ -515,7 +515,7 @@ public class DB_lezioni {
             p.ora_inizio.equals(elenco_prenotazioni.get(i).ora_inizio) &&
             p.ora_fine.equals(elenco_prenotazioni.get(i).ora_fine)) 
 			{
-				elimina=0;
+				elimina=i;
 				elenco_prenotazioni.remove(elimina);
 				salva_prenotazioni(elenco_prenotazioni);
 			}
