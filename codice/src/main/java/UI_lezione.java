@@ -9,6 +9,12 @@ public class UI_lezione {
     UI_avviso ui_avv;
     gestore_lezioni g_lez;
 
+    /**
+     * variabili usati dalla modifica lezione
+     */
+    public lezione lez_mod;
+    private Scanner sc;
+
     String nome_corso;
     String cognome_docente;
     int anno;
@@ -585,6 +591,108 @@ public class UI_lezione {
     //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
     public void mostra_aula_selezionata_correttamente () {
     	System.out.println("Aula selezionata correttamente.");
+    }
+     /**
+	 * RF15 Modifica lezione 
+	 * @author Manganoni Mattia Frassinelli Marco Omar
+     * Metodo che controlla se la lezione é modificabile e inizia la modifica
+     * @return lezione l se la lezione è modificabile altrimenti null
+     */
+    
+    public lezione modifica_lezione(lezione l) {
+    	// NO modificabile
+        if (!this.g_lez.controlla_lezione_modificabile(l)){
+            System.out.println("Attenzione: lezione non modificabile");
+            return null;
+        }  
+        // SI modificabile
+        else {
+        	lezione lNew = new lezione(l.nome_corso, l.cognome_docente, l.anno, l.numero_aula, l.posti_disponibili, l.giorno, l.ora_inizio, l.ora_fine);
+        	sc = new Scanner(System.in);
+        	String option ="";
+        	while(true) {
+        		option = showMenuModifica(option);
+        		if(option.equals("fine")) {
+        			System.out.println("Fine modifica");
+        			break;
+        		}
+        		lNew = setLezione(option,l,lNew);
+        	}
+        	return lNew;
+        }
+    }
+
+	/**
+	 * RF15 Modifica lezione 
+	 * @author Manganoni Mattia Frassinelli Marco Omar
+	 * 
+	 * funzione per la crezione dell'interfaccia utente
+	 * @param option
+	 * @return la risposta dell'utente
+	 */
+    // Menu grafico
+    private String showMenuModifica(String option) {
+        System.out.println("seleziona cosa vuoi modificare:");
+        System.out.println("oraIn : modifica ora di inizio lezione");
+        System.out.println("oraFin: modifica ora di fine lezione");
+        System.out.println("data : modifica data");
+        System.out.println("aula : modifica aula");
+        System.out.println("salva : salva le modifiche fatte");
+        System.out.println("fine : chiudi menu modifica");
+        return option = sc.next();
+    }
+    /**
+	 * RF15 Modifica lezione 
+	 * @author Manganoni Mattia Frassinelli Marco Omar
+	 * 
+	 * funzione che imposta quale opzione si deve eseguire
+	 * 
+	 * @param option opzione da eseguire
+	 * @param l lezione da modificare 
+	 * @param lNew lezione con modifiche 
+	 * @return la lezione con le modifiche
+	 */
+    //Metodo che richiama i metodi di modifica del gestore lezione
+    private lezione setLezione(String option,lezione l, lezione lNew) {
+            switch (option) {
+            // imposto ora di inizio lezione
+            case "oraIn":
+            	if(mostra_messaggio_conferma()) lNew = g_lez.setOraInizio(lNew);
+                return lNew;
+            // imposto ora di fine lezione
+            case "oraFin":
+            	if(mostra_messaggio_conferma()) lNew = g_lez.setOraFine(lNew);
+            	return lNew;
+            // imposto la data della lezione
+            case "data":
+            	if(mostra_messaggio_conferma()) lNew = g_lez.setData(lNew);
+            	return lNew;
+            case "aula":
+            	aula AulaNew = avvia_seleziona_aula_libera(lNew.giorno, lNew.ora_inizio, lNew.ora_fine);
+            	if(mostra_messaggio_conferma()) lNew = g_lez.setAula(lNew,AulaNew);
+            	return lNew;
+            case "salva":
+            	if(mostra_messaggio_conferma()) {
+            		if(g_lez.salvaModifiche(l, lNew)) System.out.println("Lezione modificata salvata con successo");
+            		else System.out.println("Attenzione: lezioni uguali, lezione non salvata");
+            	}
+            	return lNew;
+            // imposto aula e la fine della modifica
+            default:
+                System.out.println("Attenzione: opzione non corretta");
+                return lNew;
+            }
+        }
+    
+    /**
+	 *  RF15 Modifica lezione 
+	 * @author Manganoni Mattia Frassinelli Marco Omar
+	 * RF15 funzione che riceve la lezione da modificare
+	 * 
+	 * @param l lezione da modificare
+	 */
+    public void invio_lezione_modificare(lezione l) {
+        this.lez_mod = l;
     }
 
 }
