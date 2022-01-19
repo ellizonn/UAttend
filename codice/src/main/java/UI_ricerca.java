@@ -346,8 +346,8 @@ public class UI_ricerca
 	    	//autori: Malavasi - Torta
 			int s=u.size();
 	    	for(int i=0;i<s;i++) {
-				System.out.println(i + "):\n" + u.get(i).matricola + " " + u.get(i).cognome + " " + u.get(i).nome + " " + u.get(i).tipo_utente + " " + u.get(i).anno
-									+ " " + u.get(i).residenza.via + " " + u.get(i).residenza.numero + " " + u.get(i).residenza.localita + " " + u.get(i).residenza.CAP);
+				System.out.println(i + "):\nMatricola: " + u.get(i).matricola + "\tCognome: " + u.get(i).cognome + "\tNome: " + u.get(i).nome + "\tTipo:  " + u.get(i).tipo_utente + 									"\tAnno Corrente: " + u.get(i).anno
+									+ "\tResidenza:  " + u.get(i).residenza.via + " " + u.get(i).residenza.numero + "\tPaese:  " + u.get(i).residenza.localita + "\tCAP: " + u.get(i).									residenza.CAP);
 			}
 		}
 
