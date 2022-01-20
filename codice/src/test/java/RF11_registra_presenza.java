@@ -9,8 +9,8 @@ public class RF11_registra_presenza {
     /**
      * RF11 Registra_presenza
      * @author Almasio Luca, Borova Dritan
-     * La seguente classe non contiene metodi test in quanto
-     * tutti i metodi del caso d'uso RF11 sono void e non ritornano parametri.
+     * La seguente classe contiene metodi di test per il metodo avvio_registra_presenze()
+     * presente in gestore_lezioni
      */
     gestore_lezioni g_lez;
 
@@ -19,6 +19,12 @@ public class RF11_registra_presenza {
        g_lez = new gestore_lezioni(new DB_lezioni());
     }
 
+    /**
+     * RF11 Registra_presenza
+     * @author Almasio Luca, Borova Dritan
+     * Il seguente test prova a controllare la data e l'ora della prenotazione
+     * con data e ora attuali.
+     */
     @Test
     public void avvio_registra_presenza_test1(){
        String expected = "err1";
@@ -36,6 +42,12 @@ public class RF11_registra_presenza {
        Assert.assertEquals(expected, g_lez.avvio_registra_presenza(pren));
     }
 
+    /**
+     * RF11 Registra_presenza
+     * @author Almasio Luca, Borova Dritan
+     * Il seguente test prova a controllare se la prenotazione selezionata
+     * ha il campo presente già impostato oppure default.
+     */
     @Test
     public void avvio_registra_presenza_test2(){
         String expected = "err2";
@@ -53,6 +65,12 @@ public class RF11_registra_presenza {
         Assert.assertEquals(expected, g_lez.avvio_registra_presenza(pren));
     }
 
+    /**
+     * RF11 Registra_presenza
+     * @author Almasio Luca, Borova Dritan
+     * Il seguente test verifica se il metodo funziona correttamente
+     * nel caso in cui non ci siano errori nei controlli precedenti.
+     */
     @Test
     public void avvio_registra_presenza_test3(){
         String expected = "noerr";
