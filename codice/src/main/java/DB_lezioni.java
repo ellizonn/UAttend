@@ -510,7 +510,6 @@ public class DB_lezioni {
             if(p.nome_corso.equals(elenco_prenotazioni.get(i).nome_corso) && 
             p.cognome_docente.equals(elenco_prenotazioni.get(i).cognome_docente) &&
             p.aula == elenco_prenotazioni.get(i).aula &&
-            p.presente == elenco_prenotazioni.get(i).presente &&
             p.giorno.equals(elenco_prenotazioni.get(i).giorno) &&
             p.ora_inizio.equals(elenco_prenotazioni.get(i).ora_inizio) &&
             p.ora_fine.equals(elenco_prenotazioni.get(i).ora_fine)) 
