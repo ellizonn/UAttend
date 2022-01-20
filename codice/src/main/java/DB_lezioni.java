@@ -503,20 +503,20 @@ public class DB_lezioni {
 		
         elenco_prenotazioni=carica_prenotazioni();
         elenco_lezioni = carica_lezioni();
-		int elimina=-1;
 		int i=0;
-        for (i=0; i< elenco_prenotazioni.size() && elimina==-1; i++)
+         for (i=0; i< elenco_prenotazioni.size() ; i++)
         {
-            if(p.nome_corso.equals(elenco_prenotazioni.get(i).nome_corso) && 
-            p.cognome_docente.equals(elenco_prenotazioni.get(i).cognome_docente) &&
+            if(p.matricola_studente==elenco_prenotazioni.get(i).matricola_studente &&
+            p.nome_corso.equals(elenco_prenotazioni.get(i).nome_corso) &&
             p.aula == elenco_prenotazioni.get(i).aula &&
             p.giorno.equals(elenco_prenotazioni.get(i).giorno) &&
             p.ora_inizio.equals(elenco_prenotazioni.get(i).ora_inizio) &&
             p.ora_fine.equals(elenco_prenotazioni.get(i).ora_fine)) 
 			{
-				elimina=i;
-				elenco_prenotazioni.remove(elimina);
+
+				elenco_prenotazioni.remove(i);
 				salva_prenotazioni(elenco_prenotazioni);
+                System.out.println("Cancellazione prenotazione eseguita");
 			}
 		}
 	
@@ -532,7 +532,7 @@ public class DB_lezioni {
 				salva_lezioni(elenco_lezioni);
 			}
         }
-		System.out.println("Cancellazione eseguita");
+		
     }
 }
 
