@@ -50,9 +50,6 @@ public class AppTest {
         // cancello prenotazione effettuata
         db_lez.Cancella_prenotazione(p1);
 
-        // aggiorno la lista lezioni
-        l3 = db_lez.carica_lezioni();
-
         // controllo se è stata cancellata correttamente
         // all'interno della lista prenotazioni
         assertEquals(null,db_lez.cerca_prenotazione(p1));
