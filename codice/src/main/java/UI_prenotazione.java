@@ -115,7 +115,7 @@ public class UI_prenotazione
 			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\t"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\t"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\t"+prenotazioni.get(i).cognome_docente+"\nAULA:\t"+prenotazioni.get(i).aula+"\nGIORNO:\t"+prenotazioni.get(i).giorno+"\nORA INIZIO:\t"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\t"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\t"+prenotazioni.get(i).presente+"\n");
 			System.out.print("\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			if(tipo_utente=="Staff") {
+			if(tipo_utente=="staff") {
 				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza");
 				String scelta = br.readLine();
 				if(scelta.compareTo("0")==0) {
@@ -154,7 +154,7 @@ public class UI_prenotazione
 			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\t"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\t"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\t"+prenotazioni.get(i).cognome_docente+"\nAULA:\t"+prenotazioni.get(i).aula+"\nGIORNO:\t"+prenotazioni.get(i).giorno+"\nORA INIZIO:\t"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\t"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\t"+prenotazioni.get(i).presente+"\n");
 			System.out.print("\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			if(tipo_utente=="Staff") {
+			if(tipo_utente=="staff") {
 				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza: ");
 				String scelta = br.readLine();
 				if(scelta.compareTo("0")==0) {
