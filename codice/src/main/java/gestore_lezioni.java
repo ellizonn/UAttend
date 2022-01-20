@@ -1,9 +1,6 @@
 import org.checkerframework.checker.guieffect.qual.UI;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.Month;
+import java.time.*;
 import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 
@@ -341,7 +338,9 @@ class gestore_lezioni {
 	 */
 	public String avvio_registra_presenza(prenotazione p){
 		String text = null;
-			if(LocalDate.now().isBefore(p.giorno) && LocalTime.now().isBefore(p.ora_inizio)){
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime pren = LocalDateTime.of(p.giorno, p.ora_inizio);
+			if(now.isBefore(pren)){
 				text = "err1";
 			} else if (p.presente.equals("Presente") || p.presente.equals("Assente")){
 				text = "err2";
