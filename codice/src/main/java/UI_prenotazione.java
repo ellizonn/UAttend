@@ -200,7 +200,7 @@ public class UI_prenotazione
 	 */
 	public void mostra_form_registra_presenze(prenotazione p){
 		Scanner sc = new Scanner(System.in);
-		String scelta = null;
+		String scelta = new String();
 		try{
 		String str = g_lez.avvio_registra_presenza(p);
 		if(str.equals("err1")) {
@@ -215,7 +215,7 @@ public class UI_prenotazione
 			} else if (scelta.equals("a")) {
 				g_lez.gestione_scelta(scelta, p);
 			} else if (scelta.equals("annulla")) {
-				return;
+				System.out.println("Operazione annullata.");
 			} else {
 				mostra_errore_registrazione("err3", p);
 			}
@@ -254,7 +254,7 @@ public class UI_prenotazione
 				enter = s3.nextLine();
 				break;
 		}
-		return;
+
 	}
 
 	/**
@@ -275,11 +275,6 @@ public class UI_prenotazione
 			System.out.println("Premere ENTER per confermare lettura.");
 			Scanner s2 = new Scanner(System.in);
 			enter = s2.nextLine();
-		} else {
-			System.out.println("Errore nell'inserimento della scelta.");
-			System.out.println("Premere ENTER per confermare lettura.");
-			Scanner s3 = new Scanner(System.in);
-			enter = s3.nextLine();
 		}
 	}
 }
