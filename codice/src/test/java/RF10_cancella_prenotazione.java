@@ -6,13 +6,13 @@ import org.junit.Before;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.chrono.ChronoLocalDate;
+
 
 /**
  * @author Lopez Antonio
  * @author Orsetti Lopez
  */
-public class AppTest {
+public class RF10_cancella_prenotazione {
 
     gestore_lezioni g_lez;
     DB_lezioni db_lez;
