@@ -115,8 +115,8 @@ public class UI_prenotazione
 			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\t"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\t"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\t"+prenotazioni.get(i).cognome_docente+"\nAULA:\t"+prenotazioni.get(i).aula+"\nGIORNO:\t"+prenotazioni.get(i).giorno+"\nORA INIZIO:\t"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\t"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\t"+prenotazioni.get(i).presente+"\n");
 			System.out.print("\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			if(tipo_utente=="staff") {
-				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza");
+			if(tipo_utente.equals("staff")) {
+				System.out.print("A) Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza");
 				String scelta = br.readLine();
 				if(scelta.compareTo("0")==0) {
 					System.out.print("\nFine\n");
@@ -126,10 +126,9 @@ public class UI_prenotazione
 					prenotazione p=prenotazioni.get(Integer.valueOf(scelta)-1);
 					System.out.print("Digitare 1 per annullare la prenotazione, oppure 2 per confermarne la presenza");
 					scelta = br.readLine();
-					//if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
-					//if(scelta.compareTo("2")==0) g_lez.avvio_registra_presenza(p);
-
-					System.out.print("\nFine\n");
+					if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
+					if(scelta.compareTo("2")==0) mostra_form_registra_presenze(p);
+					//System.out.print("\nFine\n");
 					return;
 				}
 
@@ -154,8 +153,8 @@ public class UI_prenotazione
 			for(int i=0;i<prenotazioni.size();i++) System.out.print("\n"+(i+1)+"\nMATRICOLA STUDENTE:\t"+prenotazioni.get(i).matricola_studente+"\nNOME CORSO:\t"+prenotazioni.get(i).nome_corso+"\nCOGNOME DOCENTE:\t"+prenotazioni.get(i).cognome_docente+"\nAULA:\t"+prenotazioni.get(i).aula+"\nGIORNO:\t"+prenotazioni.get(i).giorno+"\nORA INIZIO:\t"+prenotazioni.get(i).ora_inizio+"\nORA FINE:\t"+prenotazioni.get(i).ora_fine+"\nPRESENTE:\t"+prenotazioni.get(i).presente+"\n");
 			System.out.print("\n");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			if(tipo_utente=="staff") {
-				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza: ");
+			if(tipo_utente.equals("staff")) {
+				System.out.print("B) Digitare 0 per uscire, oppure il numero della prenotazione per annullarla o confermarne la presenza: ");
 				String scelta = br.readLine();
 				if(scelta.compareTo("0")==0) {
 					System.out.print("\nFine\n");
@@ -163,16 +162,16 @@ public class UI_prenotazione
 				}
 				else {
 					prenotazione p=prenotazioni.get(Integer.valueOf(scelta)-1);
-					System.out.print("Digitare 1 per annullare la prenotazione, oppure 2 per confermarne la presenza: ");
+					System.out.print("C) Digitare 1 per annullare la prenotazione, oppure 2 per confermarne la presenza: ");
 					scelta = br.readLine();
-					//if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
+					if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
 					if(scelta.compareTo("2")==0) mostra_form_registra_presenze(p);
-					System.out.print("\nFine\n");
+					//System.out.print("\nFine\n");
 					return;
 				}
 			}
 			else {
-				System.out.print("Digitare 0 per uscire, oppure il numero della prenotazione per annullarla: ");
+				System.out.print("D) Digitare 0 per uscire, oppure il numero della prenotazione per annullarla: ");
 				String scelta = br.readLine();
 				if(scelta.compareTo("0")==0) {
 					System.out.print("\nFine\n");
@@ -180,8 +179,8 @@ public class UI_prenotazione
 				}
 				else {
 					prenotazione p=prenotazioni.get(Integer.valueOf(scelta)-1);
-					//if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
-					System.out.print("\nFine\n");
+					if(scelta.compareTo("1")==0) g_lez.Verifica_data(p); // annulla prenotazione
+					//System.out.print("\nFine\n");
 					return;
 				}
 			}

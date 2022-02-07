@@ -4,7 +4,7 @@ RF01 (visualizza avvisi recenti):
 
 
 RF02 (cambia password):
-- se dopo aver cambiato la password con successo, si inserisce 0 per cambiarla ancora, si ritorna al menu principale del login.
+- OK
 
 
 
@@ -29,25 +29,22 @@ RF06 (seleziona aula libera):
 
 
 RF07 (ricerca utente):
-- stampare i nomi degli attributi (matricola, nome, cognome, ...) all'inizio dell'elenco;
-- usare \t per incolonnare gli attributi.
+- OK
 
 
 
 RF09 (visualizza prenotazioni):
-- se si arriva da RF12 (ricerca lezioni per data) non c'e' la possibilita' di selezionare la prenotazione sui cui operare (annulla o registra presenza).
+- OK
 
 
 
 RF10 (annulla prenotazione): 
-- non e' integrato con RF09;
-- si aumenta il numero di posti disponibili per la lezione?
-- non c'e' la classe di test.
+- OK
 
 
 
 RF11 (registra presenza):
-- se la prenotazione e' gia' stata processata, il messaggio di conferma genera un'eccezione.
+- OK
 
 
 
@@ -69,16 +66,17 @@ RF14 (cancella lezione):
 RF15 (modifica lezione):
 - non e' integrato con RF12;
 - i test non sono eseguiti da gradle perche' sono in una sottocartella di src/test/java/
-- e' implementato? Non trovo il codice.
+- da integrare con RF16;
+- e' implementato? NON TROVO IL CODICE.
 
 
 
 RF16 (scrivi avviso):
-- da integrare con RF15.
+- OK
 
 
 
 RF17 (crea utente):
-- OK.
+- OK
 
 

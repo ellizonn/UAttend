@@ -54,7 +54,7 @@ public class UI_login
             if (tipo_utente.equals("error1") || tipo_utente.equals("error2") || tipo_utente.equals("error3") || tipo_utente.equals("error4"))
                 this.mostra_errore(tipo_utente);
             else
-            {
+            {   // RF01
                 System.out.println("\nElenco avvisi recenti:");
                 ui_avv.avvio_avvisi();
 
@@ -68,39 +68,39 @@ public class UI_login
                     else
                     {
                         if (scelta==1)
-                        {
+                        { // RF02
                         	ui_acc.avvio_cambio_password(matricola);
                         }
                         if (scelta==2)
-						{
-                            System.out.println("scelta="+scelta);
+						{ // RF03
+                            //System.out.println("scelta="+scelta);
 							//System.out.println("\nAVVIO ricerca avvisi per data");
 							ui_ric.avvio_ricerca_avvisi_per_data();
 						}
-                        if (scelta==3 && !tipo_utente.equals("admin")) {
+                        if (scelta==3 && !tipo_utente.equals("admin")) { // RF12
                             //System.out.println("\nAVVIO ricerca lezioni per data");
                             ui_ric.avvio_ricerca_lezioni(tipo_utente,matricola);
                         }
                         if (scelta==3 && tipo_utente.equals("admin"))
                         {
                             //System.out.println("\nAVVIO crea utente");
-                            ui_ut.form_utente();
+                            ui_ut.form_utente(); // RF17
                         }
                         if (scelta==4 && (tipo_utente.equals("staff") || tipo_utente.equals("admin")) )
-                        {    // da sostituire con la chiamata del metodo di AVVIO
+                        {    // RF07
                             //System.out.println("\nAVVIO ricerca utente"); 
                         	ui_ric.avvio_ricerca_utente(tipo_utente);
                         }
                         if (scelta==4 && tipo_utente.equals("studente"))
-                        {
+                        {   // RF09
                             //System.out.println("\nAVVIO visualizza prenotazioni");
-                            ui_pren.visualizza_prenotaz_stud(matricola, "Studente");
+                            ui_pren.visualizza_prenotaz_stud(matricola, "studente");
                         }
-                        if (scelta==5 && tipo_utente.equals("staff")) {
-                            //System.out.println("\nAVVIO crea corso");
+                        if (scelta==5 && tipo_utente.equals("staff")) { // RF04
+                            //System.out.println("\nAVVIO crea corso"); 
                             ui_lez.RF04_crea_corso(); /* avvio crea corso */
                         }
-                        if (scelta==6 && tipo_utente.equals("staff")) {
+                        if (scelta==6 && tipo_utente.equals("staff")) { // RF05
                             //System.out.println("\nAVVIO aggiungi lezione");
                             this.ui_lez.avvio_aggiungi_lezione();
                         }

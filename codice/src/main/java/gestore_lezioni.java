@@ -20,7 +20,7 @@ class gestore_lezioni {
      * @return elenco corsi
      */
     public ArrayList<corso> richiesta_elenco_corsi() {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         return db_lez.carica_corsi();
     }
 
@@ -30,7 +30,7 @@ class gestore_lezioni {
      * @return <em>true</em> se i campi sono corretti, <em>false</em> altrimenti
      */
     public boolean verifica_correttezza_data(LocalDate data) {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         return data != null
                 && data.isAfter(LocalDate.now())
                 && !data.getDayOfWeek().equals(DayOfWeek.SATURDAY)
@@ -45,7 +45,7 @@ class gestore_lezioni {
      * @return <em>true</em> se i campi sono corretti, <em>false</em> altrimenti
      */
     public boolean verifica_correttezza_orario(LocalTime ora_inizio, LocalTime ora_fine) {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         return ora_inizio != null
                 && ora_fine != null
                 && ora_inizio.isBefore(ora_fine)
@@ -71,7 +71,7 @@ class gestore_lezioni {
                                               int anno, int numero_aula,
                                               int posti_disponibili, LocalDate giorno,
                                               LocalTime ora_inizio,LocalTime ora_fine) {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         this.l = new lezione();
         l.nome_corso = nome_corso;
         l.cognome_docente = cognome_docente;
@@ -86,7 +86,7 @@ class gestore_lezioni {
 
 	/**
 	 *  Verifica il corretto inserimento dell'anno del corso 
-	 * @author Andrea Colaci, Gregorio Lupano
+	 * @author Andrea Colaci, Gregorio Lupano, RF04
  	 * @param anno - anno selezionato 
  	 * @return esito della verifica
 	 */	
@@ -103,7 +103,7 @@ class gestore_lezioni {
 
 	/**
 	 *  Verifica il corretto inserimento del nome del corso 
-	 * @author Andrea Colaci, Gregorio Lupano
+	 * @author Andrea Colaci, Gregorio Lupano, RF04
  	 * @param nomeCorso - il nome del corso 
  	 * @return esito della verifica
 	 */
@@ -125,7 +125,7 @@ class gestore_lezioni {
 
 	/**
 	 *  Aggiunge il corso con i parametri specificati
-	 * @author Andrea Colaci, Gregorio Lupano
+	 * @author Andrea Colaci, Gregorio Lupano, RF04
  	 * @param nome - il nome del corso 
 	 * @param anno - l'anno del corso 
 	 * @param cognomeDocente - il cognome del docente che tiene il corso
@@ -143,8 +143,8 @@ class gestore_lezioni {
 
     /**
      * Verifica se la lezione è già avvenuta
-     * @author Davide Ceci - 20033793 - RF_14
-     * @author Luca Tamone - 20034235 - RF_14
+     * @author Davide Ceci - 20033793 - RF14
+     * @author Luca Tamone - 20034235 - RF14
      * @param giorno la data della lezione
      * @return true se la lezione è avvenuta altrimenti false
      */
@@ -156,8 +156,8 @@ class gestore_lezioni {
 
     /**
      * Richiama elimina_lezione dal db per cancellare la lezione 
-     * @author Davide Ceci - 20033793
-     * @author Luca Tamone - 20034235
+     * @author Davide Ceci - 20033793 - RF14
+     * @author Luca Tamone - 20034235 - RF14
      * @param l la lezione da cancellare
      */
     public void elimina_lezione(lezione l) {

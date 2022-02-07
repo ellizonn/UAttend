@@ -47,7 +47,7 @@ public class DB_lezioni {
     }
 
 	public int ricerca_nome_corso(String nomeCorso){
-
+		// RF04
 		for(corso corso : this.carica_corsi())
 			if(corso.nome.equals(nomeCorso)) return 1;
 		
@@ -102,8 +102,8 @@ public class DB_lezioni {
 
     /**
      * Cancella la lezione
-     * @author Davide Ceci - 20033793
-     * @author Luca Tamone - 20034235
+     * @author Davide Ceci - 20033793 - RF14
+     * @author Luca Tamone - 20034235 - RF14
      * @param l la lezione da cancellare
      */
     public void elimina_lezione(lezione l) {

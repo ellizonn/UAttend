@@ -162,11 +162,11 @@ public class UI_ricerca
 						}
 						if(scelta_lez == 2 && tipo_utente.equals("studente")) {
 							//System.out.println("\nAVVIO prenota posto");
-							ui_pren.avvio_prenota_posto(lez,matricola);
+							ui_pren.avvio_prenota_posto(lez,matricola); // RF13
 						}
 						if(scelta_lez == 3 && tipo_utente.equals("staff")) {
 							//System.out.println("\nAVVIO cancella lezione");
-							ui_lez.avvia_cancella_lezione(lez);
+							ui_lez.avvia_cancella_lezione(lez); // RF14
 						}
 						if(scelta_lez == 4 && tipo_utente.equals("staff")) {
 							System.out.println("\nAVVIO modifica lezione");
@@ -332,7 +332,7 @@ public class UI_ricerca
 
 		private void avvia_visualizza_prenotazioni(utente ut) /*throws IOException*/ {
 			//System.out.println("\nAvvia visualizza prenotazioni\n");
-			ui_pren.visualizza_prenotaz_stud(ut.matricola, "Staff");
+			ui_pren.visualizza_prenotaz_stud(ut.matricola, "staff");
 			return;
 		}
 
@@ -365,7 +365,7 @@ public class UI_ricerca
 				mat=Integer.parseInt(matricola);
 			System.out.println("\nInserisci cognome: ");
 			cognome = sc.nextLine();
-			System.out.println("\nAvvio ricerca utente\n");
+			// System.out.println("\nAvvio ricerca utente\n");
 			ArrayList<utente> u = g_ric.verifica_parametri(mat, cognome);
 			return u;
 		}

@@ -25,7 +25,7 @@ public class UI_lezione {
     }
 
     public void visualizza_elenco_corsi(ArrayList<corso> elencoCorsi) {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         if (elencoCorsi != null) {
             System.out.println("Elenco corsi disponibili");
             System.out.printf("N. corso\t%-30s\tAnno\tCognome docente\n", "Nome");
@@ -39,7 +39,7 @@ public class UI_lezione {
     }
 
     public void mostra_form_data() {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         Scanner scanner = new Scanner(System.in);
         boolean conferma = false;
         boolean formato;
@@ -73,7 +73,7 @@ public class UI_lezione {
     }
 
     public void mostra_form_orario() {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         Scanner scanner = new Scanner(System.in);
         boolean conferma = false;
         boolean formato;
@@ -109,7 +109,7 @@ public class UI_lezione {
     }
 
     public void mostra_errore_data(LocalDate data) {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         System.out.println();
         if (data == null)
             System.out.println("ERRORE: nessuna data inserita");
@@ -131,7 +131,7 @@ public class UI_lezione {
     }
 
     public void mostra_errore_orario(LocalTime ora_inizio, LocalTime ora_fine) {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         System.out.println();
         if (ora_inizio == null || ora_fine == null) {
             if (ora_inizio == null)
@@ -160,7 +160,7 @@ public class UI_lezione {
     }
 
     public void mostra_errore_aula() {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         System.out.println();
         System.out.println("ERRORE: nessuna aula disponibile");
         System.out.print("Premi INVIO per conferma");
@@ -169,7 +169,7 @@ public class UI_lezione {
     }
 
     public void mostra_dati_lezione_da_aggiungere() {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         System.out.println();
         System.out.println("Dati lezione");
         System.out.println("Corso: " + this.nome_corso);
@@ -186,7 +186,7 @@ public class UI_lezione {
     }
 
     public void avvio_aggiungi_lezione() {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         Scanner scanner = new Scanner(System.in);
         boolean risposta = false;
 
@@ -388,7 +388,7 @@ public class UI_lezione {
 	
 	/**
 	 *  Mostra il form per l'inserimento del nome del corso 
-	 * @author Andrea Colaci, Gregorio Lupano
+	 * @author Andrea Colaci, Gregorio Lupano, RF04
  	 * @return nome del corso 
 	 */
 	public String mostra_form_nome_corso(){
@@ -409,7 +409,7 @@ public class UI_lezione {
 
 	/**
 	 *  Mostra il form per la selezione del docente
-	 * @author Andrea Colaci, Gregorio Lupano
+	 * @author Andrea Colaci, Gregorio Lupano, RF04
  	 * @param listaDocenti - lista di utenti di tipo docente
  	 * @return l'indice dell'array del docente selezionato
 	 */
@@ -439,7 +439,7 @@ public class UI_lezione {
 
 	/**
 	 *  Mostra form per l'inserimento dell'anno del corso
-	 * @author Andrea Colaci, Gregorio Lupano
+	 * @author Andrea Colaci, Gregorio Lupano, RF04
  	 * @return anno del corso
 	 */
 	public int mostra_form_inserimento_anno()
@@ -457,7 +457,7 @@ public class UI_lezione {
 
 	/**
 	 *  Mostra form per la conferma della creazione del corso 
-	 * @author Andrea Colaci, Gregorio Lupano
+	 * @author Andrea Colaci, Gregorio Lupano, RF04
 	 */
 	public void mostra_conferma_creazione(String nomeCorso, String docente, int anno)
 	{
@@ -472,8 +472,8 @@ public class UI_lezione {
 
     /**
      * Avvia cancella lezione
-     * @author Davide Ceci - 20033793 - RF_14
-     * @author Luca Tamone - 20034235 - RF_14
+     * @author Davide Ceci - 20033793 - RF14
+     * @author Luca Tamone - 20034235 - RF14
      * @param lez la lezione da cancellare
      */
     public void avvia_cancella_lezione(lezione lez) {
