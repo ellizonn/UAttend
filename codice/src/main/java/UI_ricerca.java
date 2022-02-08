@@ -170,6 +170,7 @@ public class UI_ricerca
 						}
 						if(scelta_lez == 4 && tipo_utente.equals("staff")) {
 							System.out.println("\nAVVIO modifica lezione");
+							ui_lez.modifica_lezione(lez);
 						}
 					}
 				}
