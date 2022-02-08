@@ -64,10 +64,8 @@ RF14 (cancella lezione):
 
 
 RF15 (modifica lezione):
-- non e' integrato con RF12;
-- i test non sono eseguiti da gradle perche' sono in una sottocartella di src/test/java/
-- da integrare con RF16;
-- e' implementato? NON TROVO IL CODICE.
+- ho provato a modificare una lezione con data 05/10/2022, ma compare il messaggio "Attenzione: lezione non modificabile";
+- uno dei test fallisce: java.util.NoSuchElementException at RF15Test.java:106
 
 
 

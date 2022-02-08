@@ -169,7 +169,7 @@ public class UI_ricerca
 							ui_lez.avvia_cancella_lezione(lez); // RF14
 						}
 						if(scelta_lez == 4 && tipo_utente.equals("staff")) {
-							System.out.println("\nAVVIO modifica lezione");
+							//System.out.println("\nAVVIO modifica lezione");
 							ui_lez.modifica_lezione(lez);
 						}
 					}
