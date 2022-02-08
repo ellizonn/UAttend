@@ -162,6 +162,7 @@ class gestore_lezioni {
      */
     public void elimina_lezione(lezione l) {
         db_lez.elimina_lezione(l);
+				db_lez.elimina_prenotazioni(l);
     }
 
     //autore: RF06 Rosilde Garavoglia, Roberto Aitchison

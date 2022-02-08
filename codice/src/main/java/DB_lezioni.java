@@ -385,7 +385,33 @@ public class DB_lezioni {
         }
     }
 
+    /**
+     * Cancella tutte le prenotazioni per una data lezione
+     * @author Davide Ceci - 20033793 - RF14
+     * @author Luca Tamone - 20034235 - RF14
+     * @param l la lezione di cui cancellare tutte le prenotazioni
+     */
+    public void elimina_prenotazioni(lezione l) {
+        ArrayList<prenotazione> elenco_prenotazioni = carica_prenotazioni();
+        ArrayList<Integer> eliminare = new ArrayList<Integer>();
 
+        for(int i = 0; i < elenco_prenotazioni.size(); i++) {
+            if( l.nome_corso.equals(elenco_prenotazioni.get(i).nome_corso) &&
+                l.cognome_docente.equals(elenco_prenotazioni.get(i).cognome_docente) &&
+                l.numero_aula == elenco_prenotazioni.get(i).aula &&
+                l.giorno.equals(elenco_prenotazioni.get(i).giorno) &&
+                l.ora_inizio.equals(elenco_prenotazioni.get(i).ora_inizio) &&
+                l.ora_fine.equals(elenco_prenotazioni.get(i).ora_fine) ) {
+                    eliminare.add(i);
+            }
+        }
+
+        for(int i = 0; i < eliminare.size(); i++) {
+            elenco_prenotazioni.remove(eliminare.get(i) - i);
+        }
+
+        salva_prenotazioni(elenco_prenotazioni);
+    }
 
     // ----------------------------------------------------------------------------
 
