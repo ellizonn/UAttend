@@ -13,4 +13,3 @@
 100012	docente	    0	Davide  Cerotti   Piazza_S.Eusebio     	1   Vercelli    13100
 100013	docente     0   Daniele	Mantovani Piazza_S.Eusebio     	1   Vercelli    13100
 100014  docente	    0   Daniele Theseider Viale_T.Michel      	11  Alessandria 15121
-100015	docente	0	Mario	Rossi	Via_Roma	5	Milano	20113
