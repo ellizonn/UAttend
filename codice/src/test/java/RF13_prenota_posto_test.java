@@ -88,7 +88,7 @@ public class RF13_prenota_posto_test
 		obj_preno.giorno = LocalDate.parse("01/10/2021", formatter);
 		obj_preno.ora_inizio = LocalTime.parse("09:00", formatter2);
 		obj_preno.ora_fine = LocalTime.parse("13:00", formatter2);
-		obj_preno.presente = false;
+		obj_preno.presente = "indefinito";
 		obj_preno.aula = 7;
 		db_lez.aggiungi_prenotazione(obj_preno);
     }
@@ -106,7 +106,7 @@ public class RF13_prenota_posto_test
 		obj_preno.giorno = LocalDate.parse("02/10/2021", formatter);
 		obj_preno.ora_inizio = LocalTime.parse("11:00", formatter2);
 		obj_preno.ora_fine = LocalTime.parse("13:00", formatter2);
-		obj_preno.presente = false;
+		obj_preno.presente = "indefinito";
 		obj_preno.aula = 4;
 		db_lez.aggiungi_prenotazione(obj_preno);
     }
@@ -251,4 +251,37 @@ public class RF13_prenota_posto_test
 	   
 		// =======================================================================
 	   
+	   @Test
+	   public void test01_prenotazione_doppia()
+	   //RF13_prenota_posto
+	   //Autori: Rossari, Marisio
+	   {
+		    lezione lez = new lezione();
+			lez.anno = 1;
+			lez.nome_corso = "Programmazione_1";
+			lez.cognome_docente = "Codetta";
+			lez.numero_aula = 7;
+			lez.giorno = LocalDate.parse("01/10/2021", formatter);
+			lez.ora_inizio = LocalTime.parse("09:00", formatter2);
+			lez.ora_fine = LocalTime.parse("13:00", formatter2);
+			lez.posti_disponibili = 48;
+		    assertTrue(gest_lezioni.controllo_prenotazione_doppia(lez,100006));
+	   }
+
+	   @Test
+	   public void test02_prenotazione_doppia()
+	   //RF13_prenota_posto
+	   //Autori: Rossari, Marisio
+	   {
+		    lezione lez = new lezione();
+			lez.anno = 2;
+			lez.nome_corso = "Sistemi_Operativi_1";
+			lez.cognome_docente = "Cerotti";
+			lez.numero_aula = 4;
+			lez.giorno = LocalDate.parse("02/10/2021", formatter);
+			lez.ora_inizio = LocalTime.parse("11:00", formatter2);
+			lez.ora_fine = LocalTime.parse("13:00", formatter2);
+			lez.posti_disponibili = 38;
+		    assertFalse(gest_lezioni.controllo_prenotazione_doppia(lez,100006));
+	   }
 }

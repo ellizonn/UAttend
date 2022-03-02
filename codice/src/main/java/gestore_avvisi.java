@@ -17,4 +17,23 @@ public class gestore_avvisi
 		
     	return db_avv.cerca_avvisi(LocalDate.now());
     }
+    
+    public String controlla_avviso(avviso avviso) {
+        //autore: Furnari/Gattico RF16
+
+        String check_avviso = null;
+
+        if (avviso.testo == null) {
+            check_avviso = "testo";
+        } else if (avviso.scadenza == null || avviso.scadenza.isBefore(LocalDate.now())) {
+            check_avviso = "data";
+        }
+        return check_avviso;
+    }
+    
+    public void salva_avviso(avviso avviso) {
+        //autore: Furnari/Gattico RF16
+        
+        db_avv.aggiungi_avviso(avviso);
+    }
 }

@@ -20,6 +20,9 @@ public class UI_utente
     	//autori: La Spisa & Frasson
     	boolean esito=false;
     	Scanner sc= new Scanner(System.in);
+    	Scanner sc1= new Scanner(System.in);
+    	Scanner sc2= new Scanner(System.in);
+    	Scanner sc3= new Scanner(System.in);
     	DB_utenti db=new DB_utenti();
     	gestore_utenti ut=new gestore_utenti(db);
     	boolean esito_scelta;
@@ -37,7 +40,7 @@ public class UI_utente
 	    	if (esito_scelta==false)
 	    	{
 	    		System.out.println("error1, premere invio per continuare");
-	    		sc.nextLine();
+	    		sc1.nextLine();
 	    	}
 	    	switch(scelta)
 	    	{
@@ -49,7 +52,7 @@ public class UI_utente
 	    		break;
 	    	case 3:
 	    		tipo_utente=form_inserimento_tipo_utente();
-	    		if (tipo_utente=="cliente")
+	    		if (tipo_utente=="studente")
 	        	{
 	        		anno_immatricolazione=form_anno_immatricolazione();
 	        	}
@@ -58,18 +61,22 @@ public class UI_utente
 	    		residenza=form_inserimento_residenza();
 	    		break;
 	    	case 5:
-	    		System.out.println("la creazione è annullata, premere invio per continuare");
-	    		sc.nextLine();
+	    		System.out.println("la creazione e' annullata, premere invio per continuare");
+	    		sc2.nextLine();
 	    		return;
 	    	case 6:
 	    		esito=ut.controllo_generalita(nome, cognome, residenza, tipo_utente, anno_immatricolazione);
+				if(esito==false)
+				{
+	    		System.out.println("errore: una o più generalità non sono state inserite, premere invio per continuare");
+	    		sc3.nextLine();
+				}
 	    		break;
 	    	}
     	}
     	gestore_accessi accesso=new gestore_accessi(db);
     	esito=accesso.generazione_credenziali();
-    	System.out.println("la creazione è avvenuta con successo, premere invio per continuare");
-		sc.nextLine();
+    	System.out.println("la creazione e' avvenuta con successo");
     }
     
     private String form_inserimento_nome()
@@ -102,12 +109,12 @@ public class UI_utente
     	String tipo=null;
     	Scanner sc= new Scanner(System.in);
     	do {
-    	System.out.println("inserire il tipo utente, inserire 1 per 'cliente', 2 per 'staff', 3 per 'docente' o 4 per 'admin'");
+    	System.out.println("inserire il tipo utente, inserire 1 per 'studente', 2 per 'staff', 3 per 'docente' o 4 per 'admin'");
     	tipo_utente=sc.nextInt();
     	}while(tipo_utente!=1 && tipo_utente!=2 && tipo_utente!=3 && tipo_utente!=4);
     	switch(tipo_utente) {
     	case 1:
-    		tipo="cliente";
+    		tipo="studente";
     		break;
     	case 2:
     		tipo="staff";
@@ -143,7 +150,7 @@ public class UI_utente
     	residenza.via=sc.next();
     	System.out.println("inserire il numero civico");
     	residenza.numero=sc.nextInt();
-    	System.out.println("inserire la località");
+    	System.out.println("inserire la localita'");
     	residenza.localita=sc.next();
     	System.out.println("inserire il CAP");
     	residenza.CAP=sc.nextInt();

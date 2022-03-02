@@ -1,88 +1,80 @@
 RF01 (visualizza avvisi recenti):
-- scrivere "avviso" e "scadenza" all'inizio dell'elenco o per ogni avviso;
-- scrivere anche la data di emissione dell'avviso. 
+- OK
 
 
 
 RF02 (cambia password):
-- non si puo' avviare dal login.
+- OK
 
 
 
 RF03 (ricerca avvisi per data):
-- non si puo' avviare dal login.
+- OK
 
 
 
 RF04 (crea corso):
-- l'annullamento dell'operazione non funziona: premendo INVIO non si esce, ma si ha un errore sulla lunghezza della stringa;
-- se l'indice del docente non e' corretto non c'e' messaggio di errore;
-- scrivere "sedi:" assieme a "Docenti:" all'inizio dell'elenco dei docenti.
+- OK
 
 
 
 RF05 (aggiungi lezione):
-- manca l'avvio di RF06 (seleziona aula libera);
-- nell'elenco dei corsi scrivere "nome", "docente", "anno" all'inizio. 
+- OK
 
 
 
 RF06 (seleziona aula libera):
-- non si puo' avviare da RF05 (aggiungi lezione). 
+- OK
 
 
 
 RF07 (ricerca utente):
-- non si puo' avviare dal login.
-
-
-
-RF08 (cambia stato account):
-- non assegnato a nessun gruppo. 
+- OK
 
 
 
 RF09 (visualizza prenotazioni):
-- non si puo' avviare dal login per utenti di tipo studente.
+- OK
 
 
 
 RF10 (annulla prenotazione): 
-- e' necessario che RF09 (visualizza prenotazioni) si avviabile dal login.
+- OK
 
 
 
 RF11 (registra presenza):
-- e' necessario che RF09 sia avviabile dal login o da RF07 (ricerca utente) o da RF12 (ricerca lezioni).
+- OK
 
 
 
 RF12 (ricerca lezioni per data):
-- non si puo' avviare dal login.
+- OK
 
 
 
 RF13 (prenota posto):
-- e' necessario che RF12 (ricerca lezioni per data) sia avviabile dal login. 
+- OK 
 
 
 
-RF14 (cancella lezione posto):
-- e' necessario che RF12 (ricerca lezioni per data) sia avviabile dal login. 
+RF14 (cancella lezione):
+- avrebbe senso cancellare anche le prenotazioni corrispondenti, ma questo controllo non era previsto nella specifica.
 
 
 
 RF15 (modifica lezione):
-- e' necessario che RF12 (ricerca lezioni per data) sia avviabile dal login. 
+- ho provato a modificare una lezione con data 05/10/2022, ma compare il messaggio "Attenzione: lezione non modificabile";
+- uno dei test fallisce: java.util.NoSuchElementException at RF15Test.java:106
 
 
 
 RF16 (scrivi avviso):
-- non si puo' avviare dal login;
-- e' necessario che RF14 (cancella lezione) e RF15 (cancella lezione) siano avviabili dal login.
+- OK
 
 
 
 RF17 (crea utente):
-- non si puo' avviare dal login.
+- OK
+
 

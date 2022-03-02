@@ -235,6 +235,39 @@ public class DB_utenti
         return u;
     }
 
+    
+    
+    public void modifica_account(int matricola, String new_psw) 
+    {
+    	//RF02
+        //autore: Miglio -Mazzarino
+    	
+    	ArrayList<account> elenco;
+    	account a;
+    	
+    	elenco = carica_accounts();
+    	
+    	int l = elenco.size();
+    	
+    	for(int i = 0; i < l; i++) 
+    	{
+    		a=(account)elenco.get(i);
+    		if(a.matricola == matricola)
+    		{
+    			a.password = new_psw;
+    			break;
+    		}
+    	}
+    	
+    	salva_accounts(elenco);
+    	
+	}
+
+
+	
+
+
+
     public int ricerca_ultima_matricola()
     {
         //RF17: crea utente
@@ -259,15 +292,16 @@ public class DB_utenti
 		
 		//RF07: ricerca utente
 		//autori: Malavasi-Torta
-		
-		ArrayList<utente> elenco, elenco_utenti = null;
+		ArrayList<utente> elenco;
+		ArrayList<utente> elenco_utenti = new ArrayList<utente>();
 		utente u;
 		elenco = carica_utenti();
+		
 		int i, l;
 		l=elenco.size();
 		for(i=0; i<l; i++)
 		{
-			if(elenco.get(i).matricola == matricola || elenco.get(i).cognome == cognome)
+			if(elenco.get(i).matricola == matricola || elenco.get(i).cognome.equals(cognome))
 			{
 				u = new utente();
 				u=elenco.get(i);

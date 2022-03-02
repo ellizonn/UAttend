@@ -25,7 +25,7 @@ RNF08: lo sviluppo inizia ad ottobre 2021 e sono previste le seguenti scadenze:
 	- fine dicembre: codice e test-case dei singoli servizi
 	- metà gennaio: integrazione del sistema
 
-RNF09: le date saranno memorizzate nel formato GG/MM/AAAA.
+RNF09: le date saranno memorizzate (e visualizzate) nel formato GG/MM/AAAA.
 
 RNF10: la matricola sara' usata come username ed e' composta da 6 cifre.
 

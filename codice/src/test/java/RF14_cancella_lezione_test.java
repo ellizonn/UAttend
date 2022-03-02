@@ -46,22 +46,52 @@ public class RF14_cancella_lezione_test {
         db_lez.aggiungi_lezione(l1);
         db_lez.aggiungi_lezione(l2);
 
-        // controllo che siano presenti
+        // aggiungo due prenotazioni per la prima lezione
+        prenotazione p1 = new prenotazione();
+        p1.matricola_studente = 12345;
+        p1.nome_corso = "Ingegneria";
+        p1.cognome_docente = "Rossi";
+        p1.aula = 17;
+        p1.giorno = LocalDate.of(2022, 5, 10);
+        p1.ora_inizio = LocalTime.of(9, 00);
+        p1.ora_fine = LocalTime.of(11, 00);
+        p1.presente = "Si";
+        prenotazione p2 = new prenotazione();
+        p2.matricola_studente = 54321;
+        p2.nome_corso = "Ingegneria";
+        p2.cognome_docente = "Rossi";
+        p2.aula = 17;
+        p2.giorno = LocalDate.of(2022, 5, 10);
+        p2.ora_inizio = LocalTime.of(9, 00);
+        p2.ora_fine = LocalTime.of(11, 00);
+        p2.presente = "Si";
+
+        db_lez.aggiungi_prenotazione(p1);
+        db_lez.aggiungi_prenotazione(p2);
+
+        // controllo che siano presenti le lezioni
         assertNotEquals(-1, cerca_lezione(l1));
         assertNotEquals(-1, cerca_lezione(l2));
+
+        // controllo che siano presenti le prenotazioni
+        assertNotEquals(-1, cerca_prenotazione(p1));
+        assertNotEquals(-1, cerca_prenotazione(p2));
         
-        // ne elimino una
+        // elimino una lezione
         g_lez.elimina_lezione(l1);
 
-
-        // controllo che ne manchi una
+        // controllo che manchi una lezione
         assertEquals(-1, cerca_lezione(l1));
         assertNotEquals(-1, cerca_lezione(l2));
 
-        // elimino anche l'altra
+        // controllo che le prenotazioni sono state eliminate
+        assertEquals(-1, cerca_prenotazione(p1));
+        assertEquals(-1, cerca_prenotazione(p2));
+
+        // elimino anche l'altra lezione
         g_lez.elimina_lezione(l2);
 
-        // controllo che manchino tutte e due
+        // controllo che manchino tutte e due le lezioni
         assertEquals(-1, cerca_lezione(l1));
         assertEquals(-1, cerca_lezione(l2));
         
@@ -93,7 +123,29 @@ public class RF14_cancella_lezione_test {
                 l.giorno.equals(elenco_lezioni.get(i).giorno) &&
                 l.ora_inizio.equals(elenco_lezioni.get(i).ora_inizio) &&
                 l.ora_fine.equals(elenco_lezioni.get(i).ora_fine) ) {
-                presente = i;
+                    presente = i;
+            }
+        }
+
+        return presente;
+    }
+
+    private int cerca_prenotazione(prenotazione p) {
+        // restituisce l'indice della prenotazione se presente, -1 se non presente
+        DB_lezioni db_lez = new DB_lezioni();
+        ArrayList<prenotazione> elenco_prenotazioni = db_lez.carica_prenotazioni();
+        int presente = -1;
+
+
+        for(int i = 0; i < elenco_prenotazioni.size() && presente == -1; i++) {
+            if( p.matricola_studente == elenco_prenotazioni.get(i).matricola_studente &&
+                p.nome_corso.equals(elenco_prenotazioni.get(i).nome_corso) &&
+                p.cognome_docente.equals(elenco_prenotazioni.get(i).cognome_docente) &&
+                p.aula == elenco_prenotazioni.get(i).aula &&
+                p.giorno.equals(elenco_prenotazioni.get(i).giorno) &&
+                p.ora_inizio.equals(elenco_prenotazioni.get(i).ora_inizio) && 
+                p.ora_fine.equals(elenco_prenotazioni.get(i).ora_fine) ) {
+                    presente = i;
             }
         }
 

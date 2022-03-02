@@ -26,9 +26,9 @@ public class UI_login
         ui_avv = ui1;
         ui_ric = ui2;
         ui_acc = ui3;
-	ui_lez = ui4;
-	ui_pren = ui5;
-	ui_ut= ui6;
+        ui_lez = ui4;
+        ui_pren = ui5;
+        ui_ut= ui6;
 
         g_acc = g1;   
     }
@@ -54,12 +54,13 @@ public class UI_login
             if (tipo_utente.equals("error1") || tipo_utente.equals("error2") || tipo_utente.equals("error3") || tipo_utente.equals("error4"))
                 this.mostra_errore(tipo_utente);
             else
-            {
+            {   // RF01
                 System.out.println("\nElenco avvisi recenti:");
                 ui_avv.avvio_avvisi();
 
                 do
-                {	    
+                {
+
                     this.mostra_menu(tipo_utente);
                     esito=g_acc.controlla_scelta(scelta, tipo_utente);
                     if (esito==false)
@@ -67,46 +68,47 @@ public class UI_login
                     else
                     {
                         if (scelta==1)
-                            // da sostituire con la chiamata del metodo di AVVIO
-                            System.out.println("\nAVVIO cambia password");
-
+                        { // RF02
+                        	ui_acc.avvio_cambio_password(matricola);
+                        }
                         if (scelta==2)
-						{
-							System.out.println("\nAVVIO ricerca avvisi per data");
+						{ // RF03
+                            //System.out.println("scelta="+scelta);
+							//System.out.println("\nAVVIO ricerca avvisi per data");
 							ui_ric.avvio_ricerca_avvisi_per_data();
 						}
-                        if (scelta==3 && !tipo_utente.equals("admin"))
-                            // da sostituire con la chiamata del metodo di AVVIO
-                            System.out.println("\nAVVIO ricerca lezioni per data");
-
+                        if (scelta==3 && !tipo_utente.equals("admin")) { // RF12
+                            //System.out.println("\nAVVIO ricerca lezioni per data");
+                            ui_ric.avvio_ricerca_lezioni(tipo_utente,matricola);
+                        }
                         if (scelta==3 && tipo_utente.equals("admin"))
                         {
-                            System.out.println("\nAVVIO crea utente");
-                            ui_ut.form_utente();
+                            //System.out.println("\nAVVIO crea utente");
+                            ui_ut.form_utente(); // RF17
                         }
-			    
                         if (scelta==4 && (tipo_utente.equals("staff") || tipo_utente.equals("admin")) )
-                        {    // da sostituire con la chiamata del metodo di AVVIO
-                            System.out.println("\nAVVIO ricerca utente"); 
+                        {    // RF07
+                            //System.out.println("\nAVVIO ricerca utente"); 
                         	ui_ric.avvio_ricerca_utente(tipo_utente);
                         }
                         if (scelta==4 && tipo_utente.equals("studente"))
-                            // da sostituire con la chiamata del metodo di AVVIO
-                            System.out.println("\nAVVIO visualizza prenotazioni");
-	
-                        if (scelta==5 && tipo_utente.equals("staff")) {
-                            System.out.println("\nAVVIO crea corso");
+                        {   // RF09
+                            //System.out.println("\nAVVIO visualizza prenotazioni");
+                            ui_pren.visualizza_prenotaz_stud(matricola, "studente");
+                        }
+                        if (scelta==5 && tipo_utente.equals("staff")) { // RF04
+                            //System.out.println("\nAVVIO crea corso"); 
                             ui_lez.RF04_crea_corso(); /* avvio crea corso */
                         }
-
-                        if (scelta==6 && tipo_utente.equals("staff")) {
-                            System.out.println("\nAVVIO aggiungi lezione");
+                        if (scelta==6 && tipo_utente.equals("staff")) { // RF05
+                            //System.out.println("\nAVVIO aggiungi lezione");
                             this.ui_lez.avvio_aggiungi_lezione();
                         }
-
                         if (scelta==7 && tipo_utente.equals("staff"))
-                            // da sostituire con la chiamata del metodo di AVVIO
-                            System.out.println("\nAVVIO scrivi avviso");
+                        {
+                            //System.out.println("\nAVVIO scrivi avviso");
+                            ui_avv.avvio_scrittura_avviso();
+                        }
                     }
                 }
                 while (scelta != 0);
@@ -117,7 +119,7 @@ public class UI_login
 
 
 
-    public void form_login()
+    private void form_login()
     {
         //RF00
         //autore: Codetta
@@ -133,7 +135,7 @@ public class UI_login
 
 
 
-    public void mostra_errore(String tipo_errore)
+    private void mostra_errore(String tipo_errore)
     {
         //RF00
         //autore: Codetta
@@ -158,7 +160,7 @@ public class UI_login
 
 
 
-    public void mostra_menu(String tipo_utente)
+    private void mostra_menu(String tipo_utente)
     {
         //RF00
         //autore: Codetta

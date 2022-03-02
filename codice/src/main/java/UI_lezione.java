@@ -9,6 +9,12 @@ public class UI_lezione {
     UI_avviso ui_avv;
     gestore_lezioni g_lez;
 
+    /**
+     * variabili usati dalla modifica lezione
+     */
+    public lezione lez_mod;
+    private Scanner sc;
+
     String nome_corso;
     String cognome_docente;
     int anno;
@@ -25,20 +31,21 @@ public class UI_lezione {
     }
 
     public void visualizza_elenco_corsi(ArrayList<corso> elencoCorsi) {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         if (elencoCorsi != null) {
             System.out.println("Elenco corsi disponibili");
+            System.out.printf("N. corso\t%-30s\tAnno\tCognome docente\n", "Nome");
             for (int i = 0; i < elencoCorsi.size(); i++) {
                 String nome = elencoCorsi.get(i).nome;
                 String cognome_docente = elencoCorsi.get(i).cognome_docente;
                 int anno = elencoCorsi.get(i).anno;
-                System.out.println("Corso " + (i+1) + ": Nome: " + nome + ", Anno: " + anno + ", Docente: " + cognome_docente);
+                System.out.printf("Corso %d:\t%-30s\t%-4d\t%s\n", i+1, nome, anno, cognome_docente);
             }
         }
     }
 
     public void mostra_form_data() {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         Scanner scanner = new Scanner(System.in);
         boolean conferma = false;
         boolean formato;
@@ -57,11 +64,11 @@ public class UI_lezione {
                 try {
                     this.giorno = LocalDate.of(anno, mese, giorno);
                 } catch (DateTimeException e) {
-                    System.out.println("ATTENZIONE: data inesistente");
+                    System.out.println("\nATTENZIONE: data inesistente\n");
                     formato = false;
                 }
             } else
-                System.out.println("ATTENZIONE: formato data errato");
+                System.out.println("\nATTENZIONE: formato data errato\n");
 
             if (formato) {
                 System.out.print("Confermi la data (s/n)? ");
@@ -72,7 +79,7 @@ public class UI_lezione {
     }
 
     public void mostra_form_orario() {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         Scanner scanner = new Scanner(System.in);
         boolean conferma = false;
         boolean formato;
@@ -93,11 +100,11 @@ public class UI_lezione {
                     this.ora_inizio = LocalTime.of(ora_inizio, minuto_inizio);
                     this.ora_fine = LocalTime.of(ora_fine, minuto_fine);
                 } catch (DateTimeException e) {
-                    System.out.println("ATTENZIONE: orario inesistente");
+                    System.out.println("\nATTENZIONE: orario inesistente\n");
                     formato = false;
                 }
             } else
-                System.out.println("ATTENZIONE: formato ora errato");
+                System.out.println("\nATTENZIONE: formato ora errato\n");
 
             if (formato) {
                 System.out.print("Confermi l'orario (s/n)? ");
@@ -108,11 +115,12 @@ public class UI_lezione {
     }
 
     public void mostra_errore_data(LocalDate data) {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
+        System.out.println();
         if (data == null)
             System.out.println("ERRORE: nessuna data inserita");
         else {
-            if (data.isBefore(LocalDate.now()))
+            if (!data.isAfter(LocalDate.now()))
                 System.out.println("ERRORE: la data deve essere successiva alla data odierna");
             else {
                 if (data.getDayOfWeek().equals(DayOfWeek.SATURDAY))
@@ -125,10 +133,12 @@ public class UI_lezione {
         }
         System.out.print("Premi INVIO per conferma");
         new Scanner(System.in).nextLine();
+        System.out.println();
     }
 
     public void mostra_errore_orario(LocalTime ora_inizio, LocalTime ora_fine) {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
+        System.out.println();
         if (ora_inizio == null || ora_fine == null) {
             if (ora_inizio == null)
                 System.out.println("ERRORE: nessun orario di inizio inserito");
@@ -152,17 +162,21 @@ public class UI_lezione {
         }
         System.out.print("Premi INVIO per conferma");
         new Scanner(System.in).nextLine();
+        System.out.println();
     }
 
     public void mostra_errore_aula() {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
+        System.out.println();
         System.out.println("ERRORE: nessuna aula disponibile");
         System.out.print("Premi INVIO per conferma");
         new Scanner(System.in).nextLine();
+        System.out.println();
     }
 
     public void mostra_dati_lezione_da_aggiungere() {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
+        System.out.println();
         System.out.println("Dati lezione");
         System.out.println("Corso: " + this.nome_corso);
         System.out.println("Docente: " + this.cognome_docente);
@@ -174,10 +188,11 @@ public class UI_lezione {
         System.out.println("Ora fine: " + this.ora_fine);
         System.out.print("Premi INVIO per conferma");
         new Scanner(System.in).nextLine();
+        System.out.println();
     }
 
     public void avvio_aggiungi_lezione() {
-        // autori: Simone Garau, Filiberto Melis
+        // autori: Simone Garau, Filiberto Melis, RF05
         Scanner scanner = new Scanner(System.in);
         boolean risposta = false;
 
@@ -240,6 +255,7 @@ public class UI_lezione {
                 this.anno, this.numero_aula, this.posti_disponibili, this.giorno,
                 this.ora_inizio, this.ora_fine);
     }
+
 	gestore_utenti g_utn;
  
     public UI_lezione(UI_avviso ui1, gestore_lezioni g1, gestore_utenti g2)
@@ -378,7 +394,7 @@ public class UI_lezione {
 	
 	/**
 	 *  Mostra il form per l'inserimento del nome del corso 
-	 * @author Andrea Colaci, Gregorio Lupano
+	 * @author Andrea Colaci, Gregorio Lupano, RF04
  	 * @return nome del corso 
 	 */
 	public String mostra_form_nome_corso(){
@@ -399,7 +415,7 @@ public class UI_lezione {
 
 	/**
 	 *  Mostra il form per la selezione del docente
-	 * @author Andrea Colaci, Gregorio Lupano
+	 * @author Andrea Colaci, Gregorio Lupano, RF04
  	 * @param listaDocenti - lista di utenti di tipo docente
  	 * @return l'indice dell'array del docente selezionato
 	 */
@@ -429,7 +445,7 @@ public class UI_lezione {
 
 	/**
 	 *  Mostra form per l'inserimento dell'anno del corso
-	 * @author Andrea Colaci, Gregorio Lupano
+	 * @author Andrea Colaci, Gregorio Lupano, RF04
  	 * @return anno del corso
 	 */
 	public int mostra_form_inserimento_anno()
@@ -447,7 +463,7 @@ public class UI_lezione {
 
 	/**
 	 *  Mostra form per la conferma della creazione del corso 
-	 * @author Andrea Colaci, Gregorio Lupano
+	 * @author Andrea Colaci, Gregorio Lupano, RF04
 	 */
 	public void mostra_conferma_creazione(String nomeCorso, String docente, int anno)
 	{
@@ -462,8 +478,8 @@ public class UI_lezione {
 
     /**
      * Avvia cancella lezione
-     * @author Davide Ceci - 20033793 - RF_14
-     * @author Luca Tamone - 20034235 - RF_14
+     * @author Davide Ceci - 20033793 - RF14
+     * @author Luca Tamone - 20034235 - RF14
      * @param lez la lezione da cancellare
      */
     public void avvia_cancella_lezione(lezione lez) {
@@ -493,6 +509,7 @@ public class UI_lezione {
         // Scrivi avviso
         try {
             // Richiama scrivi avviso
+            ui_avv.avvio_scrittura_avviso();
         } catch (Exception e) {
             System.out.println("La lezione è stata cancellata ma non è stato possibile scrivere l'avviso per via di un errore.");
             return;
@@ -539,11 +556,12 @@ public class UI_lezione {
     }
     
     //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
-    private aula mostra_elenco_aule_libere (ArrayList<aula> aule_libere){
+    public aula mostra_elenco_aule_libere (ArrayList<aula> aule_libere){
     	int numero_aula = 0; 
 		System.out.println ("Elenco aule libere:");
+		System.out.println ("Aula Capienza");
     	for (aula a : aule_libere) {
-    		System.out.println ("Aula numero: " + a.numero + " Capienza: " + a.capienza);
+    		System.out.println ( a.numero + "	" + a.capienza);
     	}
     	System.out.println("Per selezionare l'aula desiderata digitarne il numero.");
 		Scanner in = new Scanner(System.in);
@@ -573,6 +591,108 @@ public class UI_lezione {
     //autore: RF06 Rosilde Garavoglia, Roberto Aitchison
     public void mostra_aula_selezionata_correttamente () {
     	System.out.println("Aula selezionata correttamente.");
+    }
+     /**
+	 * RF15 Modifica lezione 
+	 * @author Manganoni Mattia Frassinelli Marco Omar
+     * Metodo che controlla se la lezione é modificabile e inizia la modifica
+     * @return lezione l se la lezione è modificabile altrimenti null
+     */
+    
+    public lezione modifica_lezione(lezione l) {
+    	// NO modificabile
+        if (!this.g_lez.controlla_lezione_modificabile(l)){
+            System.out.println("Attenzione: lezione non modificabile");
+            return null;
+        }  
+        // SI modificabile
+        else {
+        	lezione lNew = new lezione(l.nome_corso, l.cognome_docente, l.anno, l.numero_aula, l.posti_disponibili, l.giorno, l.ora_inizio, l.ora_fine);
+        	sc = new Scanner(System.in);
+        	String option ="";
+        	while(true) {
+        		option = showMenuModifica(option);
+        		if(option.equals("fine")) {
+        			System.out.println("Fine modifica");
+        			break;
+        		}
+        		lNew = setLezione(option,l,lNew);
+        	}
+        	return lNew;
+        }
+    }
+
+	/**
+	 * RF15 Modifica lezione 
+	 * @author Manganoni Mattia Frassinelli Marco Omar
+	 * 
+	 * funzione per la crezione dell'interfaccia utente
+	 * @param option
+	 * @return la risposta dell'utente
+	 */
+    // Menu grafico
+    private String showMenuModifica(String option) {
+        System.out.println("seleziona cosa vuoi modificare:");
+        System.out.println("oraIn : modifica ora di inizio lezione");
+        System.out.println("oraFin: modifica ora di fine lezione");
+        System.out.println("data : modifica data");
+        System.out.println("aula : modifica aula");
+        System.out.println("salva : salva le modifiche fatte");
+        System.out.println("fine : chiudi menu modifica");
+        return option = sc.next();
+    }
+    /**
+	 * RF15 Modifica lezione 
+	 * @author Manganoni Mattia Frassinelli Marco Omar
+	 * 
+	 * funzione che imposta quale opzione si deve eseguire
+	 * 
+	 * @param option opzione da eseguire
+	 * @param l lezione da modificare 
+	 * @param lNew lezione con modifiche 
+	 * @return la lezione con le modifiche
+	 */
+    //Metodo che richiama i metodi di modifica del gestore lezione
+    private lezione setLezione(String option,lezione l, lezione lNew) {
+            switch (option) {
+            // imposto ora di inizio lezione
+            case "oraIn":
+            	if(mostra_messaggio_conferma()) lNew = g_lez.setOraInizio(lNew);
+                return lNew;
+            // imposto ora di fine lezione
+            case "oraFin":
+            	if(mostra_messaggio_conferma()) lNew = g_lez.setOraFine(lNew);
+            	return lNew;
+            // imposto la data della lezione
+            case "data":
+            	if(mostra_messaggio_conferma()) lNew = g_lez.setData(lNew);
+            	return lNew;
+            case "aula":
+            	aula AulaNew = avvia_seleziona_aula_libera(lNew.giorno, lNew.ora_inizio, lNew.ora_fine);
+            	if(mostra_messaggio_conferma()) lNew = g_lez.setAula(lNew,AulaNew);
+            	return lNew;
+            case "salva":
+            	if(mostra_messaggio_conferma()) {
+            		if(g_lez.salvaModifiche(l, lNew)) System.out.println("Lezione modificata salvata con successo");
+            		else System.out.println("Attenzione: lezioni uguali, lezione non salvata");
+            	}
+            	return lNew;
+            // imposto aula e la fine della modifica
+            default:
+                System.out.println("Attenzione: opzione non corretta");
+                return lNew;
+            }
+        }
+    
+    /**
+	 *  RF15 Modifica lezione 
+	 * @author Manganoni Mattia Frassinelli Marco Omar
+	 * RF15 funzione che riceve la lezione da modificare
+	 * 
+	 * @param l lezione da modificare
+	 */
+    public void invio_lezione_modificare(lezione l) {
+        this.lez_mod = l;
     }
 
 }

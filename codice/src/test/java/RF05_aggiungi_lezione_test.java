@@ -48,7 +48,7 @@ public class RF05_aggiungi_lezione_test {
 
     @Test
     public void verifica_correttezza_data_01() {
-        Assert.assertTrue("La data deve essere corretta", g_lez.verifica_correttezza_data(LocalDate.of(2022, 1, 12)));
+        Assert.assertTrue("La data deve essere corretta", g_lez.verifica_correttezza_data(LocalDate.of(2022, 5, 12)));
     }
 
     @Test

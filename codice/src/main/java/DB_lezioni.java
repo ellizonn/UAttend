@@ -47,7 +47,7 @@ public class DB_lezioni {
     }
 
 	public int ricerca_nome_corso(String nomeCorso){
-
+		// RF04
 		for(corso corso : this.carica_corsi())
 			if(corso.nome.equals(nomeCorso)) return 1;
 		
@@ -102,8 +102,8 @@ public class DB_lezioni {
 
     /**
      * Cancella la lezione
-     * @author Davide Ceci - 20033793
-     * @author Luca Tamone - 20034235
+     * @author Davide Ceci - 20033793 - RF14
+     * @author Luca Tamone - 20034235 - RF14
      * @param l la lezione da cancellare
      */
     public void elimina_lezione(lezione l) {
@@ -197,7 +197,7 @@ public class DB_lezioni {
         }
     }
 
-    // autore: RF06 Rosilde Garavoglia, Roberto Aitchison
+     // autore: RF06 Rosilde Garavoglia, Roberto Aitchison
     public ArrayList<aula> restituisci_elenco_aule_occupate(LocalDate date, LocalTime startHour, LocalTime endHour) {
     	ArrayList<lezione> lezioni = this.carica_lezioni();
     	ArrayList<lezione> lezioni_corrispondenti = new ArrayList<lezione>();
@@ -214,8 +214,8 @@ public class DB_lezioni {
     	
     	ArrayList<aula> tot_aule = this.carica_aule();
     	ArrayList<aula> aule_occupate = new ArrayList<aula> ();
-    	aula a = new aula();
     	for (lezione l : lezioni_corrispondenti) {
+    		aula a = new aula();
     		a.numero = l.numero_aula;
     		for (aula a2 : tot_aule) {
     			if (a.numero == a2.numero) {
@@ -327,7 +327,7 @@ public class DB_lezioni {
                 p.giorno = LocalDate.parse(sc.next(), formatter);
                 p.ora_inizio = LocalTime.parse(sc.next(), formatter2);
 				p.ora_fine = LocalTime.parse(sc.next(), formatter2);
-                p.presente = sc.nextBoolean();
+                p.presente = sc.next();
 
                 elenco.add(p);
             }
@@ -384,15 +384,71 @@ public class DB_lezioni {
             System.out.println("ERRORE apertura file prenotazioni.txt");
         }
     }
+
+    /**
+     * Cancella tutte le prenotazioni per una data lezione
+     * @author Davide Ceci - 20033793 - RF14
+     * @author Luca Tamone - 20034235 - RF14
+     * @param l la lezione di cui cancellare tutte le prenotazioni
+     */
+    public void elimina_prenotazioni(lezione l) {
+        ArrayList<prenotazione> elenco_prenotazioni = carica_prenotazioni();
+        ArrayList<Integer> eliminare = new ArrayList<Integer>();
+
+        for(int i = 0; i < elenco_prenotazioni.size(); i++) {
+            if( l.nome_corso.equals(elenco_prenotazioni.get(i).nome_corso) &&
+                l.cognome_docente.equals(elenco_prenotazioni.get(i).cognome_docente) &&
+                l.numero_aula == elenco_prenotazioni.get(i).aula &&
+                l.giorno.equals(elenco_prenotazioni.get(i).giorno) &&
+                l.ora_inizio.equals(elenco_prenotazioni.get(i).ora_inizio) &&
+                l.ora_fine.equals(elenco_prenotazioni.get(i).ora_fine) ) {
+                    eliminare.add(i);
+            }
+        }
+
+        for(int i = 0; i < eliminare.size(); i++) {
+            elenco_prenotazioni.remove(eliminare.get(i) - i);
+        }
+
+        salva_prenotazioni(elenco_prenotazioni);
+    }
+
+    // ----------------------------------------------------------------------------
+
+    public ArrayList<lezione> cerca_lezioni(LocalDate data_inizio, LocalDate data_fine) {
+
+        // autore: Masino, Spina
+        // RF12 - Ricerca lezioni per data
+
+        ArrayList<lezione> elenco_lezioni_in;
+        ArrayList<lezione> elenco_lezioni = new ArrayList<>();
+        elenco_lezioni_in = carica_lezioni();
+        lezione lez = null;
+
+        for(lezione l : elenco_lezioni_in) {
+            lez = l;
+            if(((lez.giorno.isAfter(data_inizio) && lez.giorno.isBefore(data_fine)) || lez.giorno.equals(data_inizio) || lez.giorno.equals(data_fine)) && (lez.giorno.isEqual(LocalDate.now()) || lez.giorno.isAfter(LocalDate.now()))) {
+                elenco_lezioni.add(lez);
+            }
+        }
+
+        return elenco_lezioni;
+
+
+    }
   
   
   // =======================================================================
   
-  
-  	public void modifica_lezione(lezione updated_lez){
+    /**
+     * Aggiorna entry nel db secondo updated_lez
+     * @author RF13 prenota_posto
+     * @author Paolo Rossari 20034882
+     * @author Elia Marisio 20036782
+     * @param updated_lez oggetto lezione con posti disponibili decrementati
+     */
+    public void modifica_lezione(lezione updated_lez){
 		
-		//RF13_prenota_posto
-		//Autori: Rossari, Marisio
 		ArrayList<lezione> elenco = carica_lezioni();
 		int L = elenco.size();
 		int i = 0;
@@ -412,5 +468,100 @@ public class DB_lezioni {
 		salva_lezioni(elenco);
 		
 	}
+
+    /**
+     * Cerca se la prenotazione obj_preno e' gia' presente sul db (l'utente si e' gia' prenotato)
+     * @author RF13 prenota_posto
+     * @author Paolo Rossari 20034882
+     * @author Elia Marisio 20036782
+     * @param obj_preno oggetto prenotazione
+     * @return l'oggetto cercato (prenotazione) se presente, altrimenti null
+     */
+    public prenotazione cerca_prenotazione(prenotazione obj_preno) {
+        
+        prenotazione obj_cercato = null, preno_ricerca = null;
+        ArrayList elenco = carica_prenotazioni();
+
+        for (int i=0; i<elenco.size() && obj_cercato==null; i++)
+        {
+            preno_ricerca = (prenotazione)elenco.get(i);
+            if (preno_ricerca.matricola_studente == obj_preno.matricola_studente && preno_ricerca.nome_corso.equals(obj_preno.nome_corso) && preno_ricerca.aula == obj_preno.aula && preno_ricerca.giorno.compareTo(obj_preno.giorno)==0 && preno_ricerca.ora_inizio.compareTo(obj_preno.ora_inizio)==0)
+            {
+                obj_cercato = preno_ricerca;
+            }
+
+        }
+
+        return obj_cercato;	
+    }
+
+    /**
+     * RF11 Registra_presenza
+     * Aggiorna il campo "presente" della prenotazione.
+     * @author Almasio, Borova
+     * @param p : prenotazione
+     * @param scelta_opzione : scelta dell'utente
+     */
+    public void inserisci_scelta(prenotazione p, String scelta_opzione){
+        ArrayList<prenotazione> pren = carica_prenotazioni();
+        int len = pren.size();
+        int index = 0;
+        while(index<len){
+            if(pren.get(index).matricola_studente == p.matricola_studente &&
+            pren.get(index).giorno.compareTo(p.giorno)==0 &&
+            pren.get(index).ora_inizio.compareTo(p.ora_inizio)==0){
+                pren.get(index).presente = scelta_opzione;
+                break;
+            }
+            index++;
+        }
+        salva_prenotazioni(pren);
+        return;
+    }
+
+    //Autore : Orsetti,Lopez
+    //RF10 -Annulla_prenotazione
+     public void Cancella_prenotazione(prenotazione p)
+    { 
+		ArrayList<prenotazione> elenco_prenotazioni = new ArrayList<>();
+		ArrayList<lezione> elenco_lezioni = new ArrayList<>();
+		
+		
+        elenco_prenotazioni=carica_prenotazioni();
+        elenco_lezioni = carica_lezioni();
+		int i=0;
+         for (i=0; i< elenco_prenotazioni.size() ; i++)
+        {
+            if(p.matricola_studente==elenco_prenotazioni.get(i).matricola_studente &&
+            p.nome_corso.equals(elenco_prenotazioni.get(i).nome_corso) &&
+            p.aula == elenco_prenotazioni.get(i).aula &&
+            p.giorno.equals(elenco_prenotazioni.get(i).giorno) &&
+            p.ora_inizio.equals(elenco_prenotazioni.get(i).ora_inizio) &&
+            p.ora_fine.equals(elenco_prenotazioni.get(i).ora_fine)) 
+			{
+
+				elenco_prenotazioni.remove(i);
+				salva_prenotazioni(elenco_prenotazioni);
+                System.out.println("Cancellazione prenotazione eseguita");
+			}
+		}
 	
+		for (i=0; i< elenco_lezioni.size(); i++)
+		{	
+            if(p.nome_corso.equals(elenco_lezioni.get(i).nome_corso) &&
+            p.cognome_docente.equals(elenco_lezioni.get(i).cognome_docente) &&
+            p.giorno.equals(elenco_lezioni.get(i).giorno) &&
+            p.ora_inizio.equals(elenco_lezioni.get(i).ora_inizio)&&
+            p.ora_fine.equals(elenco_lezioni.get(i).ora_fine))
+			{
+				elenco_lezioni.get(i).posti_disponibili++;
+				salva_lezioni(elenco_lezioni);
+			}
+        }
+		
+    }
 }
+
+
+
+
