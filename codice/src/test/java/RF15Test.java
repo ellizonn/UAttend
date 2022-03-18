@@ -169,3 +169,4 @@ public class RF15Test {
 		assertTrue(DoTest.comparaData(test) < 1);
 	}
 }
+
